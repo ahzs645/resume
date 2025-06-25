@@ -1,78 +1,95 @@
 #set page(
   paper: "us-letter",
-  margin: (top: 1.27cm, bottom: 1.27cm, left: 1.27cm, right: 1.27cm),
+  margin: 1.27cm,
 )
 
 #set text(
   font: "Times New Roman",
   size: 11pt,
   lang: "en",
-  region: "EN",
+  region: "US",
 )
 
-#set par(justify: false, leading: 0.65em)
+#set par(
+  justify: false, 
+  leading: 0.65em,
+  first-line-indent: 0pt
+)
 
 // Remove page numbers
 #set page(numbering: none)
 
-// Define design variables
+// List formatting to match LaTeX
+#set list(
+  indent: 0pt,
+  body-indent: 1em,
+  spacing: 1pt,
+  tight: true,
+  marker: [•]
+)
+
+// Define design variables that might be referenced
 #let design-entries-vertical-space-between-entries = 8pt
 
-// Section formatting
+// Section formatting function
 #let section_heading(title) = {
   v(16pt)
-  upper(strong(title))
+  text(
+    size: 11pt,
+    weight: "bold",
+    upper(title)
+  )
   v(-4pt)
   line(length: 100%, stroke: 0.4pt)
-  v(-4pt)
+  v(4pt)
 }
 
-// Organization header with date range
-#let org_header(company, total_dates, location) = {
+// Company header formatting (matches LaTeX \textbf)
+#let company_header(name, dates) = {
   v(8pt)
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    strong(company),
-    [#total_dates \ #location]
+    text(weight: "bold", name),
+    dates
   )
 }
 
-// Position with dates
-#let position_line(position, dates, location: none) = {
-  if location != none {
-    grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      emph(position),
-      [#dates \ #location]
-    )
-  } else {
-    grid(
-      columns: (1fr, auto), 
-      align: (left, right),
-      emph(position),
-      dates
-    )
-  }
+// Position line formatting (matches LaTeX \textit)
+#let position_line(title, dates, location) = {
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    if dates != "" {
+      text(style: "italic", title + " | " + dates)
+    } else {
+      text(style: "italic", title)
+    },
+    location
+  )
 }
 
-// Bullet list formatting
-#let bullet_list(items) = {
+// Bullet list with specific spacing
+#let experience_bullets(items) = {
+  v(2pt)
   for item in items {
     [• #item]
     linebreak()
   }
 }
 
-// Header with name and contact information
-#text(size: 26pt, weight: "bold")[Ahmad Jalil]
+// Header matching LaTeX formatting exactly
+#text(
+  size: 26pt, 
+  weight: "bold",
+  "Ahmad Jalil"
+)
 
 #v(6pt)
 
-// Contact information line
+// Contact information in 14pt like LaTeX
 #text(size: 14pt)[
-  #raw("me@ahmadjalil.com")| tel:+1-778-267-9144| Prince George, BC| #link("https://ahmadjalil.com/")]
+  #raw("me@ahmadjalil.com")| tel:+1-778-267-9144| Prince George, BC| #raw("ahmadjalil.com/")]
 
 #v(-4pt)
 #line(length: 100%, stroke: 0.4pt)
@@ -82,15 +99,22 @@
 
 #v(4pt)
 
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Northern Analytical Laboratory Services"),
-  "Sept 2022 – present"
+  "September 2022 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -98,7 +122,10 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
 
 • Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
@@ -109,16 +136,26 @@
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Northern Analytical Laboratory Services"),
-  "Nov 2020 – Sept 2022"
+  "November 2020 – September 2022"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -126,7 +163,10 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Organize, review, and correct research data, creating illustrative graphs and charts for reports
 
 • Process data using statistical software including Excel, Prism, and Rstudio, to facilitate thorough data analysis
@@ -135,16 +175,26 @@
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Relentless Pursuit Ventures"),
-  "May 2024 – Aug 2024"
+  "May 2024 – August 2024"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -152,23 +202,36 @@
   "Remote"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Conducted comprehensive research on health technology innovations for seniors in rural and remote communities across Canada
 
 • Identified and analyzed key stakeholders in the age-tech and healthcare sectors, including government agencies, healthcare providers, technology companies, and advocacy groups
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Northern Health"),
-  "Dec 2024 – present"
+  "December 2024 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -176,7 +239,10 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Led the integration and optimization of health information technologies, improving access to patient\/client information and enhancing evidence-based practices across Northern Health regions
 
 • Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
@@ -185,16 +251,26 @@
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Northern Health"),
-  "May 2024 – Dec 2024"
+  "May 2024 – December 2024"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -202,7 +278,10 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Utilize Geographic Information Systems \(GIS\) software to analyze and map data relevant to public health concerns across Northern Health regions
 
 • Created and presented comprehensive GIS-based reports to high-level decision-makers to support informed decision-making on public health concerns
@@ -211,16 +290,26 @@
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("University of Northern British Columbia"),
-  "Jan 2024 – Dec 2024"
+  "January 2024 – December 2024"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -228,10 +317,16 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Contributed to the creation of an online resource hub for nutrition students, providing access to lecture notes, study guides, and additional learning materials
 
 
+
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
 
 
 // Section ending - minimal spacing
@@ -239,15 +334,22 @@
 
 #v(4pt)
 
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("St. Vincent De Paul"),
-  "Dec 2020 – present"
+  "December 2020 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -255,21 +357,34 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Prepared and served meals to those in need, promoted community wellness, and efficiently managed the distribution of donated goods
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Rural eMentoring BC"),
-  "Sept 2020 – present"
+  "September 2020 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -277,21 +392,34 @@
   "Remote"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Cultivated a confidential, supportive mentorship with a high school mentee, providing guidance on personal and academic challenges to foster personal and educational development
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Over The Edge Newspaper Society"),
-  "Mar 2024 – present"
+  "March 2024 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -299,7 +427,10 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Negotiated a printing deal with the main newsprint supplier in Prince George, securing the production of 22,000 copies per issue
 
 • Redesigned the newspaper's logo and brand image to modernize and align with current media trends
@@ -310,16 +441,26 @@
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Sparklab"),
-  "Sept 2023 – present"
+  "September 2023 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -327,23 +468,36 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Engage with researchers to understand their specific needs and challenges in laboratory and field environments
 
 • Design customized solutions using CAD \(Computer-Aided Design\) software to address the unique requirements of various research projects
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("University of Northern British Columbia"),
-  "Sept 2022 – present"
+  "September 2022 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -351,23 +505,36 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Act as a primary liaison between students and the research community at UNBC, promoting engagement and participation in research activities
 
 • Organize and lead informational sessions and workshops to educate students about the research process, opportunities, and the significance of research contributions
 
 
 
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
+
 #v(design-entries-vertical-space-between-entries)
-// Organization header with date range and location
+// Experience entry with automatic date formatting and empty company handling
+
+// Format start date
+
+// Format end date
+
+
+// Only show company header if company name is not empty
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   strong("Northern Health"),
-  "Apr 2023 – present"
+  "April 2023 – Present"
 )
 
-// Position line with location  
+// Position line
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -375,7 +542,10 @@
   "Prince George, BC"
 )
 
-// Bullet points for highlights
+// For entries without company header, show dates next to position
+
+// Bullet points
+#v(2pt)
 • Assist recreation therapists and engage in activities with residents at Rainbow Lodge & Gateway, a long-term care home and facilities, enhancing their daily lives and well-being
 
 • Provide emotional support and reassurance to dementia patients, helping them feel more secure and oriented in their environment
@@ -383,6 +553,9 @@
 • Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
 
 
+
+// Spacing - less for grouped entries, more for separate companies
+#v(8pt)  // Normal spacing for entries with company headers
 
 
 // Section ending - minimal spacing

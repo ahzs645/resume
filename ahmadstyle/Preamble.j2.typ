@@ -1,64 +1,77 @@
 #set page(
-  paper: "<<design.page_size>>",
-  margin: (top: 1.27cm, bottom: 1.27cm, left: 1.27cm, right: 1.27cm),
+  paper: "us-letter",
+  margin: 1.27cm,
 )
 
 #set text(
   font: "Times New Roman",
-  size: <<design.font_size>>,
-  lang: "<<locale.language>>",
-  region: "<<locale.language.upper()>>",
+  size: 11pt,
+  lang: "en",
+  region: "US",
 )
 
-#set par(justify: false, leading: 0.65em)
+#set par(
+  justify: false, 
+  leading: 0.65em,
+  first-line-indent: 0pt
+)
 
 // Remove page numbers
 #set page(numbering: none)
 
-// Define design variables
+// List formatting to match LaTeX
+#set list(
+  indent: 0pt,
+  body-indent: 1em,
+  spacing: 1pt,
+  tight: true,
+  marker: [•]
+)
+
+// Define design variables that might be referenced
 #let design-entries-vertical-space-between-entries = 8pt
 
-// Section formatting
+// Section formatting function
 #let section_heading(title) = {
   v(16pt)
-  upper(strong(title))
+  text(
+    size: 11pt,
+    weight: "bold",
+    upper(title)
+  )
   v(-4pt)
   line(length: 100%, stroke: 0.4pt)
-  v(-4pt)
+  v(4pt)
 }
 
-// Organization header with date range
-#let org_header(company, total_dates, location) = {
+// Company header formatting (matches LaTeX \textbf)
+#let company_header(name, dates) = {
   v(8pt)
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    strong(company),
-    [#total_dates \ #location]
+    text(weight: "bold", name),
+    dates
   )
 }
 
-// Position with dates
-#let position_line(position, dates, location: none) = {
-  if location != none {
-    grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      emph(position),
-      [#dates \ #location]
-    )
-  } else {
-    grid(
-      columns: (1fr, auto), 
-      align: (left, right),
-      emph(position),
-      dates
-    )
-  }
+// Position line formatting (matches LaTeX \textit)
+#let position_line(title, dates, location) = {
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    if dates != "" {
+      text(style: "italic", title + " | " + dates)
+    } else {
+      text(style: "italic", title)
+    },
+    location
+  )
 }
 
-// Bullet list formatting
-#let bullet_list(items) = {
+// Bullet list with specific spacing
+#let experience_bullets(items) = {
+  v(2pt)
   for item in items {
     [• #item]
     linebreak()

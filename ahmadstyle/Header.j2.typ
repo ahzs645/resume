@@ -1,9 +1,13 @@
-// Header with name and contact information
-#text(size: 26pt, weight: "bold")[<<cv.name>>]
+// Header matching LaTeX formatting exactly
+#text(
+  size: 26pt, 
+  weight: "bold",
+  "<<cv.name>>"
+)
 
 #v(6pt)
 
-// Contact information line
+// Contact information in 14pt like LaTeX
 #text(size: 14pt)[
   #raw("<<cv.email>>")
   ((*- if cv.phone -*))
@@ -13,7 +17,7 @@
    | <<cv.location>>
   ((*- endif -*))
   ((*- if cv.website -*))
-   | #link("<<cv.website>>")
+   | #raw("<<cv.website|string|replace('https://', '')|replace('http://', '')>>")
   ((*- endif -*))
 ]
 
