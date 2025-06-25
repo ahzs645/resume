@@ -1,0 +1,2 @@
+// Bullet entry 
+• <<entry.bullet>>
