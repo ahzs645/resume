@@ -26,5 +26,3 @@
 • <<entry.summary>>
 
 ((*- endif -*))
-
-#v(8pt)

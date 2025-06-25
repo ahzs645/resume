@@ -4,7 +4,7 @@
 )
 
 #set text(
-  font: "Latin Modern Roman",
+  font: "Times New Roman",
   size: <<design.font_size>>,
   lang: "<<locale.language>>",
   region: "<<locale.language.upper()>>",
@@ -14,6 +14,9 @@
 
 // Remove page numbers
 #set page(numbering: none)
+
+// Define design variables
+#let design-entries-vertical-space-between-entries = 8pt
 
 // Section formatting
 #let section_heading(title) = {

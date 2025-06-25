@@ -6,19 +6,19 @@
   "<<entry.date_string>>"
 )
 
-((*- if entry.summary -*))
+((* if entry.summary *))
+
 _<<entry.summary>>_
-((*- endif -*))
+((* endif *))
 
-((*- if entry.location -*))
+((* if entry.location *))
+
 #h(1fr) <<entry.location>>
-((*- endif -*))
+((* endif *))
 
-((*- if entry.highlights -*))
-((*- for highlight in entry.highlights -*))
+((* if entry.highlights *))
+((* for highlight in entry.highlights *))
 
 <<highlight>>
-((*- endfor -*))
-((*- endif -*))
-
-#v(8pt)
+((* endfor *))
+((* endif *))

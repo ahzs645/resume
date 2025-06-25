@@ -5,7 +5,7 @@
 
 // Contact information line
 #text(size: 14pt)[
-  <<cv.email>>
+  #raw("<<cv.email>>")
   ((*- if cv.phone -*))
    | <<cv.phone>>
   ((*- endif -*))
@@ -13,7 +13,7 @@
    | <<cv.location>>
   ((*- endif -*))
   ((*- if cv.website -*))
-   | <<cv.website|string|make_a_url_clean>>
+   | #link("<<cv.website>>")
   ((*- endif -*))
 ]
 

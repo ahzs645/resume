@@ -6,7 +6,7 @@
   "<<entry.date_string>>"
 )
 
-// Position line with location
+// Position line with location  
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -14,17 +14,15 @@
   "<<entry.location>>"
 )
 
-((*- if entry.highlights -*))
+((* if entry.highlights *))
 // Bullet points for highlights
-((*- for highlight in entry.highlights -*))
+((* for highlight in entry.highlights *))
 • <<highlight>>
 
-((*- endfor -*))
-((*- endif -*))
+((* endfor *))
+((* endif *))
 
-((*- if entry.summary -*))
+((* if entry.summary *))
 • <<entry.summary>>
 
-((*- endif -*))
-
-#v(8pt)
+((* endif *))

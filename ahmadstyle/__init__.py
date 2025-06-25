@@ -28,9 +28,9 @@ class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
         description="The font size of the CV. The default value is 11pt.",
     )
     page_size: str = pydantic.Field(
-        default="letterpaper",
+        default="us-letter",
         title="Page Size", 
-        description="The page size of the CV. The default value is letterpaper.",
+        description="The page size of the CV. The default value is us-letter.",
     )
     entries: EntriesConfig = pydantic.Field(
         default=EntriesConfig(),

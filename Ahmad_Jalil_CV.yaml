@@ -246,4 +246,4 @@ cv:
 design:
   theme: ahmadstyle
   font_size: 11pt
-  page_size: letterpaper
+  page_size: us-letter
