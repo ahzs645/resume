@@ -6,7 +6,16 @@ from typing import Literal
 
 import pydantic
 
-from rendercv.themes.components import RenderCVBaseModelWithoutExtraKeys
+from rendercv.data.models.base import RenderCVBaseModelWithoutExtraKeys
+
+
+class EntriesConfig(RenderCVBaseModelWithoutExtraKeys):
+    """Configuration for entries."""
+    show_time_span: list[str] = pydantic.Field(
+        default=[],
+        title="Show Time Span",
+        description="Sections where time span should be shown.",
+    )
 
 
 class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
@@ -22,6 +31,11 @@ class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
         default="letterpaper",
         title="Page Size", 
         description="The page size of the CV. The default value is letterpaper.",
+    )
+    entries: EntriesConfig = pydantic.Field(
+        default=EntriesConfig(),
+        title="Entries Configuration",
+        description="Configuration for entry components.",
     )
 
 

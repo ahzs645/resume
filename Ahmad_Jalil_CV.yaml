@@ -244,12 +244,6 @@ cv:
         doi: 10.1080/10962247.2023.2197970
 
 design:
-  theme: classic
+  theme: ahmadstyle
   font_size: 11pt
   page_size: letterpaper
-  margins:
-    page:
-      top: 1.27cm
-      bottom: 1.27cm
-      left: 1.27cm
-      right: 1.27cm

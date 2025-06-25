@@ -13,7 +13,7 @@
    | <<cv.location>>
   ((*- endif -*))
   ((*- if cv.website -*))
-   | <<cv.website|make_a_url_clean>>
+   | <<cv.website|string|make_a_url_clean>>
   ((*- endif -*))
 ]
 
