@@ -1,4 +1,4 @@
-// Experience entry with automatic date formatting and empty company handling
+// Experience entry with automatic date formatting matching LaTeX exactly
 
 // Format start date
 ((* if entry.start_date *))
@@ -42,51 +42,36 @@
 
 ((* set date_range = formatted_start + ' – ' + formatted_end *))
 
-// Only show company header if company name is not empty
+// Company header - only show if this is the first position at a company
 ((* if entry.company and entry.company != "" *))
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("<<entry.company>>"),
+  text(weight: "bold", "<<entry.company>>"),
   "<<date_range>>"
 )
 ((* endif *))
 
-// Position line
+// Position line - same format whether company header shown or not
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  emph("<<entry.position>>"),
+  text(style: "italic", raw("<<entry.position>>") + " | " + "<<date_range>>"),
   "<<entry.location>>"
 )
 
-// For entries without company header, show dates next to position
-((* if not entry.company or entry.company == "" *))
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  "",
-  text(style: "italic", size: 10pt, "<<date_range>>")
-)
-((* endif *))
-
-// Bullet points
+// Bullet points with LaTeX-matching spacing
 ((* if entry.highlights *))
 #v(2pt)
 ((* for highlight in entry.highlights *))
 • <<highlight>>
-
+#v(1pt)
 ((* endfor *))
 ((* endif *))
 
-((* if entry.summary *))
-• <<entry.summary>>
-
-((* endif *))
-
-// Spacing - less for grouped entries, more for separate companies
+// Spacing control - match LaTeX exactly
 ((* if entry.company and entry.company != "" *))
-#v(8pt)  // Normal spacing for entries with company headers
+#v(8pt)  // Full spacing for new companies
 ((* else *))
 #v(1pt)  // Minimal spacing for additional positions at same company
 ((* endif *))

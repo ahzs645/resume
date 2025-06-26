@@ -7,9 +7,9 @@
 
 #v(6pt)
 
-// Contact information in 14pt like LaTeX
+// Contact information matching LaTeX 14pt size
 #text(size: 14pt)[
-  #raw("<<cv.email>>")
+  #text("<<cv.email>>")
   ((*- if cv.phone -*))
    | <<cv.phone>>
   ((*- endif -*))
@@ -17,7 +17,7 @@
    | <<cv.location>>
   ((*- endif -*))
   ((*- if cv.website -*))
-   | #raw("<<cv.website|string|replace('https://', '')|replace('http://', '')>>")
+   | #link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')>>]
   ((*- endif -*))
 ]
 

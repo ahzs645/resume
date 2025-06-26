@@ -1,17 +1,26 @@
-// Normal entry (for professional development, awards, etc.)
+// Normal entry (for professional development, awards, etc.) matching LaTeX
+
+// Main entry with bold name
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  [
-    *<<entry.name>>*
-    ((* if entry.summary *))
-    \ _<<entry.summary>>_
-    ((* endif *))
-  ],
+  text(weight: "bold", "<<entry.name>>"),
   "<<entry.date_string>>"
 )
 
-((* if entry.location *))
+((* if entry.summary *))
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "<<entry.summary>>"),
+  ((* if entry.location *))
+  "<<entry.location>>"
+  ((* else *))
+  ""
+  ((* endif *))
+)
+((* elif entry.location *))
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -21,8 +30,11 @@
 ((* endif *))
 
 ((* if entry.highlights *))
+// Description text (not bullet points for awards)
 ((* for highlight in entry.highlights *))
-
 <<highlight>>
+
 ((* endfor *))
 ((* endif *))
+
+#v(8pt)  // Standard spacing between entries
