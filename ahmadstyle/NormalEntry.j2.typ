@@ -2,18 +2,22 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("<<entry.name>>"),
+  [
+    *<<entry.name>>*
+    ((* if entry.summary *))
+    \ _<<entry.summary>>_
+    ((* endif *))
+  ],
   "<<entry.date_string>>"
 )
 
-((* if entry.summary *))
-
-_<<entry.summary>>_
-((* endif *))
-
 ((* if entry.location *))
-
-#h(1fr) <<entry.location>>
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  "",
+  "<<entry.location>>"
+)
 ((* endif *))
 
 ((* if entry.highlights *))

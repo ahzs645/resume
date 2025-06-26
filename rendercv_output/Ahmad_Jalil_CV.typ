@@ -4,8 +4,8 @@
 )
 
 #set text(
-  font: "Times New Roman",
-  size: 11pt,
+  font: "EB Garamond",
+  size: 11pt,  // You might want to try 12pt - serif fonts sometimes need to be slightly larger
   lang: "en",
   region: "US",
 )
@@ -35,8 +35,8 @@
 #let section_heading(title) = {
   v(16pt)
   text(
-    size: 11pt,
-    weight: "bold",
+    size: 11pt,  // Keep section headers same size or slightly larger
+    weight: "semibold",  // EB Garamond looks better with semibold than bold
     upper(title)
   )
   v(-4pt)
@@ -50,7 +50,7 @@
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    text(weight: "bold", name),
+    text(weight: "semibold", name),  // semibold works better with EB Garamond
     dates
   )
 }
@@ -620,15 +620,19 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Digital Twins - Fundamentals, Techniques & Approaches"),
+  [
+    *Digital Twins - Fundamentals, Techniques & Approaches*
+    \ _Mohawk College_
+  ],
   "Mar 2024"
 )
 
-
-_Mohawk College_
-
-
-#h(1fr) Remote
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  "",
+  "Remote"
+)
 
 
 #v(design-entries-vertical-space-between-entries)
@@ -636,15 +640,19 @@ _Mohawk College_
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Applied Internet of Things \(IoT\)"),
+  [
+    *Applied Internet of Things \(IoT\)*
+    \ _British Columbia Institute of Technology_
+  ],
   "May 2023"
 )
 
-
-_British Columbia Institute of Technology_
-
-
-#h(1fr) Vancouver, BC
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  "",
+  "Vancouver, BC"
+)
 
 
 #v(design-entries-vertical-space-between-entries)
@@ -652,15 +660,19 @@ _British Columbia Institute of Technology_
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Building Envelope Science"),
+  [
+    *Building Envelope Science*
+    \ _Holland College_
+  ],
   "June 2022"
 )
 
-
-_Holland College_
-
-
-#h(1fr) Remote
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  "",
+  "Remote"
+)
 
 
 #v(design-entries-vertical-space-between-entries)
@@ -668,15 +680,19 @@ _Holland College_
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Covid-19 Contact Tracer"),
+  [
+    *Covid-19 Contact Tracer*
+    \ _John Hopkins University_
+  ],
   "Dec 2021"
 )
 
-
-_John Hopkins University_
-
-
-#h(1fr) Remote
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  "",
+  "Remote"
+)
 
 
 
@@ -700,12 +716,12 @@ _John Hopkins University_
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Canada Graduate Scholarships – Michael Smith Foreign Study Supplements"),
+  [
+    *Canada Graduate Scholarships – Michael Smith Foreign Study Supplements*
+    \ _Canadian Institutes of Health Research_
+  ],
   "Jan 2025"
 )
-
-
-_Canadian Institutes of Health Research_
 
 
 
@@ -716,12 +732,12 @@ The Government of Canada launched this program in 2008 to support high-calibre g
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Canada Graduate Scholarships"),
+  [
+    *Canada Graduate Scholarships*
+    \ _Canadian Institutes of Health Research_
+  ],
   "Apr 2024"
 )
-
-
-_Canadian Institutes of Health Research_
 
 
 
@@ -732,12 +748,12 @@ The Canada Graduate Scholarships is designed to enhance the research skills and 
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("British Columbia Graduate Scholarship"),
+  [
+    *British Columbia Graduate Scholarship*
+    \ _The Ministry of Advanced Education, Skills and Training_
+  ],
   "Apr 2024"
 )
-
-
-_The Ministry of Advanced Education, Skills and Training_
 
 
 
@@ -748,12 +764,12 @@ The British Columbia Graduate Scholarship supports exceptional students at publi
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Lieutenant-Governor's Medal for Inclusion, Democracy and Reconciliation"),
+  [
+    *Lieutenant-Governor's Medal for Inclusion, Democracy and Reconciliation*
+    \ _Lieutenant Governor of British Columbia_
+  ],
   "May 2023"
 )
-
-
-_Lieutenant Governor of British Columbia_
 
 
 
@@ -764,12 +780,12 @@ The Lieutenant-governor's Medal for Inclusion, Democracy and Reconciliation reco
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Undergraduate Student Research Award"),
+  [
+    *Undergraduate Student Research Award*
+    \ _Natural Sciences and Engineering Research Council of Canada_
+  ],
   "Apr 2023"
 )
-
-
-_Natural Sciences and Engineering Research Council of Canada_
 
 
 
@@ -780,12 +796,12 @@ Natural Sciences and Engineering Research Council of Canada Undergraduate Studen
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("BC Northern Real Estate Board Award"),
+  [
+    *BC Northern Real Estate Board Award*
+    \ _BC Northern Real Estate Board_
+  ],
   "Aug 2021"
 )
-
-
-_BC Northern Real Estate Board_
 
 
 
@@ -796,12 +812,12 @@ The award is for recipients whose home town must be within the geographical boun
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  strong("Governor General's Academic Medal"),
+  [
+    *Governor General's Academic Medal*
+    \ _The Governor General of Canada_
+  ],
   "July 2018"
 )
-
-
-_The Governor General of Canada_
 
 
 
@@ -830,6 +846,7 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 
 #v(4pt)
 
-// Publication entry - academic citation formatEric S. Coker,Nikita Saha Turna,Mya Schouwenburg,#strong[#emph[Ahmad Jalil]],Charles Bradshaw,Michael Kuo,Molly Mastel,Hossein Kazemian,Meghan Roushorne,Sarah B. Henderson.(2023).**Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia**._Journal of the Air & Waste Management Association_.10.1080/10962247.2023.2197970..
+// Add this to your main template file
+
 
 // Section ending - minimal spacing

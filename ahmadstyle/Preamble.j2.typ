@@ -4,8 +4,8 @@
 )
 
 #set text(
-  font: "Times New Roman",
-  size: 11pt,
+  font: "EB Garamond",
+  size: 11pt,  // You might want to try 12pt - serif fonts sometimes need to be slightly larger
   lang: "en",
   region: "US",
 )
@@ -35,8 +35,8 @@
 #let section_heading(title) = {
   v(16pt)
   text(
-    size: 11pt,
-    weight: "bold",
+    size: 11pt,  // Keep section headers same size or slightly larger
+    weight: "semibold",  // EB Garamond looks better with semibold than bold
     upper(title)
   )
   v(-4pt)
@@ -50,7 +50,7 @@
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    text(weight: "bold", name),
+    text(weight: "semibold", name),  // semibold works better with EB Garamond
     dates
   )
 }
