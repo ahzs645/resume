@@ -84,7 +84,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Research Assistant | September 2022 – Present"),
+  text(style: "italic", raw("Research Assistant") + " | " + "September 2022 – Present"),
   "Prince George, BC"
 )
 
@@ -122,7 +122,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Student Research Assistant | November 2020 – September 2022"),
+  text(style: "italic", raw("Student Research Assistant") + " | " + "November 2020 – September 2022"),
   "Prince George, BC"
 )
 
@@ -158,7 +158,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Health Technology Research Analyst \(Intern\) | May 2024 – August 2024"),
+  text(style: "italic", raw("Health Technology Research Analyst \(Intern\)") + " | " + "May 2024 – August 2024"),
   "Remote"
 )
 
@@ -192,7 +192,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Informatics Specialists | December 2024 – Present"),
+  text(style: "italic", raw("Informatics Specialists") + " | " + "December 2024 – Present"),
   "Prince George, BC"
 )
 
@@ -228,7 +228,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "PICS Intern | May 2024 – December 2024"),
+  text(style: "italic", raw("PICS Intern") + " | " + "May 2024 – December 2024"),
   "Prince George, BC"
 )
 
@@ -264,7 +264,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Teaching Assistant | January 2024 – December 2024"),
+  text(style: "italic", raw("Teaching Assistant") + " | " + "January 2024 – December 2024"),
   "Prince George, BC"
 )
 
@@ -302,7 +302,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Service Volunteer | December 2020 – Present"),
+  text(style: "italic", raw("Service Volunteer") + " | " + "December 2020 – Present"),
   "Prince George, BC"
 )
 
@@ -334,7 +334,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Highschool Mentor | September 2020 – Present"),
+  text(style: "italic", raw("Highschool Mentor") + " | " + "September 2020 – Present"),
   "Remote"
 )
 
@@ -366,7 +366,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Acting Editor-in-Chief | March 2024 – Present"),
+  text(style: "italic", raw("Acting Editor-in-Chief") + " | " + "March 2024 – Present"),
   "Prince George, BC"
 )
 
@@ -404,7 +404,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Technical Analyst | September 2023 – Present"),
+  text(style: "italic", raw("Technical Analyst") + " | " + "September 2023 – Present"),
   "Prince George, BC"
 )
 
@@ -438,7 +438,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Research Ambassador | September 2022 – Present"),
+  text(style: "italic", raw("Research Ambassador") + " | " + "September 2022 – Present"),
   "Prince George, BC"
 )
 
@@ -472,7 +472,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Activity Volunteer | April 2023 – Present"),
+  text(style: "italic", raw("Activity Volunteer") + " | " + "April 2023 – Present"),
   "Prince George, BC"
 )
 
