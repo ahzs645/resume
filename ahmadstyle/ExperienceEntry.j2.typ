@@ -69,9 +69,9 @@
 ((* endfor *))
 ((* endif *))
 
-// Spacing control - uses centralized design variables
+// Simple spacing control - two clear variables
 ((* if entry.company and entry.company != "" *))
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+#v(design_experience_new_company_spacing)  // Space between different companies
 ((* else *))
-#v(design_experience_same_company_spacing)  // Reduced spacing for additional positions at same company
+#v(design_experience_between_positions_same_company)  // Space between positions at same company
 ((* endif *))

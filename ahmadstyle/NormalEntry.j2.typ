@@ -8,6 +8,13 @@
   "<<entry.date_string>>"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+((* if entry.highlights *))
+#v(design_awards_after_name)  // Awards: spacing after name
+((* else *))
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+((* endif *))
+
 ((* if entry.summary *))
 // Italic summary line (like institution/organization)
 #grid(
@@ -20,6 +27,14 @@
   ""
   ((* endif *))
 )
+
+// Add spacing after summary - different for Awards vs Professional Development
+((* if entry.highlights *))
+#v(design_awards_after_summary)  // Awards: spacing after summary
+((* else *))
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
+((* endif *))
+
 ((* elif entry.location *))
 #grid(
   columns: (1fr, auto),
@@ -30,11 +45,16 @@
 ((* endif *))
 
 ((* if entry.highlights *))
-// Description text (not bullet points for awards)
+// Awards section - has highlights/descriptions
 ((* for highlight in entry.highlights *))
 <<highlight>>
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
 ((* endfor *))
 ((* endif *))
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+// Conditional spacing based on entry type
+((* if entry.highlights *))
+#v(design_awards_between_entries)  // Awards spacing between entries
+((* else *))
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+((* endif *))

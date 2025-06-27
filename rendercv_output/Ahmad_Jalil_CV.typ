@@ -30,19 +30,24 @@
 
 // Define design variables for consistent spacing
 #let design-entries-vertical-space-between-entries = 8pt
-#let design_experience_new_company_spacing = 6pt
-#let design_experience_same_company_spacing = 4pt
-#let design_experience_after_company_header = -6pt
+#let design_experience_new_company_spacing = 2pt                  // Space between different companies
+#let design_experience_after_company_header = -8pt
 #let design_experience_before_highlights = -4pt
 #let design_experience_between_highlights = -6pt
+#let design_experience_between_positions_same_company = -6pt      // Space between positions at same company
 #let design_section_ending_spacing = -8pt
-#let design_normal_entry_paragraph_spacing = 1pt     // Restored to original for awards/other sections
-#let design_normal_entry_between_entries = -6pt      // Restored to original for awards/other sections
-#let design_professional_dev_paragraph_spacing = -6pt  // Matches other highlight spacing
-#let design_professional_dev_between_entries = -8pt    // Matches education after-entry spacing
+#let design_normal_entry_paragraph_spacing = 1pt
+#let design_normal_entry_between_entries = -6pt
+#let design_professional_dev_after_name = -6pt        // Spacing after name/title
+#let design_professional_dev_after_summary = -4pt     // Spacing after summary/institution
+#let design_professional_dev_between_entries = 0pt  // Spacing between different entries
+#let design_awards_after_name = -6pt                   // Spacing after award name/title
+#let design_awards_after_summary = -4pt                // Spacing after awarding body/summary
+#let design_awards_paragraph_spacing = -6pt            // Spacing between highlight paragraphs
+#let design_awards_between_entries = -4pt              // Spacing between different awards
 #let design_education_after_institution = -6pt
 #let design_education_before_highlights = -4pt
-#let design_education_between_highlights = -6pt  // Now matches experience spacing
+#let design_education_between_highlights = -6pt
 #let design_education_after_entry = -4pt
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
@@ -91,14 +96,14 @@
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Northern Analytical Laboratory Services"),
-  "September 2022 – Present"
+  "November 2020 – Present"
 )
 #v(design_experience_after_company_header)
 // Position line - use raw Jinja2 output to prevent escaping
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Research Assistant" + " | " + "September 2022 – Present"),
+  text(style: "italic", "Research Assistant" + " | " + "November 2020 – Present"),
   "Prince George, BC"
 )
 
@@ -113,8 +118,8 @@
 • Authored and disseminated scientific papers and reports, contributing to the lab's knowledge base
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -125,12 +130,6 @@
 
 
 // Company header - only show if this is the first position at a company
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(weight: "bold", "Northern Analytical Laboratory Services"),
-  "November 2020 – September 2022"
-)
 #v(design_experience_after_company_header)
 // Position line - use raw Jinja2 output to prevent escaping
 #grid(
@@ -149,8 +148,8 @@
 • Apply graphic design skills \(Photoshop, Illustrator, InDesign\) to create various materials for the Northern Analytical Laboratory Services
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_between_positions_same_company)  // Space between positions at same company
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -183,8 +182,8 @@
 • Identified and analyzed key stakeholders in the age-tech and healthcare sectors, including government agencies, healthcare providers, technology companies, and advocacy groups
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -199,14 +198,14 @@
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Northern Health"),
-  "December 2024 – Present"
+  "May 2024 – Present"
 )
 #v(design_experience_after_company_header)
 // Position line - use raw Jinja2 output to prevent escaping
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "Informatics Specialists" + " | " + "December 2024 – Present"),
+  text(style: "italic", "Informatics Specialists" + " | " + "May 2024 – Present"),
   "Prince George, BC"
 )
 
@@ -219,8 +218,8 @@
 • Directed change initiatives and provided leadership in recruiting, coaching, and evaluating staff, fostering innovation and supporting the adoption of international coding standards
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -231,12 +230,6 @@
 
 
 // Company header - only show if this is the first position at a company
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(weight: "bold", "Northern Health"),
-  "May 2024 – December 2024"
-)
 #v(design_experience_after_company_header)
 // Position line - use raw Jinja2 output to prevent escaping
 #grid(
@@ -255,8 +248,8 @@
 • Developed a standardized database to track and analyze provincial-wide systems, enhancing data consistency and accessibility across Northern Health regions
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_between_positions_same_company)  // Space between positions at same company
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -287,8 +280,8 @@
 • Contributed to the creation of an online resource hub for nutrition students, providing access to lecture notes, study guides, and additional learning materials
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 
 // Section ending - negative spacing to reduce gap before next section
@@ -325,8 +318,8 @@
 • Prepared and served meals to those in need, promoted community wellness, and efficiently managed the distribution of donated goods
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -357,8 +350,8 @@
 • Cultivated a confidential, supportive mentorship with a high school mentee, providing guidance on personal and academic challenges to foster personal and educational development
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -395,8 +388,8 @@
 • Centralized information structures to streamline communication and enhance workflow efficiency
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -429,8 +422,8 @@
 • Design customized solutions using CAD \(Computer-Aided Design\) software to address the unique requirements of various research projects
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -463,8 +456,8 @@
 • Organize and lead informational sessions and workshops to educate students about the research process, opportunities, and the significance of research contributions
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 #v(design-entries-vertical-space-between-entries)
 // Experience entry with automatic date formatting matching LaTeX exactly
@@ -499,8 +492,8 @@
 • Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
 #v(design_experience_between_highlights)
 
-// Spacing control - uses centralized design variables
-#v(design_experience_new_company_spacing)  // Standard spacing for new companies
+// Simple spacing control - two clear variables
+#v(design_experience_new_company_spacing)  // Space between different companies
 
 
 // Section ending - negative spacing to reduce gap before next section
@@ -593,6 +586,9 @@
   "Mar 2024"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -601,8 +597,14 @@
   "Remote"
 )
 
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+
+// Conditional spacing based on entry type
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -614,6 +616,9 @@
   "May 2023"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -622,8 +627,14 @@
   "Vancouver, BC"
 )
 
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+
+// Conditional spacing based on entry type
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -635,6 +646,9 @@
   "June 2022"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -643,8 +657,14 @@
   "Remote"
 )
 
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+
+// Conditional spacing based on entry type
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -656,6 +676,9 @@
   "Dec 2021"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -664,8 +687,14 @@
   "Remote"
 )
 
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+
+// Conditional spacing based on entry type
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
@@ -698,6 +727,9 @@
   "Jan 2025"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -706,11 +738,17 @@
   ""
 )
 
-// Description text (not bullet points for awards)
-The Government of Canada launched this program in 2008 to support high-calibre graduate students in building global linkages and international networks through the pursuit of exceptional research experiences at research institutions outside of Canada. By accessing international scientific research and training, CGS-MSFSS recipients will contribute to strengthening the potential for collaboration between Canadian and international universities and affiliated research institutions.
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+// Awards section - has highlights/descriptions
+The Government of Canada launched this program in 2008 to support high-calibre graduate students in building global linkages and international networks through the pursuit of exceptional research experiences at research institutions outside of Canada. By accessing international scientific research and training, CGS-MSFSS recipients will contribute to strengthening the potential for collaboration between Canadian and international universities and affiliated research institutions.
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -722,6 +760,9 @@ The Government of Canada launched this program in 2008 to support high-calibre g
   "Apr 2024"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -730,11 +771,17 @@ The Government of Canada launched this program in 2008 to support high-calibre g
   ""
 )
 
-// Description text (not bullet points for awards)
-The Canada Graduate Scholarships is designed to enhance the research skills and training of highly qualified personnel in health, natural sciences, engineering, and social sciences. This prestigious program is jointly administered by Canada's three granting agencies CIHR, NSERC, and SSHRC, supporting students annually across all disciplines. The program selects scholars through a rigorous evaluation of their academic excellence, research potential, and personal competencies.
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+// Awards section - has highlights/descriptions
+The Canada Graduate Scholarships is designed to enhance the research skills and training of highly qualified personnel in health, natural sciences, engineering, and social sciences. This prestigious program is jointly administered by Canada's three granting agencies CIHR, NSERC, and SSHRC, supporting students annually across all disciplines. The program selects scholars through a rigorous evaluation of their academic excellence, research potential, and personal competencies.
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -746,6 +793,9 @@ The Canada Graduate Scholarships is designed to enhance the research skills and 
   "Apr 2024"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -754,11 +804,17 @@ The Canada Graduate Scholarships is designed to enhance the research skills and 
   ""
 )
 
-// Description text (not bullet points for awards)
-The British Columbia Graduate Scholarship supports exceptional students at public post-secondary institutions across the province, with a focus on STEM and professional fields. Valued at \$17,500 the scholarships are merit-based and aim to attract top talent who contribute significantly to their disciplines. This initiative helps reduce financial barriers and promote educational innovation in British Columbia.
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+// Awards section - has highlights/descriptions
+The British Columbia Graduate Scholarship supports exceptional students at public post-secondary institutions across the province, with a focus on STEM and professional fields. Valued at \$17,500 the scholarships are merit-based and aim to attract top talent who contribute significantly to their disciplines. This initiative helps reduce financial barriers and promote educational innovation in British Columbia.
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -770,6 +826,9 @@ The British Columbia Graduate Scholarship supports exceptional students at publi
   "May 2023"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -778,11 +837,17 @@ The British Columbia Graduate Scholarship supports exceptional students at publi
   ""
 )
 
-// Description text (not bullet points for awards)
-The Lieutenant-governor's Medal for Inclusion, Democracy and Reconciliation recognizes outstanding contributions from UNBC's graduating class of over 700 students to promoting inclusion, democracy, and reconciliation within the UNBC community. The award recognizes exceptional leadership, advocacy, and commitment to creating a more inclusive and equitable campus environment.
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+// Awards section - has highlights/descriptions
+The Lieutenant-governor's Medal for Inclusion, Democracy and Reconciliation recognizes outstanding contributions from UNBC's graduating class of over 700 students to promoting inclusion, democracy, and reconciliation within the UNBC community. The award recognizes exceptional leadership, advocacy, and commitment to creating a more inclusive and equitable campus environment.
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -794,6 +859,9 @@ The Lieutenant-governor's Medal for Inclusion, Democracy and Reconciliation reco
   "Apr 2023"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -802,11 +870,17 @@ The Lieutenant-governor's Medal for Inclusion, Democracy and Reconciliation reco
   ""
 )
 
-// Description text (not bullet points for awards)
-Natural Sciences and Engineering Research Council of Canada Undergraduate Student Research Award, awarded for outstanding research contributions in the natural sciences and engineering fields. The award recognizes exceptional research skills, creativity, and potential for future contributions to the field.
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+// Awards section - has highlights/descriptions
+Natural Sciences and Engineering Research Council of Canada Undergraduate Student Research Award, awarded for outstanding research contributions in the natural sciences and engineering fields. The award recognizes exceptional research skills, creativity, and potential for future contributions to the field.
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -818,6 +892,9 @@ Natural Sciences and Engineering Research Council of Canada Undergraduate Studen
   "Aug 2021"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -826,11 +903,17 @@ Natural Sciences and Engineering Research Council of Canada Undergraduate Studen
   ""
 )
 
-// Description text (not bullet points for awards)
-The award is for recipients whose home town must be within the geographical boundaries defined by the Yukon border to the north, 70 Mile House to the south, Haida Gwaii Islands to the west, and the Alberta border to the east, including the communities of Dawson Creek, Chetwynd, and Tumbler Ridge. Meeting the criteria for good academic standing is the primary basis for selection.
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+// Awards section - has highlights/descriptions
+The award is for recipients whose home town must be within the geographical boundaries defined by the Yukon border to the north, 70 Mile House to the south, Haida Gwaii Islands to the west, and the Alberta border to the east, including the communities of Dawson Creek, Chetwynd, and Tumbler Ridge. Meeting the criteria for good academic standing is the primary basis for selection.
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -842,6 +925,9 @@ The award is for recipients whose home town must be within the geographical boun
   "July 2018"
 )
 
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
 // Italic summary line (like institution/organization)
 #grid(
   columns: (1fr, auto),
@@ -850,11 +936,17 @@ The award is for recipients whose home town must be within the geographical boun
   ""
 )
 
-// Description text (not bullet points for awards)
-I was awarded the Governor General's Academic Medal in recognition of my outstanding academic achievement. This prestigious award is given to the student with the highest academic standing in their graduating class. I received this honor for achieving the highest overall average in my school, demonstrating exceptional dedication and excellence in my studies. The Governor General's Academic Medal is a national recognition of academic excellence and is highly regarded in the academic community.
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+
+// Awards section - has highlights/descriptions
+I was awarded the Governor General's Academic Medal in recognition of my outstanding academic achievement. This prestigious award is given to the student with the highest academic standing in their graduating class. I received this honor for achieving the highest overall average in my school, demonstrating exceptional dedication and excellence in my studies. The Governor General's Academic Medal is a national recognition of academic excellence and is highly regarded in the academic community.
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)

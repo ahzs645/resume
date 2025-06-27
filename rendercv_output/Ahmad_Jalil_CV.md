@@ -10,14 +10,14 @@
 
 ## Northern Analytical Laboratory Services, Research Assistant
 
-- Sept 2022 – present
+- Nov 2020 – present
 - Prince George, BC
 - Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
 - Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
 - Streamlined and optimized laboratory workflow by implementing new methods and protocols, resulting in an increase in sample processing efficiency
 - Authored and disseminated scientific papers and reports, contributing to the lab's knowledge base
 
-## Northern Analytical Laboratory Services, Student Research Assistant
+## , Student Research Assistant
 
 - Nov 2020 – Sept 2022
 - Prince George, BC
@@ -34,13 +34,13 @@
 
 ## Northern Health, Informatics Specialists
 
-- Dec 2024 – present
+- May 2024 – present
 - Prince George, BC
 - Led the integration and optimization of health information technologies, improving access to patient/client information and enhancing evidence-based practices across Northern Health regions
 - Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
 - Directed change initiatives and provided leadership in recruiting, coaching, and evaluating staff, fostering innovation and supporting the adoption of international coding standards
 
-## Northern Health, PICS Intern
+## , PICS Intern
 
 - May 2024 – Dec 2024
 - Prince George, BC
