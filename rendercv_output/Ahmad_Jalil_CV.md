@@ -145,7 +145,7 @@
 
 # Certifications and Skills
 
-**Certifications:** OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)
+**Certifications:** OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)  
 
 **Skills:** Power BI; Research Skills; GIS; R Studio; Brand Identity Maps; Analytical Nature; Adobe Suite; Business Process Reengineering; SPSS; logistics; Fluent in Arabic; Powerful Decision-Making Expertise; Grant Proposal
 

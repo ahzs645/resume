@@ -8,7 +8,7 @@
   "<<entry.date_string>>"
 )
 
-#v(-6pt)
+#v(design_education_after_institution)
 
 // Degree and area with location (italic degree/area)
 #grid(
@@ -20,10 +20,10 @@
 
 ((*- if entry.highlights -*))
 // Bullet points for highlights with LaTeX-matching spacing
-#v(-4pt)
+#v(design_education_before_highlights)
 ((*- for highlight in entry.highlights -*))
 • <<highlight>>
-#v(-2pt)
+#v(design_education_between_highlights)
 ((*- endfor -*))
 ((*- endif -*))
 
@@ -31,4 +31,4 @@
 • <<entry.summary>>
 ((*- endif -*))
 
-#v(-4pt)  // Standard spacing after education entries
+#v(design_education_after_entry)  // Standard spacing after education entries

@@ -28,8 +28,22 @@
   marker: [•]
 )
 
-// Define design variables
+// Define design variables for consistent spacing
 #let design-entries-vertical-space-between-entries = 8pt
+#let design_experience_new_company_spacing = 6pt
+#let design_experience_same_company_spacing = 4pt
+#let design_experience_after_company_header = -6pt
+#let design_experience_before_highlights = -4pt
+#let design_experience_between_highlights = -6pt
+#let design_section_ending_spacing = -8pt
+#let design_normal_entry_paragraph_spacing = 1pt     // Restored to original for awards/other sections
+#let design_normal_entry_between_entries = -6pt      // Restored to original for awards/other sections
+#let design_professional_dev_paragraph_spacing = -6pt  // Matches other highlight spacing
+#let design_professional_dev_between_entries = -8pt    // Matches education after-entry spacing
+#let design_education_after_institution = -6pt
+#let design_education_before_highlights = -4pt
+#let design_education_between_highlights = -6pt  // Now matches experience spacing
+#let design_education_after_entry = -4pt
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
 #let section_heading(title) = {

@@ -51,7 +51,7 @@
   "<<date_range>>"
 )
 ((* endif *))
-#v(-6pt)
+#v(design_experience_after_company_header)
 // Position line - use raw Jinja2 output to prevent escaping
 #grid(
   columns: (1fr, auto),
@@ -62,16 +62,16 @@
 
 // Bullet points with LaTeX-matching spacing
 ((* if entry.highlights *))
-#v(-4pt)
+#v(design_experience_before_highlights)
 ((* for highlight in entry.highlights *))
 • <<highlight>>
-#v(-6pt)
+#v(design_experience_between_highlights)
 ((* endfor *))
 ((* endif *))
 
-// Spacing control - match LaTeX exactly
+// Spacing control - uses centralized design variables
 ((* if entry.company and entry.company != "" *))
-#v(8pt)  // Full spacing for new companies
+#v(design_experience_new_company_spacing)  // Standard spacing for new companies
 ((* else *))
-#v(1pt)  // Minimal spacing for additional positions at same company
+#v(design_experience_same_company_spacing)  // Reduced spacing for additional positions at same company
 ((* endif *))

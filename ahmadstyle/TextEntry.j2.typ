@@ -3,4 +3,4 @@
 
 <<entry>>
 
-#v(8pt)  // Standard spacing between text entries
+#v(design-entries-vertical-space-between-entries)  // Standard spacing between text entries

@@ -1,4 +1,4 @@
-// Normal entry (for professional development, awards, etc.) matching LaTeX
+// Professional Development entry with dedicated spacing controls
 
 // Main entry with bold name
 #grid(
@@ -30,11 +30,12 @@
 ((* endif *))
 
 ((* if entry.highlights *))
-// Description text (not bullet points for awards)
+// Description text (not bullet points for professional development)
 ((* for highlight in entry.highlights *))
+
 <<highlight>>
-#v(design_professional_dev_paragraph_spacing)  // Uses professional development spacing
+#v(design_professional_dev_paragraph_spacing)  // Professional development specific spacing
 ((* endfor *))
 ((* endif *))
 
-#v(design_professional_dev_between_entries)  // Uses professional development spacing between entries
+#v(design_professional_dev_between_entries)  // Professional development specific entry spacing
