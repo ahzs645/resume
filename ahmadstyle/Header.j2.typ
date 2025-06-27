@@ -5,7 +5,7 @@
   "<<cv.name>>"
 )
 
-#v(6pt)
+#v(-16pt)  // Match LaTeX \vspace{6pt}
 
 // Contact information matching LaTeX 14pt size
 #text(size: 14pt)[
@@ -21,6 +21,6 @@
   ((*- endif -*))
 ]
 
-#v(-4pt)
+#v(-4pt)  // Match LaTeX \vspace{-4pt}
 #line(length: 100%, stroke: 0.4pt)
-#v(-4pt)
+#v(-4pt)  // Match LaTeX \vspace{-4pt}

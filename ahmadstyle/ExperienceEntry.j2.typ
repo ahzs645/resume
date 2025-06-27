@@ -51,21 +51,21 @@
   "<<date_range>>"
 )
 ((* endif *))
-
-// Position line - same format whether company header shown or not
+#v(-6pt)
+// Position line - use raw Jinja2 output to prevent escaping
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", raw("<<entry.position>>") + " | " + "<<date_range>>"),
+  text(style: "italic", "<<entry.position|safe>>" + " | " + "<<date_range>>"),
   "<<entry.location>>"
 )
 
 // Bullet points with LaTeX-matching spacing
 ((* if entry.highlights *))
-#v(2pt)
+#v(-4pt)
 ((* for highlight in entry.highlights *))
 • <<highlight>>
-#v(1pt)
+#v(-6pt)
 ((* endfor *))
 ((* endif *))
 

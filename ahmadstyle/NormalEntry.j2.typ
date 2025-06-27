@@ -33,8 +33,8 @@
 // Description text (not bullet points for awards)
 ((* for highlight in entry.highlights *))
 <<highlight>>
-
+#v(1pt)  // Small spacing between paragraphs in descriptions
 ((* endfor *))
 ((* endif *))
 
-#v(8pt)  // Standard spacing between entries
+#v(-6pt)  // Match LaTeX \vspace{8pt} between entries

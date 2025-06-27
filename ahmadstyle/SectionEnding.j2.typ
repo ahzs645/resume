@@ -1,2 +1,2 @@
-// Section ending - minimal spacing
-#v(8pt)
+// Section ending - negative spacing to reduce gap before next section
+#v(-8pt)

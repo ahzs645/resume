@@ -8,6 +8,8 @@
   "<<entry.date_string>>"
 )
 
+#v(-6pt)
+
 // Degree and area with location (italic degree/area)
 #grid(
   columns: (1fr, auto),
@@ -18,10 +20,10 @@
 
 ((*- if entry.highlights -*))
 // Bullet points for highlights with LaTeX-matching spacing
-#v(2pt)
+#v(-4pt)
 ((*- for highlight in entry.highlights -*))
 • <<highlight>>
-#v(1pt)
+#v(-2pt)
 ((*- endfor -*))
 ((*- endif -*))
 
@@ -29,4 +31,4 @@
 • <<entry.summary>>
 ((*- endif -*))
 
-#v(8pt)  // Standard spacing after education entries
+#v(-4pt)  // Standard spacing after education entries
