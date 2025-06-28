@@ -54,6 +54,10 @@
 #let design_presentation_between_highlights = -6pt     // Spacing between highlight items
 #let design_presentation_between_entries = -4pt        // Spacing between different presentations
 #let design_publication_spacing = 8pt
+#let design_publication_after_title = -6pt
+#let design_publication_after_journal = -6pt
+#let design_publication_after_authors = -4pt
+
 
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
@@ -1068,7 +1072,7 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
   "2023"
 )
 
-#v(-6pt)
+#v(design_publication_after_title)
 
 #grid(
   columns: (1fr, auto),
@@ -1077,11 +1081,15 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
   ""
 )
 
-#v(-6pt)Eric S. Coker,Nikita Saha Turna,Mya Schouwenburg,Ahmad Jalil,Charles Bradshaw,Michael Kuo,Molly Mastel,Hossein Kazemian,Meghan Roushorne,Sarah B. Henderson#v(-4pt)
+#v(design_publication_after_journal)
+
+Eric S. Coker, Nikita Saha Turna, Mya Schouwenburg, Ahmad Jalil, Charles Bradshaw, Michael Kuo, Molly Mastel, Hossein Kazemian, Meghan Roushorne, Sarah B. Henderson
+
+#v(design_publication_after_authors)
 
 DOI: 10.1080/10962247.2023.2197970
 
-#v(8pt)
+#v(design_publication_spacing)
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)

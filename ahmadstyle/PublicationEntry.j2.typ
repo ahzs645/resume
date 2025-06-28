@@ -7,7 +7,7 @@
   "<<entry.date>>"
 )
 
-#v(-6pt)
+#v(design_publication_after_title)
 
 #grid(
   columns: (1fr, auto),
@@ -16,14 +16,12 @@
   ""
 )
 
-#v(-6pt)
+#v(design_publication_after_journal)
 
-((*- for author in entry.authors -*))
-<<author>>((*- if not loop.last -*)), ((*- endif -*))
-((*- endfor -*))
+<<entry.authors|join(', ')>>
 
-#v(-4pt)
+#v(design_publication_after_authors)
 
 DOI: <<entry.doi>>
 
-#v(8pt)
+#v(design_publication_spacing)

@@ -54,6 +54,10 @@
 #let design_presentation_between_highlights = -6pt     // Spacing between highlight items
 #let design_presentation_between_entries = -4pt        // Spacing between different presentations
 #let design_publication_spacing = 8pt
+#let design_publication_after_title = -6pt
+#let design_publication_after_journal = -6pt
+#let design_publication_after_authors = -4pt
+
 
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
