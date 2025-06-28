@@ -53,6 +53,8 @@
 #let design_presentation_before_highlights = -4pt      // Spacing before highlights (if any)
 #let design_presentation_between_highlights = -6pt     // Spacing between highlight items
 #let design_presentation_between_entries = -4pt        // Spacing between different presentations
+#let design_publication_spacing = 8pt
+
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
 #let section_heading(title) = {
@@ -1057,10 +1059,18 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-// Publication entry template - handles ONE publication entry
-// Authors listEric S. Coker,Nikita Saha Turna,Mya Schouwenburg,Ahmad Jalil,Charles Bradshaw,Michael Kuo,Molly Mastel,Hossein Kazemian,Meghan Roushorne,Sarah B. Henderson.(2023).*Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia*._Journal of the Air & Waste Management Association_.10.1080/10962247.2023.2197970.
+// Publication entry - simple format matching working templates
 
-#v(design-entries-vertical-space-between-entries)
+// Publication title in bold
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia"),"2023")
+
+#v(-6pt)
+
+// Journal name in italicstext(style: "italic", "Journal of the Air & Waste Management Association")// Authors list#v(-4pt)Eric S. Coker,Nikita Saha Turna,Mya Schouwenburg,Ahmad Jalil,Charles Bradshaw,Michael Kuo,Molly Mastel,Hossein Kazemian,Meghan Roushorne,Sarah B. Henderson// DOI#v(-4pt)
+DOI: 10.1080/10962247.2023.2197970#v(8pt)
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)

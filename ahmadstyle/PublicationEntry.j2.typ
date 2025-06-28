@@ -1,11 +1,42 @@
-// Publication entry template - handles ONE publication entry
-// Authors list
-((*- for author in entry.authors -*))
-<<author>>((*- if not loop.last -*)), ((*- endif -*))
-((*- endfor -*)).
-((*- if entry.date -*)) (<<entry.date>>). ((*- endif -*))
-*<<entry.title>>*.
-((*- if entry.journal -*)) _<<entry.journal>>_((*- endif -*)).
-((*- if entry.doi -*)) <<entry.doi>>((*- endif -*)).
+// Simplified Publication entry - matching other template patterns
 
-#v(design-entries-vertical-space-between-entries)
+// Title in bold with date
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "<<entry.title>>"),
+  ((*- if entry.date -*))
+  "<<entry.date>>"
+  ((*- else -*))
+  ""
+  ((*- endif -*))
+)
+
+#v(-6pt)
+
+// Journal in italics
+((*- if entry.journal -*))
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "<<entry.journal>>"),
+  ""
+)
+#v(-6pt)
+((*- endif -*))
+
+// Authors
+((*- if entry.authors -*))
+#text(
+  ((*- for author in entry.authors -*))
+  "<<author>>"((*- if not loop.last -*)), ((*- endif -*))
+  ((*- endfor -*))
+)
+((*- endif -*))
+
+((*- if entry.doi -*))
+#v(-4pt)
+DOI: <<entry.doi>>
+((*- endif -*))
+
+#v(8pt)
