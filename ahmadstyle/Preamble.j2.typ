@@ -49,6 +49,10 @@
 #let design_education_before_highlights = -4pt
 #let design_education_between_highlights = -6pt
 #let design_education_after_entry = -4pt
+#let design_presentation_after_title = -6pt            // Spacing after presentation title
+#let design_presentation_before_highlights = -4pt      // Spacing before highlights (if any)
+#let design_presentation_between_highlights = -6pt     // Spacing between highlight items
+#let design_presentation_between_entries = -4pt        // Spacing between different presentations
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
 #let section_heading(title) = {

@@ -188,14 +188,20 @@
 
 # Presentations
 
-**Assessing the health impacts of particulate bound metals in downtown Prince George: A health indexing study on the differential effects of high and low dust days**
-_Cascadia Symposium on Environmental, Occupational, and Population Health 2024_ | Blaine, WA
+## Assessing the health impacts of particulate bound metals in downtown Prince George: A health indexing study on the differential effects of high and low dust days
 
-**Particulate Matter-Bound Metals as an Assessment of Air Pollution in the City of Prince George**
-_UNBC Research Week 2023_ | Prince George, BC
+- 2024
+- Blaine, WA
 
-**Heavy metals and polycyclic aromatic hydrocarbons in ambient air during episodes of springtime road dust**
-_UNBC Research Week 2021_ | Prince George, BC
+## Particulate Matter-Bound Metals as an Assessment of Air Pollution in the City of Prince George
+
+- 2023
+- Prince George, BC
+
+## Heavy metals and polycyclic aromatic hydrocarbons in ambient air during episodes of springtime road dust
+
+- 2021
+- Prince George, BC
 
 # Publications
 

@@ -49,6 +49,10 @@
 #let design_education_before_highlights = -4pt
 #let design_education_between_highlights = -6pt
 #let design_education_after_entry = -4pt
+#let design_presentation_after_title = -6pt            // Spacing after presentation title
+#let design_presentation_before_highlights = -4pt      // Spacing before highlights (if any)
+#let design_presentation_between_highlights = -6pt     // Spacing between highlight items
+#let design_presentation_between_entries = -4pt        // Spacing between different presentations
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
 #let section_heading(title) = {
@@ -957,29 +961,95 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-// Text entry (for presentations, awards with descriptions) 
-// Matches LaTeX formatting with proper spacing
+// Normal entry (for professional development, awards, etc.) matching LaTeX
 
-#strong[Assessing the health impacts of particulate bound metals in downtown Prince George: A health indexing study on the differential effects of high and low dust days]
-\_Cascadia Symposium on Environmental, Occupational, and Population Health 2024\_ | Blaine, WA
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Assessing the health impacts of particulate bound metals in downtown Prince George: A health indexing study on the differential effects of high and low dust days"),
+  "2024"
+)
 
-#v(design-entries-vertical-space-between-entries)  // Standard spacing between text entries
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "Cascadia Symposium on Environmental, Occupational, and Population Health 2024"),
+  "Blaine, WA"
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
+
+
+
+// Conditional spacing based on entry type
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+
 #v(design-entries-vertical-space-between-entries)
-// Text entry (for presentations, awards with descriptions) 
-// Matches LaTeX formatting with proper spacing
+// Normal entry (for professional development, awards, etc.) matching LaTeX
 
-#strong[Particulate Matter-Bound Metals as an Assessment of Air Pollution in the City of Prince George]
-\_UNBC Research Week 2023\_ | Prince George, BC
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Particulate Matter-Bound Metals as an Assessment of Air Pollution in the City of Prince George"),
+  "2023"
+)
 
-#v(design-entries-vertical-space-between-entries)  // Standard spacing between text entries
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "UNBC Research Week"),
+  "Prince George, BC"
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
+
+
+
+// Conditional spacing based on entry type
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+
 #v(design-entries-vertical-space-between-entries)
-// Text entry (for presentations, awards with descriptions) 
-// Matches LaTeX formatting with proper spacing
+// Normal entry (for professional development, awards, etc.) matching LaTeX
 
-#strong[Heavy metals and polycyclic aromatic hydrocarbons in ambient air during episodes of springtime road dust]
-\_UNBC Research Week 2021\_ | Prince George, BC
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Heavy metals and polycyclic aromatic hydrocarbons in ambient air during episodes of springtime road dust"),
+  "2021"
+)
 
-#v(design-entries-vertical-space-between-entries)  // Standard spacing between text entries
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "UNBC Research Week"),
+  "Prince George, BC"
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
+
+
+
+// Conditional spacing based on entry type
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries  
+
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)

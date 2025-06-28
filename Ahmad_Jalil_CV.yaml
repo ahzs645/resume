@@ -219,11 +219,20 @@ cv:
           - I was awarded the Governor General's Academic Medal in recognition of my outstanding academic achievement. This prestigious award is given to the student with the highest academic standing in their graduating class. I received this honor for achieving the highest overall average in my school, demonstrating exceptional dedication and excellence in my studies. The Governor General's Academic Medal is a national recognition of academic excellence and is highly regarded in the academic community.
 
     presentations:
-      - "**Assessing the health impacts of particulate bound metals in downtown Prince George: A health indexing study on the differential effects of high and low dust days**\n_Cascadia Symposium on Environmental, Occupational, and Population Health 2024_ | Blaine, WA"
-      
-      - "**Particulate Matter-Bound Metals as an Assessment of Air Pollution in the City of Prince George**\n_UNBC Research Week 2023_ | Prince George, BC"
-      
-      - "**Heavy metals and polycyclic aromatic hydrocarbons in ambient air during episodes of springtime road dust**\n_UNBC Research Week 2021_ | Prince George, BC"
+      - name: "Assessing the health impacts of particulate bound metals in downtown Prince George: A health indexing study on the differential effects of high and low dust days"
+        summary: Cascadia Symposium on Environmental, Occupational, and Population Health 2024
+        location: Blaine, WA
+        date: 2024
+
+      - name: "Particulate Matter-Bound Metals as an Assessment of Air Pollution in the City of Prince George"
+        summary: UNBC Research Week
+        location: Prince George, BC
+        date: 2023
+
+      - name: "Heavy metals and polycyclic aromatic hydrocarbons in ambient air during episodes of springtime road dust"
+        summary: UNBC Research Week
+        location: Prince George, BC
+        date: 2021
 
     publications:
       - title: "Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia"
