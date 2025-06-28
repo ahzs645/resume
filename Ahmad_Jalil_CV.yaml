@@ -12,6 +12,7 @@ cv:
         location: Prince George, BC
         start_date: 2020-11
         end_date: present
+        show_date_in_position: true
         highlights:
           - Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
           - Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
@@ -23,6 +24,7 @@ cv:
         location: Prince George, BC
         start_date: 2020-11
         end_date: 2022-09
+        show_date_in_position: true
         highlights:
           - Organize, review, and correct research data, creating illustrative graphs and charts for reports
           - Process data using statistical software including Excel, Prism, and Rstudio, to facilitate thorough data analysis
@@ -33,6 +35,7 @@ cv:
         location: Remote
         start_date: 2024-05
         end_date: 2024-08
+        show_date_in_position: false
         highlights:
           - Conducted comprehensive research on health technology innovations for seniors in rural and remote communities across Canada
           - Identified and analyzed key stakeholders in the age-tech and healthcare sectors, including government agencies, healthcare providers, technology companies, and advocacy groups
@@ -42,6 +45,7 @@ cv:
         location: Prince George, BC
         start_date: 2024-05
         end_date: present
+        show_date_in_position: true
         highlights:
           - Led the integration and optimization of health information technologies, improving access to patient/client information and enhancing evidence-based practices across Northern Health regions
           - Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
@@ -52,6 +56,7 @@ cv:
         location: Prince George, BC
         start_date: 2024-05
         end_date: 2024-12
+        show_date_in_position: true
         highlights:
           - Utilize Geographic Information Systems (GIS) software to analyze and map data relevant to public health concerns across Northern Health regions
           - Created and presented comprehensive GIS-based reports to high-level decision-makers to support informed decision-making on public health concerns
@@ -62,6 +67,7 @@ cv:
         location: Prince George, BC
         start_date: 2024-01
         end_date: 2024-12
+        show_date_in_position: false
         highlights:
           - Contributed to the creation of an online resource hub for nutrition students, providing access to lecture notes, study guides, and additional learning materials
 

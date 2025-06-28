@@ -112,13 +112,15 @@
   "November 2020 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Research Assistant" + " | " + "November 2020 – Present"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+    // Show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Research Assistant" + " | " + "November 2020 – Present"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -143,14 +145,15 @@
 
 
 // Company header - only show if this is the first position at a company
-#v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Student Research Assistant" + " | " + "November 2020 – September 2022"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+    // Show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Student Research Assistant" + " | " + "November 2020 – September 2022"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -180,13 +183,15 @@
   "May 2024 – August 2024"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Health Technology Research Analyst \(Intern\)" + " | " + "May 2024 – August 2024"),
-  "Remote"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+    // Don't show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Health Technology Research Analyst \(Intern\)"),
+      "Remote"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -214,13 +219,15 @@
   "May 2024 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Informatics Specialists" + " | " + "May 2024 – Present"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+    // Show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Informatics Specialists" + " | " + "May 2024 – Present"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -243,14 +250,15 @@
 
 
 // Company header - only show if this is the first position at a company
-#v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "PICS Intern" + " | " + "May 2024 – December 2024"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+    // Show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "PICS Intern" + " | " + "May 2024 – December 2024"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -280,13 +288,15 @@
   "January 2024 – December 2024"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Teaching Assistant" + " | " + "January 2024 – December 2024"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+    // Don't show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Teaching Assistant"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -318,13 +328,16 @@
   "December 2020 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Service Volunteer" + " | " + "December 2020 – Present"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+  // Fallback to old logic for backwards compatibility
+    // Single position company - no date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Service Volunteer"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -350,13 +363,16 @@
   "September 2020 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Highschool Mentor" + " | " + "September 2020 – Present"),
-  "Remote"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+  // Fallback to old logic for backwards compatibility
+    // Single position company - no date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Highschool Mentor"),
+      "Remote"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -382,13 +398,16 @@
   "March 2024 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Acting Editor-in-Chief" + " | " + "March 2024 – Present"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+  // Fallback to old logic for backwards compatibility
+    // Single position company - no date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Acting Editor-in-Chief"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -420,13 +439,16 @@
   "September 2023 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Technical Analyst" + " | " + "September 2023 – Present"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+  // Fallback to old logic for backwards compatibility
+    // Single position company - no date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Technical Analyst"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -454,13 +476,16 @@
   "September 2022 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Research Ambassador" + " | " + "September 2022 – Present"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+  // Fallback to old logic for backwards compatibility
+    // Single position company - no date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Research Ambassador"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
@@ -488,13 +513,16 @@
   "April 2023 – Present"
 )
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "Activity Volunteer" + " | " + "April 2023 – Present"),
-  "Prince George, BC"
-)
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+  // Fallback to old logic for backwards compatibility
+    // Single position company - no date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "Activity Volunteer"),
+      "Prince George, BC"
+    )
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)

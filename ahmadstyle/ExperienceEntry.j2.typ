@@ -50,15 +50,48 @@
   text(weight: "bold", "<<entry.company>>"),
   "<<date_range>>"
 )
-((* endif *))
 #v(design_experience_after_company_header)
-// Position line - use raw Jinja2 output to prevent escaping
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(style: "italic", "<<entry.position|safe>>" + " | " + "<<date_range>>"),
-  "<<entry.location>>"
-)
+((* endif *))
+
+// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+((* if entry.show_date_in_position is defined *))
+  ((* if entry.show_date_in_position *))
+    // Show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "<<entry.position|safe>>" + " | " + "<<date_range>>"),
+      "<<entry.location>>"
+    )
+  ((* else *))
+    // Don't show date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "<<entry.position|safe>>"),
+      "<<entry.location>>"
+    )
+  ((* endif *))
+((* else *))
+  // Fallback to old logic for backwards compatibility
+  ((* if entry.company and entry.company != "" *))
+    // Single position company - no date in position line
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "<<entry.position|safe>>"),
+      "<<entry.location>>"
+    )
+  ((* else *))
+    // Multiple position company - include date in position line  
+    #grid(
+      columns: (1fr, auto),
+      align: (left, right),
+      text(style: "italic", "<<entry.position|safe>>" + " | " + "<<date_range>>"),
+      "<<entry.location>>"
+    )
+  ((* endif *))
+((* endif *))
 
 // Bullet points with LaTeX-matching spacing
 ((* if entry.highlights *))
