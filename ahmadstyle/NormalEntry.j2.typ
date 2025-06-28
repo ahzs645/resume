@@ -4,7 +4,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "<<entry.name>>"),
+  text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
   "<<entry.date_string>>"
 )
 
@@ -20,7 +20,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "<<entry.summary>>"),
+  text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
   ((* if entry.location *))
   "<<entry.location>>"
   ((* else *))
@@ -47,7 +47,7 @@
 ((* if entry.highlights *))
 // Awards section - has highlights/descriptions
 ((* for highlight in entry.highlights *))
-<<highlight>>
+<<highlight|replace('\\(', '(')|replace('\\)', ')')>>
 #v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
 ((* endfor *))
 ((* endif *))

@@ -161,7 +161,7 @@
 #v(design_experience_between_highlights)
 • Process data using statistical software including Excel, Prism, and Rstudio, to facilitate thorough data analysis
 #v(design_experience_between_highlights)
-• Apply graphic design skills \(Photoshop, Illustrator, InDesign\) to create various materials for the Northern Analytical Laboratory Services
+• Apply graphic design skills (Photoshop, Illustrator, InDesign) to create various materials for the Northern Analytical Laboratory Services
 #v(design_experience_between_highlights)
 
 // Simple spacing control - two clear variables
@@ -189,7 +189,7 @@
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "Health Technology Research Analyst \(Intern\)"),
+      text(style: "italic", "Health Technology Research Analyst (Intern)"),
       "Remote"
     )
 
@@ -262,7 +262,7 @@
 
 // Bullet points with LaTeX-matching spacing
 #v(design_experience_before_highlights)
-• Utilize Geographic Information Systems \(GIS\) software to analyze and map data relevant to public health concerns across Northern Health regions
+• Utilize Geographic Information Systems (GIS) software to analyze and map data relevant to public health concerns across Northern Health regions
 #v(design_experience_between_highlights)
 • Created and presented comprehensive GIS-based reports to high-level decision-makers to support informed decision-making on public health concerns
 #v(design_experience_between_highlights)
@@ -454,7 +454,7 @@
 #v(design_experience_before_highlights)
 • Engage with researchers to understand their specific needs and challenges in laboratory and field environments
 #v(design_experience_between_highlights)
-• Design customized solutions using CAD \(Computer-Aided Design\) software to address the unique requirements of various research projects
+• Design customized solutions using CAD (Computer-Aided Design) software to address the unique requirements of various research projects
 #v(design_experience_between_highlights)
 
 // Simple spacing control - two clear variables
@@ -653,7 +653,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "Applied Internet of Things \(IoT\)"),
+  text(weight: "bold", "Applied Internet of Things (IoT)"),
   "May 2023"
 )
 

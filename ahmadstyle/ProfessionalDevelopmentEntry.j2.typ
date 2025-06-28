@@ -4,7 +4,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "<<entry.name>>"),
+  text(weight: "bold", "<<entry.name|safe>>"),
   "<<entry.date_string>>"
 )
 
@@ -13,7 +13,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "<<entry.summary>>"),
+  text(style: "italic", "<<entry.summary|safe>>"),
   ((* if entry.location *))
   "<<entry.location>>"
   ((* else *))
@@ -33,7 +33,7 @@
 // Description text (not bullet points for professional development)
 ((* for highlight in entry.highlights *))
 
-<<highlight>>
+<<highlight|safe>>
 #v(design_professional_dev_paragraph_spacing)  // Professional development specific spacing
 ((* endfor *))
 ((* endif *))

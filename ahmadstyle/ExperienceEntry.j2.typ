@@ -29,7 +29,7 @@
   ((* elif end_parts[1] == '03' *))((* set end_month = 'March' *))
   ((* elif end_parts[1] == '04' *))((* set end_month = 'April' *))
   ((* elif end_parts[1] == '05' *))((* set end_month = 'May' *))
-  ((* elif end_parts[1] == '06' *))((* set end_month = 'June' *))
+  ((* elif start_parts[1] == '06' *))((* set end_month = 'June' *))
   ((* elif end_parts[1] == '07' *))((* set end_month = 'July' *))
   ((* elif end_parts[1] == '08' *))((* set end_month = 'August' *))
   ((* elif end_parts[1] == '09' *))((* set end_month = 'September' *))
@@ -47,7 +47,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "<<entry.company>>"),
+  text(weight: "bold", "<<entry.company|replace('\\(', '(')|replace('\\)', ')')>>"),
   "<<date_range>>"
 )
 #v(design_experience_after_company_header)
@@ -60,7 +60,7 @@
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "<<entry.position|safe>>" + " | " + "<<date_range>>"),
+      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>" + " | " + "<<date_range>>"),
       "<<entry.location>>"
     )
   ((* else *))
@@ -68,7 +68,7 @@
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "<<entry.position|safe>>"),
+      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>"),
       "<<entry.location>>"
     )
   ((* endif *))
@@ -79,7 +79,7 @@
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "<<entry.position|safe>>"),
+      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>"),
       "<<entry.location>>"
     )
   ((* else *))
@@ -87,7 +87,7 @@
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "<<entry.position|safe>>" + " | " + "<<date_range>>"),
+      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>" + " | " + "<<date_range>>"),
       "<<entry.location>>"
     )
   ((* endif *))
@@ -97,7 +97,7 @@
 ((* if entry.highlights *))
 #v(design_experience_before_highlights)
 ((* for highlight in entry.highlights *))
-• <<highlight>>
+• <<highlight|replace('\\(', '(')|replace('\\)', ')')>>
 #v(design_experience_between_highlights)
 ((* endfor *))
 ((* endif *))
