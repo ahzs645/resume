@@ -9,15 +9,15 @@
 
 // Contact information matching LaTeX 14pt size
 #text(size: 14pt)[
-  #text("<<cv.email>>")
+  #text("<<cv.email>>") 
   ((*- if cv.phone -*))
-   | <<cv.phone>>
+   | (<<cv.phone|string|replace('tel:', '')|replace('+1-', '')|replace('-', ') ', 1)>>) 
   ((*- endif -*))
   ((*- if cv.location -*))
-   | <<cv.location>>
+   | <<cv.location>> 
   ((*- endif -*))
   ((*- if cv.website -*))
-   | #link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')>>]
+   | #link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')>>] 
   ((*- endif -*))
 ]
 

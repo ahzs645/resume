@@ -74,7 +74,7 @@
 
 // Contact information matching LaTeX 14pt size
 #text(size: 14pt)[
-  #text("me@ahmadjalil.com")| tel:+1-778-267-9144| Prince George, BC| #link("https://ahmadjalil.com/")[ahmadjalil.com/]]
+  #text("me@ahmadjalil.com")| (778) 267-9144)| Prince George, BC| #link("https://ahmadjalil.com/")[ahmadjalil.com/]]
 
 #v(-4pt)  // Match LaTeX \vspace{-4pt}
 #line(length: 100%, stroke: 0.4pt)
