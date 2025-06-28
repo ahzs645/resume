@@ -7,17 +7,20 @@
 
 #v(-16pt)  // Match LaTeX \vspace{6pt}
 
-// Contact information matching LaTeX 14pt size
+// Contact information with proper spacing around pipes and correct phone formatting
 #text(size: 14pt)[
-  #text("<<cv.email>>") 
+  #text("<<cv.email>>")
   ((*- if cv.phone -*))
-   | (<<cv.phone|string|replace('tel:', '')|replace('+1-', '')|replace('-', ') ', 1)>>) 
+  #text(" | ")
+  #text("(<<cv.phone|string|replace('tel:', '')|replace('+1-', '')|replace('-', ') ', 1)>>")
   ((*- endif -*))
   ((*- if cv.location -*))
-   | <<cv.location>> 
+  #text(" | ")
+  #text("<<cv.location>>")
   ((*- endif -*))
   ((*- if cv.website -*))
-   | #link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')>>] 
+  #text(" | ")
+  #link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '')>>]
   ((*- endif -*))
 ]
 

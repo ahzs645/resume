@@ -72,9 +72,12 @@
 
 #v(-16pt)  // Match LaTeX \vspace{6pt}
 
-// Contact information matching LaTeX 14pt size
+// Contact information with proper spacing around pipes and correct phone formatting
 #text(size: 14pt)[
-  #text("me@ahmadjalil.com")| (778) 267-9144)| Prince George, BC| #link("https://ahmadjalil.com/")[ahmadjalil.com/]]
+  #text("me@ahmadjalil.com")#text(" | ")
+  #text("(778) 267-9144")#text(" | ")
+  #text("Prince George, BC")#text(" | ")
+  #link("https://ahmadjalil.com/")[ahmadjalil.com]]
 
 #v(-4pt)  // Match LaTeX \vspace{-4pt}
 #line(length: 100%, stroke: 0.4pt)
