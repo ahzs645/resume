@@ -207,6 +207,6 @@
 
 ## Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia ([10.1080/10962247.2023.2197970](https://doi.org/10.1080/10962247.2023.2197970))
 - 2023
-- Eric S. Coker, Nikita Saha Turna, Mya Schouwenburg, ***Ahmad Jalil***, Charles Bradshaw, Michael Kuo, Molly Mastel, Hossein Kazemian, Meghan Roushorne, Sarah B. Henderson
+- Eric S. Coker, Nikita Saha Turna, Mya Schouwenburg, Ahmad Jalil, Charles Bradshaw, Michael Kuo, Molly Mastel, Hossein Kazemian, Meghan Roushorne, Sarah B. Henderson
 - Journal of the Air & Waste Management Association
 

@@ -1057,8 +1057,10 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-// Add this to your main template file
+// Publication entry template - handles ONE publication entry
+// Authors listEric S. Coker,Nikita Saha Turna,Mya Schouwenburg,Ahmad Jalil,Charles Bradshaw,Michael Kuo,Molly Mastel,Hossein Kazemian,Meghan Roushorne,Sarah B. Henderson.(2023).*Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia*._Journal of the Air & Waste Management Association_.10.1080/10962247.2023.2197970.
 
+#v(design-entries-vertical-space-between-entries)
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
