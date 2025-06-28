@@ -1059,18 +1059,29 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-// Publication entry - simple format matching working templates
+// Publication entry - matching ExperienceEntry pattern exactly
 
-// Publication title in bold
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia"),"2023")
+  text(weight: "bold", "Characterization of the short-term temporal variability of road dust chemical mixtures and meteorological profiles in a near-road urban site in British Columbia"),
+  "2023"
+)
 
 #v(-6pt)
 
-// Journal name in italicstext(style: "italic", "Journal of the Air & Waste Management Association")// Authors list#v(-4pt)Eric S. Coker,Nikita Saha Turna,Mya Schouwenburg,Ahmad Jalil,Charles Bradshaw,Michael Kuo,Molly Mastel,Hossein Kazemian,Meghan Roushorne,Sarah B. Henderson// DOI#v(-4pt)
-DOI: 10.1080/10962247.2023.2197970#v(8pt)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "Journal of the Air & Waste Management Association"),
+  ""
+)
+
+#v(-6pt)Eric S. Coker,Nikita Saha Turna,Mya Schouwenburg,Ahmad Jalil,Charles Bradshaw,Michael Kuo,Molly Mastel,Hossein Kazemian,Meghan Roushorne,Sarah B. Henderson#v(-4pt)
+
+DOI: 10.1080/10962247.2023.2197970
+
+#v(8pt)
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
