@@ -28,37 +28,37 @@
   marker: [•]
 )
 
-// Define design variables for consistent spacing
+// EXPERIENCE SECTION SPACING - EXPLICIT AND CLEAR
+#let design_experience_between_companies = 8pt                   // Large gap: between different companies
+#let design_experience_between_positions_same_company = 2pt      // Small gap: between positions at same company
+#let design_experience_after_company_header = -4pt              // Space after company name line
+#let design_experience_before_highlights = -4pt                 // Space before bullet points
+#let design_experience_between_highlights = -6pt                // Space between bullet points
+
+// OTHER SECTION SPACING CONTROLS
 #let design-entries-vertical-space-between-entries = 8pt
-#let design_experience_new_company_spacing = 2pt                  // Space between different companies
-#let design_experience_after_company_header = -8pt
-#let design_experience_before_highlights = -4pt
-#let design_experience_between_highlights = -6pt
-#let design_experience_between_positions_same_company = -6pt      // Space between positions at same company
 #let design_section_ending_spacing = -8pt
 #let design_normal_entry_paragraph_spacing = 1pt
 #let design_normal_entry_between_entries = -6pt
-#let design_professional_dev_after_name = -6pt        // Spacing after name/title
-#let design_professional_dev_after_summary = -4pt     // Spacing after summary/institution
-#let design_professional_dev_between_entries = 0pt  // Spacing between different entries
-#let design_awards_after_name = -6pt                   // Spacing after award name/title
-#let design_awards_after_summary = -4pt                // Spacing after awarding body/summary
-#let design_awards_paragraph_spacing = -6pt            // Spacing between highlight paragraphs
-#let design_awards_between_entries = -4pt              // Spacing between different awards
+#let design_professional_dev_after_name = -6pt        
+#let design_professional_dev_after_summary = -4pt     
+#let design_professional_dev_between_entries = 0pt    
+#let design_awards_after_name = -6pt                   
+#let design_awards_after_summary = -4pt                
+#let design_awards_paragraph_spacing = -6pt            
+#let design_awards_between_entries = -4pt              
 #let design_education_after_institution = -6pt
 #let design_education_before_highlights = -4pt
 #let design_education_between_highlights = -6pt
 #let design_education_after_entry = -4pt
-#let design_presentation_after_title = -6pt            // Spacing after presentation title
-#let design_presentation_before_highlights = -4pt      // Spacing before highlights (if any)
-#let design_presentation_between_highlights = -6pt     // Spacing between highlight items
-#let design_presentation_between_entries = -4pt        // Spacing between different presentations
+#let design_presentation_after_title = -6pt            
+#let design_presentation_before_highlights = -4pt      
+#let design_presentation_between_highlights = -6pt     
+#let design_presentation_between_entries = -4pt        
 #let design_publication_spacing = 8pt
 #let design_publication_after_title = -6pt
 #let design_publication_after_journal = -6pt
 #let design_publication_after_authors = -4pt
-
-
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
 #let section_heading(title) = {

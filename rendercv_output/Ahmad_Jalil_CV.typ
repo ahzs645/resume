@@ -28,37 +28,37 @@
   marker: [•]
 )
 
-// Define design variables for consistent spacing
+// EXPERIENCE SECTION SPACING - EXPLICIT AND CLEAR
+#let design_experience_between_companies = 8pt                   // Large gap: between different companies
+#let design_experience_between_positions_same_company = -8pt      // Small gap: between positions at same company
+#let design_experience_after_company_header = -4pt              // Space after company name line
+#let design_experience_before_highlights = -4pt                 // Space before bullet points
+#let design_experience_between_highlights = -6pt                // Space between bullet points
+
+// OTHER SECTION SPACING CONTROLS
 #let design-entries-vertical-space-between-entries = 8pt
-#let design_experience_new_company_spacing = 2pt                  // Space between different companies
-#let design_experience_after_company_header = -8pt
-#let design_experience_before_highlights = -4pt
-#let design_experience_between_highlights = -6pt
-#let design_experience_between_positions_same_company = -6pt      // Space between positions at same company
 #let design_section_ending_spacing = -8pt
 #let design_normal_entry_paragraph_spacing = 1pt
 #let design_normal_entry_between_entries = -6pt
-#let design_professional_dev_after_name = -6pt        // Spacing after name/title
-#let design_professional_dev_after_summary = -4pt     // Spacing after summary/institution
-#let design_professional_dev_between_entries = 0pt  // Spacing between different entries
-#let design_awards_after_name = -6pt                   // Spacing after award name/title
-#let design_awards_after_summary = -4pt                // Spacing after awarding body/summary
-#let design_awards_paragraph_spacing = -6pt            // Spacing between highlight paragraphs
-#let design_awards_between_entries = -4pt              // Spacing between different awards
+#let design_professional_dev_after_name = -6pt        
+#let design_professional_dev_after_summary = -4pt     
+#let design_professional_dev_between_entries = 0pt    
+#let design_awards_after_name = -6pt                   
+#let design_awards_after_summary = -4pt                
+#let design_awards_paragraph_spacing = -6pt            
+#let design_awards_between_entries = -4pt              
 #let design_education_after_institution = -6pt
 #let design_education_before_highlights = -4pt
 #let design_education_between_highlights = -6pt
 #let design_education_after_entry = -4pt
-#let design_presentation_after_title = -6pt            // Spacing after presentation title
-#let design_presentation_before_highlights = -4pt      // Spacing before highlights (if any)
-#let design_presentation_between_highlights = -6pt     // Spacing between highlight items
-#let design_presentation_between_entries = -4pt        // Spacing between different presentations
+#let design_presentation_after_title = -6pt            
+#let design_presentation_before_highlights = -4pt      
+#let design_presentation_between_highlights = -6pt     
+#let design_presentation_between_entries = -4pt        
 #let design_publication_spacing = 8pt
 #let design_publication_after_title = -6pt
 #let design_publication_after_journal = -6pt
 #let design_publication_after_authors = -4pt
-
-
 
 // Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
 #let section_heading(title) = {
@@ -97,7 +97,8 @@
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -113,7 +114,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
     // Show date in position line
     #grid(
       columns: (1fr, auto),
@@ -133,11 +134,13 @@
 • Authored and disseminated scientific papers and reports, contributing to the lab's knowledge base
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+    // Fallback to default
+    #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -146,7 +149,7 @@
 
 // Company header - only show if this is the first position at a company
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
     // Show date in position line
     #grid(
       columns: (1fr, auto),
@@ -164,11 +167,13 @@
 • Apply graphic design skills (Photoshop, Illustrator, InDesign) to create various materials for the Northern Analytical Laboratory Services
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_between_positions_same_company)  // Space between positions at same company
+// EXPLICIT SPACING CONTROL - Much cleaner!
+    // Fallback to default
+    #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -184,7 +189,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
     // Don't show date in position line
     #grid(
       columns: (1fr, auto),
@@ -200,11 +205,13 @@
 • Identified and analyzed key stakeholders in the age-tech and healthcare sectors, including government agencies, healthcare providers, technology companies, and advocacy groups
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+    // Fallback to default
+    #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -220,7 +227,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
     // Show date in position line
     #grid(
       columns: (1fr, auto),
@@ -238,11 +245,13 @@
 • Directed change initiatives and provided leadership in recruiting, coaching, and evaluating staff, fostering innovation and supporting the adoption of international coding standards
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+    // Fallback to default
+    #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -251,7 +260,7 @@
 
 // Company header - only show if this is the first position at a company
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
     // Show date in position line
     #grid(
       columns: (1fr, auto),
@@ -269,11 +278,13 @@
 • Developed a standardized database to track and analyze provincial-wide systems, enhancing data consistency and accessibility across Northern Health regions
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_between_positions_same_company)  // Space between positions at same company
+// EXPLICIT SPACING CONTROL - Much cleaner!
+    // Fallback to default
+    #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -289,7 +300,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
     // Don't show date in position line
     #grid(
       columns: (1fr, auto),
@@ -303,8 +314,9 @@
 • Contributed to the creation of an online resource hub for nutrition students, providing access to lecture notes, study guides, and additional learning materials
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+    // Fallback to default
+    #v(design_experience_between_companies)
 
 
 // Section ending - negative spacing to reduce gap before next section
@@ -313,7 +325,8 @@
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -329,7 +342,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
   // Fallback to old logic for backwards compatibility
     // Single position company - no date in position line
     #grid(
@@ -344,11 +357,13 @@
 • Prepared and served meals to those in need, promoted community wellness, and efficiently managed the distribution of donated goods
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -364,7 +379,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
   // Fallback to old logic for backwards compatibility
     // Single position company - no date in position line
     #grid(
@@ -379,11 +394,13 @@
 • Cultivated a confidential, supportive mentorship with a high school mentee, providing guidance on personal and academic challenges to foster personal and educational development
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -399,7 +416,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
   // Fallback to old logic for backwards compatibility
     // Single position company - no date in position line
     #grid(
@@ -420,11 +437,13 @@
 • Centralized information structures to streamline communication and enhance workflow efficiency
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -440,7 +459,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
   // Fallback to old logic for backwards compatibility
     // Single position company - no date in position line
     #grid(
@@ -457,11 +476,13 @@
 • Design customized solutions using CAD (Computer-Aided Design) software to address the unique requirements of various research projects
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -477,7 +498,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
   // Fallback to old logic for backwards compatibility
     // Single position company - no date in position line
     #grid(
@@ -494,11 +515,13 @@
 • Organize and lead informational sessions and workshops to educate students about the research process, opportunities, and the significance of research contributions
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 #v(design-entries-vertical-space-between-entries)
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 
@@ -514,7 +537,7 @@
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
   // Fallback to old logic for backwards compatibility
     // Single position company - no date in position line
     #grid(
@@ -533,8 +556,9 @@
 • Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
 #v(design_experience_between_highlights)
 
-// Simple spacing control - two clear variables
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 
 // Section ending - negative spacing to reduce gap before next section

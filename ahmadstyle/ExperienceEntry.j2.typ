@@ -1,4 +1,5 @@
-// Experience entry with automatic date formatting matching LaTeX exactly
+// Shared template for Experience and Volunteer sections
+// Uses explicit spacing control via spacing_after field
 
 // Format start date
 ((* if entry.start_date *))
@@ -53,7 +54,7 @@
 #v(design_experience_after_company_header)
 ((* endif *))
 
-// Position line - use explicit show_date_in_position flag if available, otherwise fall back to old logic
+// Position line - use explicit show_date_in_position flag
 ((* if entry.show_date_in_position is defined *))
   ((* if entry.show_date_in_position *))
     // Show date in position line
@@ -102,9 +103,21 @@
 ((* endfor *))
 ((* endif *))
 
-// Simple spacing control - two clear variables
-((* if entry.company and entry.company != "" *))
-#v(design_experience_new_company_spacing)  // Space between different companies
+// EXPLICIT SPACING CONTROL - Much cleaner!
+((* if entry.spacing_after is defined *))
+  ((* if entry.spacing_after == "same_company" *))
+    #v(design_experience_between_positions_same_company)
+  ((* elif entry.spacing_after == "different_company" *))
+    #v(design_experience_between_companies)
+  ((* else *))
+    // Fallback to default
+    #v(design_experience_between_companies)
+  ((* endif *))
 ((* else *))
-#v(design_experience_between_positions_same_company)  // Space between positions at same company
+  // Fallback to old logic if spacing_after not specified
+  ((* if entry.company and entry.company != "" *))
+    #v(design_experience_between_positions_same_company)
+  ((* else *))
+    #v(design_experience_between_companies)
+  ((* endif *))
 ((* endif *))
