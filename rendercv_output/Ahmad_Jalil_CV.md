@@ -10,7 +10,7 @@
 
 ## Northern Analytical Laboratory Services, Research Assistant
 
-- Nov 2020 – present
+- Sept 2022 – present
 - Prince George, BC
 - Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
 - Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
@@ -34,7 +34,7 @@
 
 ## Northern Health, Informatics Specialists
 
-- May 2024 – present
+- Dec 2024 – present
 - Prince George, BC
 - Led the integration and optimization of health information technologies, improving access to patient/client information and enhancing evidence-based practices across Northern Health regions
 - Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
@@ -143,12 +143,10 @@
 - Dec 2021
 - Remote
 
-# Certifications and Skills
+# Certifications Skills
 
-**Certifications:** OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)  
-
-**Skills:** Power BI; Research Skills; GIS; R Studio; Brand Identity Maps; Analytical Nature; Adobe Suite; Business Process Reengineering; SPSS; logistics; Fluent in Arabic; Powerful Decision-Making Expertise; Grant Proposal
-
+- Certifications: OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)
+- Skills: Power BI; Research Skills; GIS; R Studio; Brand Identity Maps; Analytical Nature; Adobe Suite; Business Process Reengineering; SPSS; Logistics; Fluent in Arabic; Powerful Decision-Making Expertise; Grant Proposal
 # Awards
 
 ## Canada Graduate Scholarships – Michael Smith Foreign Study Supplements

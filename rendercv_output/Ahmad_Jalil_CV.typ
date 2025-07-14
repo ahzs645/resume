@@ -29,15 +29,16 @@
 )
 
 // EXPERIENCE SECTION SPACING - EXPLICIT AND CLEAR
-#let design_experience_between_companies = 8pt                   // Large gap: between different companies
-#let design_experience_between_positions_same_company = -8pt      // Small gap: between positions at same company
+#let design_experience_between_companies = -4pt                   // Gap between different companies
+#let design_experience_between_positions_same_company = -8pt     // Tight gap: between positions at same company
 #let design_experience_after_company_header = -4pt              // Space after company name line
 #let design_experience_before_highlights = -4pt                 // Space before bullet points
 #let design_experience_between_highlights = -6pt                // Space between bullet points
 
 // OTHER SECTION SPACING CONTROLS
-#let design-entries-vertical-space-between-entries = 8pt
-#let design_section_ending_spacing = -8pt
+#let design-entries-vertical-space-between-entries = 12pt
+#let design_certifications_skills_between_entries = -8pt        // Negative spacing between certifications and skills
+#let design_section_ending_spacing = 4pt
 #let design_normal_entry_paragraph_spacing = 1pt
 #let design_normal_entry_between_entries = -6pt
 #let design_professional_dev_after_name = -6pt        
@@ -60,17 +61,17 @@
 #let design_publication_after_journal = -6pt
 #let design_publication_after_authors = -4pt
 
-// Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
+// Section formatting function - tighter spacing after section header
 #let section_heading(title) = {
-  v(16pt)  // Match LaTeX 16pt before section
+  v(16pt)  // Space before section title
   text(
     size: 11pt,
     weight: "bold",
     upper(title)
   )
-  v(-4pt)  // Adjust for rule positioning
+  v(-8pt)  // Adjust for rule positioning
   line(length: 100%, stroke: 0.4pt)
-  v(4pt)   // Match LaTeX spacing after section
+  v(-2pt)  // Reduced spacing after section (closer to first entry)
 }
 
 // Header matching LaTeX formatting exactly
@@ -105,7 +106,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -119,7 +123,7 @@
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "Research Assistant" + " | " + "November 2020 – Present"),
+      text(style: "italic", "Research Assistant" + " | " + "September 2022 – Present"),
       "Prince George, BC"
     )
 
@@ -135,8 +139,8 @@
 #v(design_experience_between_highlights)
 
 // EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
-    #v(design_experience_between_companies)
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 #v(design-entries-vertical-space-between-entries)
 // Shared template for Experience and Volunteer sections
@@ -147,7 +151,9 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
 
 // Position line - use explicit show_date_in_position flag
     // Show date in position line
@@ -168,7 +174,7 @@
 #v(design_experience_between_highlights)
 
 // EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+  // Fallback to old logic if spacing_after not specified
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
@@ -180,7 +186,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -218,7 +227,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -232,7 +244,7 @@
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "Informatics Specialists" + " | " + "May 2024 – Present"),
+      text(style: "italic", "Informatics Specialists" + " | " + "December 2024 – Present"),
       "Prince George, BC"
     )
 
@@ -246,8 +258,8 @@
 #v(design_experience_between_highlights)
 
 // EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
-    #v(design_experience_between_companies)
+  // Fallback to old logic if spacing_after not specified
+    #v(design_experience_between_positions_same_company)
 
 #v(design-entries-vertical-space-between-entries)
 // Shared template for Experience and Volunteer sections
@@ -258,7 +270,9 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
 
 // Position line - use explicit show_date_in_position flag
     // Show date in position line
@@ -279,7 +293,7 @@
 #v(design_experience_between_highlights)
 
 // EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+  // Fallback to old logic if spacing_after not specified
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
@@ -291,7 +305,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -333,7 +350,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -370,7 +390,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -407,7 +430,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -450,7 +476,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -489,7 +518,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -528,7 +560,10 @@
 // Format end date
 
 
-// Company header - only show if this is the first position at a company
+// Company header - show if company is specified and we want to show it
+  // Default: show company header if company is specified
+
+  // Use company_date_range if specified, otherwise use individual entry dates
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -763,18 +798,19 @@
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-#section_heading("Certifications and Skills")
+#section_heading("Certifications & Skills")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-// Text entry (for presentations, awards with descriptions) 
-// Matches LaTeX formatting with proper spacing
+// One line entry (for skills) - conditional bullet points
+*Certifications:* OFA Level 1; TCPS 2; Environmental Professional in Training \(EPt\)
+#v(design_certifications_skills_between_entries)
 
-#strong[Certifications:] OFA Level 1; TCPS 2; Environmental Professional in Training \(EPt\)  
+#v(design-entries-vertical-space-between-entries)
+// One line entry (for skills) - conditional bullet points
+*Skills:* Power BI; Research Skills; GIS; R Studio; Brand Identity Maps; Analytical Nature; Adobe Suite; Business Process Reengineering; SPSS; Logistics; Fluent in Arabic; Powerful Decision-Making Expertise; Grant Proposal
+#v(design_certifications_skills_between_entries)
 
-#strong[Skills:] Power BI; Research Skills; GIS; R Studio; Brand Identity Maps; Analytical Nature; Adobe Suite; Business Process Reengineering; SPSS; logistics; Fluent in Arabic; Powerful Decision-Making Expertise; Grant Proposal
-
-#v(design-entries-vertical-space-between-entries)  // Standard spacing between text entries
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)

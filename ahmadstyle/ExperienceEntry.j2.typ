@@ -43,13 +43,29 @@
 
 ((* set date_range = formatted_start + ' – ' + formatted_end *))
 
-// Company header - only show if this is the first position at a company
-((* if entry.company and entry.company != "" *))
+// Company header - show if company is specified and we want to show it
+((* set show_company_header = false *))
+((* if entry.show_company_header is defined *))
+  ((* set show_company_header = entry.show_company_header *))
+((* else *))
+  // Default: show company header if company is specified
+  ((* if entry.company and entry.company != "" *))
+    ((* set show_company_header = true *))
+  ((* endif *))
+((* endif *))
+
+((* if show_company_header *))
+  // Use company_date_range if specified, otherwise use individual entry dates
+  ((* if entry.company_date_range is defined *))
+    ((* set company_date_display = entry.company_date_range *))
+  ((* else *))
+    ((* set company_date_display = date_range *))
+  ((* endif *))
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "<<entry.company|replace('\\(', '(')|replace('\\)', ')')>>"),
-  "<<date_range>>"
+  "<<company_date_display>>"
 )
 #v(design_experience_after_company_header)
 ((* endif *))

@@ -29,15 +29,16 @@
 )
 
 // EXPERIENCE SECTION SPACING - EXPLICIT AND CLEAR
-#let design_experience_between_companies = 8pt                   // Large gap: between different companies
-#let design_experience_between_positions_same_company = 2pt      // Small gap: between positions at same company
+#let design_experience_between_companies = -4pt                   // Gap between different companies
+#let design_experience_between_positions_same_company = -8pt     // Tight gap: between positions at same company
 #let design_experience_after_company_header = -4pt              // Space after company name line
 #let design_experience_before_highlights = -4pt                 // Space before bullet points
 #let design_experience_between_highlights = -6pt                // Space between bullet points
 
 // OTHER SECTION SPACING CONTROLS
-#let design-entries-vertical-space-between-entries = 8pt
-#let design_section_ending_spacing = -8pt
+#let design-entries-vertical-space-between-entries = 12pt
+#let design_certifications_skills_between_entries = -8pt        // Negative spacing between certifications and skills
+#let design_section_ending_spacing = 4pt
 #let design_normal_entry_paragraph_spacing = 1pt
 #let design_normal_entry_between_entries = -6pt
 #let design_professional_dev_after_name = -6pt        
@@ -60,15 +61,15 @@
 #let design_publication_after_journal = -6pt
 #let design_publication_after_authors = -4pt
 
-// Section formatting function - matches LaTeX \titlespacing*{\section}{0pt}{16pt}{8pt}
+// Section formatting function - tighter spacing after section header
 #let section_heading(title) = {
-  v(16pt)  // Match LaTeX 16pt before section
+  v(16pt)  // Space before section title
   text(
     size: 11pt,
     weight: "bold",
     upper(title)
   )
-  v(-4pt)  // Adjust for rule positioning
+  v(-8pt)  // Adjust for rule positioning
   line(length: 100%, stroke: 0.4pt)
-  v(4pt)   // Match LaTeX spacing after section
+  v(-2pt)  // Reduced spacing after section (closer to first entry)
 }

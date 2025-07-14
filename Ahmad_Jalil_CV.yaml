@@ -23,10 +23,10 @@ cv:
       - company: Northern Analytical Laboratory Services
         position: Research Assistant
         location: Prince George, BC
-        start_date: 2020-11
+        start_date: 2022-09
         end_date: present
         show_date_in_position: true
-        spacing_after: same_company
+        company_date_range: "November 2020 – Present"
         highlights:
           - Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
           - Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
@@ -39,7 +39,6 @@ cv:
         start_date: 2020-11
         end_date: 2022-09
         show_date_in_position: true
-        spacing_after: same_company
         highlights:
           - Organize, review, and correct research data, creating illustrative graphs and charts for reports
           - Process data using statistical software including Excel, Prism, and Rstudio, to facilitate thorough data analysis
@@ -59,10 +58,10 @@ cv:
       - company: Northern Health
         position: Informatics Specialists
         location: Prince George, BC
-        start_date: 2024-05
+        start_date: 2024-12
         end_date: present
         show_date_in_position: true
-        spacing_after: same_company
+        company_date_range: "May 2024 – Present"
         highlights:
           - Led the integration and optimization of health information technologies, improving access to patient/client information and enhancing evidence-based practices across Northern Health regions
           - Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
@@ -74,7 +73,6 @@ cv:
         start_date: 2024-05
         end_date: 2024-12
         show_date_in_position: true
-        spacing_after: same_company
         highlights:
           - Utilize Geographic Information Systems (GIS) software to analyze and map data relevant to public health concerns across Northern Health regions
           - Created and presented comprehensive GIS-based reports to high-level decision-makers to support informed decision-making on public health concerns
@@ -146,36 +144,37 @@ cv:
           - Provide emotional support and reassurance to dementia patients, helping them feel more secure and oriented in their environment
           - Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
 
-    projects:
-      - title: Whisperdesk
-        description: A powerful desktop transcription application powered by native whisper.cpp with persistent state management and real-time progress feedback
-        link: https://github.com/ahzs645/WhisperDesk
-        technologies: [C++, Whisper.cpp, Desktop Development]
-        
-      - title: Aethalometer Analysis
-        description: Repository script kit to process aethalometer data from micro aeth for air quality research and environmental monitoring
-        link: https://github.com/ahzs645/aethmodular
-        technologies: [Python, Data Processing, Environmental Analysis]
-        
-      - title: Whisperdesk Diarization
-        description: Advanced Multi-Speaker Diarization Engine with cross-platform C++ implementation using PyAnnote 3.0 ONNX models
-        link: https://github.com/ahzs645/whisperdesk-diarization
-        technologies: [C++, ONNX, Machine Learning, Audio Processing]
-        
-      - title: UNBC Door Sign Generator
-        description: A web-based tool for generating standardized door signs for the University of Northern British Columbia (UNBC)
-        link: https://github.com/ahzs645/UNBCDoor
-        technologies: [Web Development, Design Tools]
-        
-      - title: Card Printer Calibration
-        description: Color management and calibration system specifically designed for ID card printing workflows, ensuring consistent and accurate color reproduction across different printing devices and conditions
-        link: https://github.com/ahzs645/printercalibration
-        technologies: [Color Management, Calibration Systems, Print Technology]
-        
-      - title: Markdown Milker
-        description: Collaborative markdown editor enabling multiple users to edit markdown files together in real-time, with drag-and-drop file organization and integrated image management
-        link: ""
-        technologies: [Real-time Collaboration, Markdown, Web Development]
+    # projects:
+    #   - title: Whisperdesk
+    #   - title: Whisperdesk
+    #     description: A powerful desktop transcription application powered by native whisper.cpp with persistent state management and real-time progress feedback
+    #     link: https://github.com/ahzs645/WhisperDesk
+    #     technologies: [C++, Whisper.cpp, Desktop Development]
+    #     
+    #   - title: Aethalometer Analysis
+    #     description: Repository script kit to process aethalometer data from micro aeth for air quality research and environmental monitoring
+    #     link: https://github.com/ahzs645/aethmodular
+    #     technologies: [Python, Data Processing, Environmental Analysis]
+    #     
+    #   - title: Whisperdesk Diarization
+    #     description: Advanced Multi-Speaker Diarization Engine with cross-platform C++ implementation using PyAnnote 3.0 ONNX models
+    #     link: https://github.com/ahzs645/whisperdesk-diarization
+    #     technologies: [C++, ONNX, Machine Learning, Audio Processing]
+    #     
+    #   - title: UNBC Door Sign Generator
+    #     description: A web-based tool for generating standardized door signs for the University of Northern British Columbia (UNBC)
+    #     link: https://github.com/ahzs645/UNBCDoor
+    #     technologies: [Web Development, Design Tools]
+    #     
+    #   - title: Card Printer Calibration
+    #     description: Color management and calibration system specifically designed for ID card printing workflows, ensuring consistent and accurate color reproduction across different printing devices and conditions
+    #     link: https://github.com/ahzs645/printercalibration
+    #     technologies: [Color Management, Calibration Systems, Print Technology]
+    #     
+    #   - title: Markdown Milker
+    #     description: Collaborative markdown editor enabling multiple users to edit markdown files together in real-time, with drag-and-drop file organization and integrated image management
+    #     link: ""
+    #     technologies: [Real-time Collaboration, Markdown, Web Development]
 
     education:
       - institution: University of Northern British Columbia
@@ -228,8 +227,12 @@ cv:
         date: 2021-12
         summary: John Hopkins University
 
-    certifications_and_skills:
-      - "**Certifications:** OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)  \n\n**Skills:** Power BI; Research Skills; GIS; R Studio; Brand Identity Maps; Analytical Nature; Adobe Suite; Business Process Reengineering; SPSS; logistics; Fluent in Arabic; Powerful Decision-Making Expertise; Grant Proposal"
+    certifications_skills:
+      - label: "Certifications"
+        details: "OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)"
+      
+      - label: "Skills"
+        details: "Power BI; Research Skills; GIS; R Studio; Brand Identity Maps; Analytical Nature; Adobe Suite; Business Process Reengineering; SPSS; Logistics; Fluent in Arabic; Powerful Decision-Making Expertise; Grant Proposal"
 
     awards:
       - name: Canada Graduate Scholarships – Michael Smith Foreign Study Supplements
