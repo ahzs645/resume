@@ -94,6 +94,7 @@ cv:
         location: Prince George, BC
         start_date: 2020-12
         end_date: present
+        spacing_after: different_company
         highlights:
           - Prepared and served meals to those in need, promoted community wellness, and efficiently managed the distribution of donated goods
       
@@ -102,6 +103,7 @@ cv:
         location: Remote
         start_date: 2020-09
         end_date: present
+        spacing_after: different_company
         highlights:
           - Cultivated a confidential, supportive mentorship with a high school mentee, providing guidance on personal and academic challenges to foster personal and educational development
       
@@ -110,6 +112,7 @@ cv:
         location: Prince George, BC
         start_date: 2024-03
         end_date: present
+        spacing_after: different_company
         highlights:
           - Negotiated a printing deal with the main newsprint supplier in Prince George, securing the production of 22,000 copies per issue
           - Redesigned the newspaper's logo and brand image to modernize and align with current media trends
@@ -121,6 +124,7 @@ cv:
         location: Prince George, BC
         start_date: 2023-09
         end_date: present
+        spacing_after: different_company
         highlights:
           - Engage with researchers to understand their specific needs and challenges in laboratory and field environments
           - Design customized solutions using CAD (Computer-Aided Design) software to address the unique requirements of various research projects
@@ -130,6 +134,7 @@ cv:
         location: Prince George, BC
         start_date: 2022-09
         end_date: present
+        spacing_after: different_company
         highlights:
           - Act as a primary liaison between students and the research community at UNBC, promoting engagement and participation in research activities
           - Organize and lead informational sessions and workshops to educate students about the research process, opportunities, and the significance of research contributions

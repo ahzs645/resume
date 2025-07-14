@@ -43,7 +43,7 @@
 #let design_normal_entry_between_entries = -6pt
 #let design_professional_dev_after_name = -6pt        
 #let design_professional_dev_after_summary = -4pt     
-#let design_professional_dev_between_entries = 0pt    
+#let design_professional_dev_between_entries = -6pt    
 #let design_awards_after_name = -6pt                   
 #let design_awards_after_summary = -4pt                
 #let design_awards_paragraph_spacing = -6pt            
@@ -69,7 +69,7 @@
     weight: "bold",
     upper(title)
   )
-  v(-8pt)  // Adjust for rule positioning
+  v(-10pt)  // Adjust for rule positioning
   line(length: 100%, stroke: 0.4pt)
   v(-2pt)  // Reduced spacing after section (closer to first entry)
 }

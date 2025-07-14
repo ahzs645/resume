@@ -24,6 +24,6 @@
   ((*- endif -*))
 ]
 
-#v(-4pt)  // Match LaTeX \vspace{-4pt}
+#v(-10pt)  // Reduced spacing before horizontal line
 #line(length: 100%, stroke: 0.4pt)
-#v(-4pt)  // Match LaTeX \vspace{-4pt}
+#v(-10pt)  // Reduced spacing after horizontal line
