@@ -4,7 +4,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "<<entry.title>>"),
+  text(weight: "bold", "<<entry.title|replace('\\(', '(')|replace('\\)', ')')>>"),
   "<<entry.date>>"
 )
 
@@ -14,7 +14,7 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "<<entry.conference>>"),
+  text(style: "italic", "<<entry.conference|replace('\\(', '(')|replace('\\)', ')')>>"),
   "<<entry.location>>"
 )
 
@@ -22,7 +22,7 @@
 // Optional highlights/description
 #v(design_presentation_before_highlights)
 ((* for highlight in entry.highlights *))
-• <<highlight>>
+• <<highlight|replace('\\(', '(')|replace('\\)', ')')>>
 #v(design_presentation_between_highlights)
 ((* endfor *))
 ((* endif *))

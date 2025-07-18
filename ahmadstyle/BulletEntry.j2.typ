@@ -1,2 +1,2 @@
 // Bullet entry 
-• <<entry.bullet>>
+• <<entry.bullet|replace('\\(', '(')|replace('\\)', ')')>>

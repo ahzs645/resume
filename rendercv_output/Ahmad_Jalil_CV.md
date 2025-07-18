@@ -103,7 +103,7 @@
 
 ## University of Northern British Columbia, PhD in Natural Resources and Environmental Studies
 
-- Sept 2023 – Sept 2026
+- Sept 2024 – Sept 2026
 - Prince George, BC
 - Focus on air quality and environmental health
 

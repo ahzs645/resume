@@ -609,7 +609,7 @@
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "University of Northern British Columbia"),
-  "Sept 2023 – Sept 2026"
+  "Sept 2024 – Sept 2026"
 )
 
 #v(design_education_after_institution)
@@ -663,10 +663,10 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(style: "italic", "B.HSc., Biomedical Studies \(Honours\)"),
+  text(style: "italic", "B.HSc., Biomedical Studies (Honours)"),
   "Prince George, BC"
 )// Bullet points for highlights with LaTeX-matching spacing
-#v(design_education_before_highlights)• Minor: Natural Resource Planning and Operations \(Forestry\)
+#v(design_education_before_highlights)• Minor: Natural Resource Planning and Operations (Forestry)
 #v(design_education_between_highlights)• The Lieutenant Governor's Medal for Inclusion, Democracy and Reconciliation
 #v(design_education_between_highlights)#v(design_education_after_entry)  // Standard spacing after education entries
 
@@ -803,7 +803,7 @@
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
 // One line entry (for skills) - conditional bullet points
-*Certifications:* OFA Level 1; TCPS 2; Environmental Professional in Training \(EPt\)
+*Certifications:* OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)
 #v(design_certifications_skills_between_entries)
 
 #v(design-entries-vertical-space-between-entries)
