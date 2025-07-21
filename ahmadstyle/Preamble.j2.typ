@@ -30,7 +30,7 @@
 
 // EXPERIENCE SECTION SPACING - EXPLICIT AND CLEAR
 #let design_experience_between_companies = -4pt                   // Gap between different companies
-#let design_experience_between_positions_same_company = -8pt     // Tight gap: between positions at same company
+#let design_experience_between_positions_same_company = 0pt     // Tight gap: between positions at same company
 #let design_experience_after_company_header = -4pt              // Space after company name line
 #let design_experience_before_highlights = -4pt                 // Space before bullet points
 #let design_experience_between_highlights = -6pt                // Space between bullet points
