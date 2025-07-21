@@ -49,8 +49,26 @@ Available sections to exclude: `projects`, `volunteer`, `presentations`, `public
 ## Requirements
 
 - Python 3.6+
-- RenderCV (`pip install rendercv`)
-- Custom `ahmadstyle` theme (included)
+- Virtual environment (recommended)
+- Dependencies from `requirements.txt`
+
+## Setup
+
+1. **Create and activate virtual environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On macOS/Linux
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Build resumes:**
+   ```bash
+   ./build-resume full
+   ```
 
 ## How It Works
 
