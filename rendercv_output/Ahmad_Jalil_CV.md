@@ -10,20 +10,7 @@
 
 ## Northern Analytical Laboratory Services, Research Assistant
 
-- Sept 2022 – present
 - Prince George, BC
-- Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
-- Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
-- Streamlined and optimized laboratory workflow by implementing new methods and protocols, resulting in an increase in sample processing efficiency
-- Authored and disseminated scientific papers and reports, contributing to the lab's knowledge base
-
-## , Student Research Assistant
-
-- Nov 2020 – Sept 2022
-- Prince George, BC
-- Organize, review, and correct research data, creating illustrative graphs and charts for reports
-- Process data using statistical software including Excel, Prism, and Rstudio, to facilitate thorough data analysis
-- Apply graphic design skills (Photoshop, Illustrator, InDesign) to create various materials for the Northern Analytical Laboratory Services
 
 ## Relentless Pursuit Ventures, Health Technology Research Analyst (Intern)
 
@@ -34,19 +21,7 @@
 
 ## Northern Health, Informatics Specialists
 
-- Dec 2024 – present
 - Prince George, BC
-- Led the integration and optimization of health information technologies, improving access to patient/client information and enhancing evidence-based practices across Northern Health regions
-- Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
-- Directed change initiatives and provided leadership in recruiting, coaching, and evaluating staff, fostering innovation and supporting the adoption of international coding standards
-
-## , PICS Intern
-
-- May 2024 – Dec 2024
-- Prince George, BC
-- Utilize Geographic Information Systems (GIS) software to analyze and map data relevant to public health concerns across Northern Health regions
-- Created and presented comprehensive GIS-based reports to high-level decision-makers to support informed decision-making on public health concerns
-- Developed a standardized database to track and analyze provincial-wide systems, enhancing data consistency and accessibility across Northern Health regions
 
 ## University of Northern British Columbia, Teaching Assistant
 
@@ -105,31 +80,26 @@
 
 - 2024
 - Technologies - C++, Whisper.cpp, Desktop Development
-- https://github.com/ahzs645/WhisperDesk
 
 ## Aethalometer Analysis
 
 - 2024
 - Technologies - Python, Data Processing, Environmental Analysis
-- https://github.com/ahzs645/aethmodular
 
 ## Whisperdesk Diarization
 
 - 2024
 - Technologies - C++, ONNX, Machine Learning, Audio Processing
-- https://github.com/ahzs645/whisperdesk-diarization
 
 ## UNBC Door Sign Generator
 
 - 2024
 - Technologies - Web Development, Design Tools
-- https://github.com/ahzs645/UNBCDoor
 
 ## Card Printer Calibration
 
 - 2024
 - Technologies - Color Management, Calibration Systems, Print Technology
-- https://github.com/ahzs645/printercalibration
 
 ## Markdown Milker
 

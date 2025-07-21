@@ -94,541 +94,469 @@
 #line(length: 100%, stroke: 0.4pt)
 #v(-10pt)  // Reduced spacing after horizontal line
 
-
-
-
 #section_heading("Experience")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Function to format a date from YYYY-MM format
 
-// Format start date
+// Calculate overall company date range from positions
+  
+  
 
-// Format end date
-
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Northern Analytical Laboratory Services"),
-  "November 2020 – Present"
+  ""
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-    // Show date in position line
+// Handle positions array or single position
+    
+    // Position line with individual dates
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "Research Assistant" + " | " + "September 2022 – Present"),
+      text(style: "italic", "Research Assistant" + " | " + "September 2022
+ – Present"),
       "Prince George, BC"
     )
-
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
-#v(design_experience_between_highlights)
-• Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
-#v(design_experience_between_highlights)
-• Streamlined and optimized laboratory workflow by implementing new methods and protocols, resulting in an increase in sample processing efficiency
-#v(design_experience_between_highlights)
-• Authored and disseminated scientific papers and reports, contributing to the lab's knowledge base
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-  // Fallback to old logic if spacing_after not specified
+    
+    // Bullet points
+    #v(design_experience_before_highlights)
+    • Work both independently and in a team in a laboratory environment, performing tasks that involve collection and processing of samples using various instruments while maintaining and calibrating them
+    #v(design_experience_between_highlights)
+    • Revamped invoicing system to automate payment tracking processes, reducing customer inquiries and improving overall customer satisfaction
+    #v(design_experience_between_highlights)
+    • Streamlined and optimized laboratory workflow by implementing new methods and protocols, resulting in an increase in sample processing efficiency
+    #v(design_experience_between_highlights)
+    • Authored and disseminated scientific papers and reports, contributing to the lab's knowledge base
+    #v(design_experience_between_highlights)
+    
+    // Spacing between positions within same company
     #v(design_experience_between_positions_same_company)
-
-#v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
-
-// Format start date
-
-// Format end date
-
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-
-// Position line - use explicit show_date_in_position flag
-    // Show date in position line
+    
+    // Position line with individual dates
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "Student Research Assistant" + " | " + "November 2020 – September 2022"),
+      text(style: "italic", "Student Research Assistant" + " | " + "November 2020
+ – September 2022
+"),
       "Prince George, BC"
     )
+    
+    // Bullet points
+    #v(design_experience_before_highlights)
+    • Organize, review, and correct research data, creating illustrative graphs and charts for reports
+    #v(design_experience_between_highlights)
+    • Process data using statistical software including Excel, Prism, and Rstudio, to facilitate thorough data analysis
+    #v(design_experience_between_highlights)
+    • Apply graphic design skills (Photoshop, Illustrator, InDesign) to create various materials for the Northern Analytical Laboratory Services
+    #v(design_experience_between_highlights)
+    
+    // Spacing between positions within same company
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Organize, review, and correct research data, creating illustrative graphs and charts for reports
-#v(design_experience_between_highlights)
-• Process data using statistical software including Excel, Prism, and Rstudio, to facilitate thorough data analysis
-#v(design_experience_between_highlights)
-• Apply graphic design skills (Photoshop, Illustrator, InDesign) to create various materials for the Northern Analytical Laboratory Services
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-  // Fallback to old logic if spacing_after not specified
-    #v(design_experience_between_companies)
+// Spacing after company entry
+  #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Relentless Pursuit Ventures"),
-  "May 2024 – August 2024"
+  "May 2024
+ – August 2024
+"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-    // Don't show date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Health Technology Research Analyst (Intern)"),
       "Remote"
     )
+  
+  #v(design_experience_before_highlights)
+  • Conducted comprehensive research on health technology innovations for seniors in rural and remote communities across Canada
+  #v(design_experience_between_highlights)
+  • Identified and analyzed key stakeholders in the age-tech and healthcare sectors, including government agencies, healthcare providers, technology companies, and advocacy groups
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Conducted comprehensive research on health technology innovations for seniors in rural and remote communities across Canada
-#v(design_experience_between_highlights)
-• Identified and analyzed key stakeholders in the age-tech and healthcare sectors, including government agencies, healthcare providers, technology companies, and advocacy groups
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+// Spacing after company entry
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  
+  
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Northern Health"),
-  "May 2024 – Present"
+  ""
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-    // Show date in position line
+// Handle positions array or single position
+    
+    // Position line with individual dates
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "Informatics Specialists" + " | " + "December 2024 – Present"),
+      text(style: "italic", "Informatics Specialists" + " | " + "December 2024
+ – Present"),
       "Prince George, BC"
     )
-
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Led the integration and optimization of health information technologies, improving access to patient\/client information and enhancing evidence-based practices across Northern Health regions
-#v(design_experience_between_highlights)
-• Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
-#v(design_experience_between_highlights)
-• Directed change initiatives and provided leadership in recruiting, coaching, and evaluating staff, fostering innovation and supporting the adoption of international coding standards
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-  // Fallback to old logic if spacing_after not specified
+    
+    // Bullet points
+    #v(design_experience_before_highlights)
+    • Led the integration and optimization of health information technologies, improving access to patient/client information and enhancing evidence-based practices across Northern Health regions
+    #v(design_experience_between_highlights)
+    • Collaborated with clinical leaders, HIM leaders, and physicians to align healthcare systems with operational needs, while designing and maintaining health information management content
+    #v(design_experience_between_highlights)
+    • Directed change initiatives and provided leadership in recruiting, coaching, and evaluating staff, fostering innovation and supporting the adoption of international coding standards
+    #v(design_experience_between_highlights)
+    
+    // Spacing between positions within same company
     #v(design_experience_between_positions_same_company)
-
-#v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
-
-// Format start date
-
-// Format end date
-
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-
-// Position line - use explicit show_date_in_position flag
-    // Show date in position line
+    
+    // Position line with individual dates
     #grid(
       columns: (1fr, auto),
       align: (left, right),
-      text(style: "italic", "PICS Intern" + " | " + "May 2024 – December 2024"),
+      text(style: "italic", "PICS Intern" + " | " + "May 2024
+ – December 2024
+"),
       "Prince George, BC"
     )
+    
+    // Bullet points
+    #v(design_experience_before_highlights)
+    • Utilize Geographic Information Systems (GIS) software to analyze and map data relevant to public health concerns across Northern Health regions
+    #v(design_experience_between_highlights)
+    • Created and presented comprehensive GIS-based reports to high-level decision-makers to support informed decision-making on public health concerns
+    #v(design_experience_between_highlights)
+    • Developed a standardized database to track and analyze provincial-wide systems, enhancing data consistency and accessibility across Northern Health regions
+    #v(design_experience_between_highlights)
+    
+    // Spacing between positions within same company
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Utilize Geographic Information Systems (GIS) software to analyze and map data relevant to public health concerns across Northern Health regions
-#v(design_experience_between_highlights)
-• Created and presented comprehensive GIS-based reports to high-level decision-makers to support informed decision-making on public health concerns
-#v(design_experience_between_highlights)
-• Developed a standardized database to track and analyze provincial-wide systems, enhancing data consistency and accessibility across Northern Health regions
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-  // Fallback to old logic if spacing_after not specified
-    #v(design_experience_between_companies)
+// Spacing after company entry
+  #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "University of Northern British Columbia"),
-  "January 2024 – December 2024"
+  "January 2024
+ – December 2024
+"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-    // Don't show date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Teaching Assistant"),
       "Prince George, BC"
     )
+  
+  #v(design_experience_before_highlights)
+  • Contributed to the creation of an online resource hub for nutrition students, providing access to lecture notes, study guides, and additional learning materials
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Contributed to the creation of an online resource hub for nutrition students, providing access to lecture notes, study guides, and additional learning materials
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+// Spacing after company entry
     #v(design_experience_between_companies)
-
-
-
 
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Volunteer")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Function to format a date from YYYY-MM format
 
-// Format start date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-// Format end date
-
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "St. Vincent De Paul"),
-  "December 2020 – Present"
+  "December 2020
+ – Present"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-  // Fallback to old logic for backwards compatibility
-    // Single position company - no date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Service Volunteer"),
       "Prince George, BC"
     )
+  
+  #v(design_experience_before_highlights)
+  • Prepared and served meals to those in need, promoted community wellness, and efficiently managed the distribution of donated goods
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Prepared and served meals to those in need, promoted community wellness, and efficiently managed the distribution of donated goods
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+// Spacing after company entry
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Rural eMentoring BC"),
-  "September 2020 – Present"
+  "September 2020
+ – Present"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-  // Fallback to old logic for backwards compatibility
-    // Single position company - no date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Highschool Mentor"),
       "Remote"
     )
+  
+  #v(design_experience_before_highlights)
+  • Cultivated a confidential, supportive mentorship with a high school mentee, providing guidance on personal and academic challenges to foster personal and educational development
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Cultivated a confidential, supportive mentorship with a high school mentee, providing guidance on personal and academic challenges to foster personal and educational development
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+// Spacing after company entry
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Over The Edge Newspaper Society"),
-  "March 2024 – Present"
+  "March 2024
+ – Present"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-  // Fallback to old logic for backwards compatibility
-    // Single position company - no date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Acting Editor-in-Chief"),
       "Prince George, BC"
     )
+  
+  #v(design_experience_before_highlights)
+  • Negotiated a printing deal with the main newsprint supplier in Prince George, securing the production of 22,000 copies per issue
+  #v(design_experience_between_highlights)
+  • Redesigned the newspaper's logo and brand image to modernize and align with current media trends
+  #v(design_experience_between_highlights)
+  • Conducted audience research to identify preferences and tailored content to increase engagement
+  #v(design_experience_between_highlights)
+  • Centralized information structures to streamline communication and enhance workflow efficiency
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Negotiated a printing deal with the main newsprint supplier in Prince George, securing the production of 22,000 copies per issue
-#v(design_experience_between_highlights)
-• Redesigned the newspaper's logo and brand image to modernize and align with current media trends
-#v(design_experience_between_highlights)
-• Conducted audience research to identify preferences and tailored content to increase engagement
-#v(design_experience_between_highlights)
-• Centralized information structures to streamline communication and enhance workflow efficiency
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+// Spacing after company entry
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Sparklab"),
-  "September 2023 – Present"
+  "September 2023
+ – Present"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-  // Fallback to old logic for backwards compatibility
-    // Single position company - no date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Technical Analyst"),
       "Prince George, BC"
     )
+  
+  #v(design_experience_before_highlights)
+  • Engage with researchers to understand their specific needs and challenges in laboratory and field environments
+  #v(design_experience_between_highlights)
+  • Design customized solutions using CAD (Computer-Aided Design) software to address the unique requirements of various research projects
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Engage with researchers to understand their specific needs and challenges in laboratory and field environments
-#v(design_experience_between_highlights)
-• Design customized solutions using CAD (Computer-Aided Design) software to address the unique requirements of various research projects
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+// Spacing after company entry
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "University of Northern British Columbia"),
-  "September 2022 – Present"
+  "September 2022
+ – Present"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-  // Fallback to old logic for backwards compatibility
-    // Single position company - no date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Research Ambassador"),
       "Prince George, BC"
     )
+  
+  #v(design_experience_before_highlights)
+  • Act as a primary liaison between students and the research community at UNBC, promoting engagement and participation in research activities
+  #v(design_experience_between_highlights)
+  • Organize and lead informational sessions and workshops to educate students about the research process, opportunities, and the significance of research contributions
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Act as a primary liaison between students and the research community at UNBC, promoting engagement and participation in research activities
-#v(design_experience_between_highlights)
-• Organize and lead informational sessions and workshops to educate students about the research process, opportunities, and the significance of research contributions
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-    // Fallback to default
+// Spacing after company entry
     #v(design_experience_between_companies)
 
 #v(design-entries-vertical-space-between-entries)
-// Shared template for Experience and Volunteer sections
-// Uses explicit spacing control via spacing_after field
+// Updated template for Experience and Volunteer sections
+// Now supports positions array structure with auto-calculated company dates
 
-// Format start date
+// Function to format a date from YYYY-MM format
 
-// Format end date
+// Calculate overall company date range from positions
+  // Fallback for old structure
 
-
-// Company header - show if company is specified and we want to show it
-  // Default: show company header if company is specified
-
-  // Use company_date_range if specified, otherwise use individual entry dates
+// Company header - always show for new positions structure
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "Northern Health"),
-  "April 2023 – Present"
+  "April 2023
+ – Present"
 )
 #v(design_experience_after_company_header)
 
-// Position line - use explicit show_date_in_position flag
-  // Fallback to old logic for backwards compatibility
-    // Single position company - no date in position line
+// Handle positions array or single position
+  // Fallback for old structure
+  
     #grid(
       columns: (1fr, auto),
       align: (left, right),
       text(style: "italic", "Activity Volunteer"),
       "Prince George, BC"
     )
+  
+  #v(design_experience_before_highlights)
+  • Assist recreation therapists and engage in activities with residents at Rainbow Lodge & Gateway, a long-term care home and facilities, enhancing their daily lives and well-being
+  #v(design_experience_between_highlights)
+  • Provide emotional support and reassurance to dementia patients, helping them feel more secure and oriented in their environment
+  #v(design_experience_between_highlights)
+  • Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
+  #v(design_experience_between_highlights)
 
-// Bullet points with LaTeX-matching spacing
-#v(design_experience_before_highlights)
-• Assist recreation therapists and engage in activities with residents at Rainbow Lodge & Gateway, a long-term care home and facilities, enhancing their daily lives and well-being
-#v(design_experience_between_highlights)
-• Provide emotional support and reassurance to dementia patients, helping them feel more secure and oriented in their environment
-#v(design_experience_between_highlights)
-• Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
-#v(design_experience_between_highlights)
-
-// EXPLICIT SPACING CONTROL - Much cleaner!
-  // Fallback to old logic if spacing_after not specified
-    #v(design_experience_between_positions_same_company)
-
-
-
+// Spacing after company entry
+  #v(design_experience_between_companies)
 
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Projects")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "Whisperdesk"),
+  link("https://github.com/ahzs645/WhisperDesk")[#text(weight: "bold", "Whisperdesk")],
   "2024"
 )
 
@@ -650,8 +578,6 @@
 // Awards section - has highlights/descriptions
 Technologies - C++, Whisper.cpp, Desktop Development
 #v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
-https:\/\/github.com\/ahzs645\/WhisperDesk
-#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
 
 // Conditional spacing based on entry type
 #v(design_awards_between_entries)  // Awards spacing between entries
@@ -659,11 +585,11 @@ https:\/\/github.com\/ahzs645\/WhisperDesk
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "Aethalometer Analysis"),
+  link("https://github.com/ahzs645/aethmodular")[#text(weight: "bold", "Aethalometer Analysis")],
   "2024"
 )
 
@@ -685,8 +611,6 @@ https:\/\/github.com\/ahzs645\/WhisperDesk
 // Awards section - has highlights/descriptions
 Technologies - Python, Data Processing, Environmental Analysis
 #v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
-https:\/\/github.com\/ahzs645\/aethmodular
-#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
 
 // Conditional spacing based on entry type
 #v(design_awards_between_entries)  // Awards spacing between entries
@@ -694,11 +618,11 @@ https:\/\/github.com\/ahzs645\/aethmodular
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "Whisperdesk Diarization"),
+  link("https://github.com/ahzs645/whisperdesk-diarization")[#text(weight: "bold", "Whisperdesk Diarization")],
   "2024"
 )
 
@@ -720,8 +644,6 @@ https:\/\/github.com\/ahzs645\/aethmodular
 // Awards section - has highlights/descriptions
 Technologies - C++, ONNX, Machine Learning, Audio Processing
 #v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
-https:\/\/github.com\/ahzs645\/whisperdesk-diarization
-#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
 
 // Conditional spacing based on entry type
 #v(design_awards_between_entries)  // Awards spacing between entries
@@ -729,11 +651,11 @@ https:\/\/github.com\/ahzs645\/whisperdesk-diarization
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "UNBC Door Sign Generator"),
+  link("https://github.com/ahzs645/UNBCDoor")[#text(weight: "bold", "UNBC Door Sign Generator")],
   "2024"
 )
 
@@ -755,8 +677,6 @@ https:\/\/github.com\/ahzs645\/whisperdesk-diarization
 // Awards section - has highlights/descriptions
 Technologies - Web Development, Design Tools
 #v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
-https:\/\/github.com\/ahzs645\/UNBCDoor
-#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
 
 // Conditional spacing based on entry type
 #v(design_awards_between_entries)  // Awards spacing between entries
@@ -764,11 +684,11 @@ https:\/\/github.com\/ahzs645\/UNBCDoor
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "Card Printer Calibration"),
+  link("https://github.com/ahzs645/printercalibration")[#text(weight: "bold", "Card Printer Calibration")],
   "2024"
 )
 
@@ -790,8 +710,6 @@ https:\/\/github.com\/ahzs645\/UNBCDoor
 // Awards section - has highlights/descriptions
 Technologies - Color Management, Calibration Systems, Print Technology
 #v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
-https:\/\/github.com\/ahzs645\/printercalibration
-#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
 
 // Conditional spacing based on entry type
 #v(design_awards_between_entries)  // Awards spacing between entries
@@ -799,7 +717,7 @@ https:\/\/github.com\/ahzs645\/printercalibration
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -830,19 +748,11 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_awards_between_entries)  // Awards spacing between entries
 
 
-
-
-
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Education")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
-
 
 // Education entry matching LaTeX formatting exactly
 
@@ -912,23 +822,15 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_education_between_highlights)• The Lieutenant Governor's Medal for Inclusion, Democracy and Reconciliation
 #v(design_education_between_highlights)#v(design_education_after_entry)  // Standard spacing after education entries
 
-
-
-
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Professional Development")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -958,7 +860,7 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -988,7 +890,7 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1018,7 +920,7 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1046,19 +948,11 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries  
 
 
-
-
-
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Certifications & Skills")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
-
 
 // One line entry (for skills) - conditional bullet points
 *Certifications:* OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)
@@ -1070,23 +964,15 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_certifications_skills_between_entries)
 
 
-
-
-
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Awards")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1119,7 +1005,7 @@ The Government of Canada launched this program in 2008 to support high-calibre g
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1152,7 +1038,7 @@ The Canada Graduate Scholarships is designed to enhance the research skills and 
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1185,7 +1071,7 @@ The British Columbia Graduate Scholarship supports exceptional students at publi
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1218,7 +1104,7 @@ The Lieutenant-governor's Medal for Inclusion, Democracy and Reconciliation reco
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1251,7 +1137,7 @@ Natural Sciences and Engineering Research Council of Canada Undergraduate Studen
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1284,7 +1170,7 @@ The award is for recipients whose home town must be within the geographical boun
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1315,23 +1201,15 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 #v(design_awards_between_entries)  // Awards spacing between entries
 
 
-
-
-
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Presentations")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
 
-
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1361,7 +1239,7 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1391,7 +1269,7 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 #v(design-entries-vertical-space-between-entries)
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
@@ -1419,19 +1297,11 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries  
 
 
-
-
-
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
-
-
-
 #section_heading("Publications")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
-
 
 // Publication entry - matching ExperienceEntry pattern exactly
 
@@ -1461,9 +1331,5 @@ DOI: 10.1080/10962247.2023.2197970
 
 #v(design_publication_spacing)
 
-
-
-
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
-
