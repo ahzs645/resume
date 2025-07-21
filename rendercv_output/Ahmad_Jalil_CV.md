@@ -99,6 +99,43 @@
 - Provide emotional support and reassurance to dementia patients, helping them feel more secure and oriented in their environment
 - Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
 
+# Projects
+
+## Whisperdesk
+
+- 2024
+- Technologies - C++, Whisper.cpp, Desktop Development
+- https://github.com/ahzs645/WhisperDesk
+
+## Aethalometer Analysis
+
+- 2024
+- Technologies - Python, Data Processing, Environmental Analysis
+- https://github.com/ahzs645/aethmodular
+
+## Whisperdesk Diarization
+
+- 2024
+- Technologies - C++, ONNX, Machine Learning, Audio Processing
+- https://github.com/ahzs645/whisperdesk-diarization
+
+## UNBC Door Sign Generator
+
+- 2024
+- Technologies - Web Development, Design Tools
+- https://github.com/ahzs645/UNBCDoor
+
+## Card Printer Calibration
+
+- 2024
+- Technologies - Color Management, Calibration Systems, Print Technology
+- https://github.com/ahzs645/printercalibration
+
+## Markdown Milker
+
+- 2024
+- Technologies - Real-time Collaboration, Markdown, Web Development
+
 # Education
 
 ## University of Northern British Columbia, PhD in Natural Resources and Environmental Studies

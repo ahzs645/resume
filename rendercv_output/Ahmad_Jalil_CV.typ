@@ -598,6 +598,220 @@
 
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+#section_heading("Projects")
+
+// No additional spacing here - section_heading already includes the correct 4pt spacing
+
+// Normal entry (for professional development, awards, etc.) matching LaTeX
+
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Whisperdesk"),
+  "2024"
+)
+
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "A powerful desktop transcription application powered by native whisper.cpp with persistent state management and real-time progress feedback"),
+  ""
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
+
+
+// Awards section - has highlights/descriptions
+Technologies - C++, Whisper.cpp, Desktop Development
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+https:\/\/github.com\/ahzs645\/WhisperDesk
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
+#v(design-entries-vertical-space-between-entries)
+// Normal entry (for professional development, awards, etc.) matching LaTeX
+
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Aethalometer Analysis"),
+  "2024"
+)
+
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "Repository script kit to process aethalometer data from micro aeth for air quality research and environmental monitoring"),
+  ""
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
+
+
+// Awards section - has highlights/descriptions
+Technologies - Python, Data Processing, Environmental Analysis
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+https:\/\/github.com\/ahzs645\/aethmodular
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
+#v(design-entries-vertical-space-between-entries)
+// Normal entry (for professional development, awards, etc.) matching LaTeX
+
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Whisperdesk Diarization"),
+  "2024"
+)
+
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "Advanced Multi-Speaker Diarization Engine with cross-platform C++ implementation using PyAnnote 3.0 ONNX models"),
+  ""
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
+
+
+// Awards section - has highlights/descriptions
+Technologies - C++, ONNX, Machine Learning, Audio Processing
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+https:\/\/github.com\/ahzs645\/whisperdesk-diarization
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
+#v(design-entries-vertical-space-between-entries)
+// Normal entry (for professional development, awards, etc.) matching LaTeX
+
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "UNBC Door Sign Generator"),
+  "2024"
+)
+
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "A web-based tool for generating standardized door signs for the University of Northern British Columbia (UNBC)"),
+  ""
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
+
+
+// Awards section - has highlights/descriptions
+Technologies - Web Development, Design Tools
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+https:\/\/github.com\/ahzs645\/UNBCDoor
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
+#v(design-entries-vertical-space-between-entries)
+// Normal entry (for professional development, awards, etc.) matching LaTeX
+
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Card Printer Calibration"),
+  "2024"
+)
+
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "Color management and calibration system specifically designed for ID card printing workflows, ensuring consistent and accurate color reproduction across different printing devices and conditions"),
+  ""
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
+
+
+// Awards section - has highlights/descriptions
+Technologies - Color Management, Calibration Systems, Print Technology
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+https:\/\/github.com\/ahzs645\/printercalibration
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
+#v(design-entries-vertical-space-between-entries)
+// Normal entry (for professional development, awards, etc.) matching LaTeX
+
+// Main entry with bold name
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(weight: "bold", "Markdown Milker"),
+  "2024"
+)
+
+// Add spacing after name - different for Awards vs Professional Development
+#v(design_awards_after_name)  // Awards: spacing after name
+
+// Italic summary line (like institution/organization)
+#grid(
+  columns: (1fr, auto),
+  align: (left, right),
+  text(style: "italic", "Collaborative markdown editor enabling multiple users to edit markdown files together in real-time, with drag-and-drop file organization and integrated image management"),
+  ""
+)
+
+// Add spacing after summary - different for Awards vs Professional Development
+#v(design_awards_after_summary)  // Awards: spacing after summary
+
+
+// Awards section - has highlights/descriptions
+Technologies - Real-time Collaboration, Markdown, Web Development
+#v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
+
+// Conditional spacing based on entry type
+#v(design_awards_between_entries)  // Awards spacing between entries
+
+
+// Section ending - negative spacing to reduce gap before next section
+#v(design_section_ending_spacing)
 #section_heading("Education")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
