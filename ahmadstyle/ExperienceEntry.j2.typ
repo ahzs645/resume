@@ -45,16 +45,25 @@
 
 // Company header - show if company is specified and we want to show it
 ((* set show_company_header = false *))
+((* set company_name_to_show = "" *))
+
 ((* if entry.show_company_header is defined *))
   ((* set show_company_header = entry.show_company_header *))
 ((* else *))
-  // Default: show company header if company is specified
-  ((* if entry.company and entry.company != "" *))
+  // Default: show company header if company is specified OR display_company is provided
+  ((* if (entry.company and entry.company != "") or entry.display_company *))
     ((* set show_company_header = true *))
   ((* endif *))
 ((* endif *))
 
-((* if show_company_header *))
+// Determine which company name to display
+((* if entry.display_company *))
+  ((* set company_name_to_show = entry.display_company *))
+((* elif entry.company *))
+  ((* set company_name_to_show = entry.company *))
+((* endif *))
+
+((* if show_company_header and company_name_to_show != "" *))
   // Use company_date_range if specified, otherwise use individual entry dates
   ((* if entry.company_date_range is defined *))
     ((* set company_date_display = entry.company_date_range *))
@@ -64,50 +73,48 @@
 #grid(
   columns: (1fr, auto),
   align: (left, right),
-  text(weight: "bold", "<<entry.company|replace('\\(', '(')|replace('\\)', ')')>>"),
+  text(weight: "bold", "<<company_name_to_show|replace('\\(', '(')|replace('\\)', ')')>>"),
   "<<company_date_display>>"
 )
 #v(design_experience_after_company_header)
 ((* endif *))
 
-// Position line - use explicit show_date_in_position flag
+// Position line - infer show_date_in_position from company header visibility
 ((* if entry.show_date_in_position is defined *))
-  ((* if entry.show_date_in_position *))
-    // Show date in position line
-    #grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>" + " | " + "<<date_range>>"),
-      "<<entry.location>>"
-    )
-  ((* else *))
-    // Don't show date in position line
-    #grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>"),
-      "<<entry.location>>"
-    )
-  ((* endif *))
+  // Use explicit setting if provided
+  ((* set show_date_in_pos = entry.show_date_in_position *))
 ((* else *))
-  // Fallback to old logic for backwards compatibility
-  ((* if entry.company and entry.company != "" *))
-    // Single position company - no date in position line
-    #grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>"),
-      "<<entry.location>>"
-    )
+  // Auto-infer: if company header is hidden, show date in position
+  ((* if entry.show_company_header is defined and not entry.show_company_header *))
+    ((* set show_date_in_pos = true *))
+  ((* elif entry.show_company_header is defined and entry.show_company_header *))
+    ((* set show_date_in_pos = false *))
   ((* else *))
-    // Multiple position company - include date in position line  
-    #grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>" + " | " + "<<date_range>>"),
-      "<<entry.location>>"
-    )
+    // Default logic: if company header would be shown, don't show date in position
+    ((* if (entry.company and entry.company != "") or entry.display_company *))
+      ((* set show_date_in_pos = false *))
+    ((* else *))
+      ((* set show_date_in_pos = true *))
+    ((* endif *))
   ((* endif *))
+((* endif *))
+
+((* if show_date_in_pos *))
+  // Show date in position line
+  #grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>" + " | " + "<<date_range>>"),
+    "<<entry.location>>"
+  )
+((* else *))
+  // Don't show date in position line
+  #grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    text(style: "italic", "<<entry.position|replace('\\(', '(')|replace('\\)', ')')>>"),
+    "<<entry.location>>"
+  )
 ((* endif *))
 
 // Bullet points with LaTeX-matching spacing
@@ -119,7 +126,7 @@
 ((* endfor *))
 ((* endif *))
 
-// EXPLICIT SPACING CONTROL - Much cleaner!
+// EXPLICIT SPACING CONTROL - Auto-infer from company header visibility
 ((* if entry.spacing_after is defined *))
   ((* if entry.spacing_after == "same_company" *))
     #v(design_experience_between_positions_same_company)
@@ -130,10 +137,14 @@
     #v(design_experience_between_companies)
   ((* endif *))
 ((* else *))
-  // Fallback to old logic if spacing_after not specified
-  ((* if entry.company and entry.company != "" *))
+  // Auto-infer spacing: if company header is hidden, use same_company spacing (tighter)
+  ((* if entry.show_company_header is defined and not entry.show_company_header *))
+    #v(design_experience_between_positions_same_company)
+  ((* elif (entry.company and entry.company != "") or entry.display_company *))
+    // Company header is shown, use different_company spacing
     #v(design_experience_between_positions_same_company)
   ((* else *))
+    // No company header would be shown anyway, use different_company spacing
     #v(design_experience_between_companies)
   ((* endif *))
 ((* endif *))
