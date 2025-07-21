@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "full": {
+      "description": "Complete resume with all sections",
+      "exclude_sections": []
+    },
+    "academic": {
+      "description": "Academic focus (no projects)",
+      "exclude_sections": ["projects"]
+    },
+    "minimal": {
+      "description": "Essential sections only (experience, education, awards, skills)",
+      "exclude_sections": ["projects", "volunteer", "presentations"]
+    },
+    "industry": {
+      "description": "Industry focus (no volunteer, presentations, publications)",
+      "exclude_sections": ["volunteer", "presentations", "publications"]
+    },
+    "tech": {
+      "description": "Tech-focused resume (only core technical sections)",
+      "exclude_sections": ["volunteer", "presentations", "publications", "professional_development"]
+    }
+  }
+}

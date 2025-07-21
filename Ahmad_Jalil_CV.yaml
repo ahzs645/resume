@@ -152,38 +152,38 @@ cv:
     projects:
       - name: Whisperdesk
         date: 2024
+        url: https://github.com/ahzs645/WhisperDesk
         summary: A powerful desktop transcription application powered by native whisper.cpp with persistent state management and real-time progress feedback
         highlights:
           - Technologies - C++, Whisper.cpp, Desktop Development
-          - https://github.com/ahzs645/WhisperDesk
         
       - name: Aethalometer Analysis
         date: 2024
+        url: https://github.com/ahzs645/aethmodular
         summary: Repository script kit to process aethalometer data from micro aeth for air quality research and environmental monitoring
         highlights:
           - Technologies - Python, Data Processing, Environmental Analysis
-          - https://github.com/ahzs645/aethmodular
         
       - name: Whisperdesk Diarization
         date: 2024
+        url: https://github.com/ahzs645/whisperdesk-diarization
         summary: Advanced Multi-Speaker Diarization Engine with cross-platform C++ implementation using PyAnnote 3.0 ONNX models
         highlights:
           - Technologies - C++, ONNX, Machine Learning, Audio Processing
-          - https://github.com/ahzs645/whisperdesk-diarization
         
       - name: UNBC Door Sign Generator
         date: 2024
+        url: https://github.com/ahzs645/UNBCDoor
         summary: A web-based tool for generating standardized door signs for the University of Northern British Columbia (UNBC)
         highlights:
           - Technologies - Web Development, Design Tools
-          - https://github.com/ahzs645/UNBCDoor
         
       - name: Card Printer Calibration
         date: 2024
+        url: https://github.com/ahzs645/printercalibration
         summary: Color management and calibration system specifically designed for ID card printing workflows, ensuring consistent and accurate color reproduction across different printing devices and conditions
         highlights:
           - Technologies - Color Management, Calibration Systems, Print Technology
-          - https://github.com/ahzs645/printercalibration
         
       - name: Markdown Milker
         date: 2024

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Simple wrapper for the Python resume builder
+# Usage: ./build-resume [variant]
+
+exec python3 build-clean.py "$@"

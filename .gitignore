@@ -1,0 +1,27 @@
+# RenderCV output folders
+rendercv_output/
+*_resume/
+
+# Temporary CV files
+temp_*_cv.yaml
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp

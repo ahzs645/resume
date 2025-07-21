@@ -94,9 +94,13 @@
 #line(length: 100%, stroke: 0.4pt)
 #v(-10pt)  // Reduced spacing after horizontal line
 
+
+
+
 #section_heading("Experience")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Shared template for Experience and Volunteer sections
 // Uses explicit spacing control via spacing_after field
@@ -336,11 +340,19 @@
     #v(design_experience_between_companies)
 
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Volunteer")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Shared template for Experience and Volunteer sections
 // Uses explicit spacing control via spacing_after field
@@ -596,11 +608,19 @@
     #v(design_experience_between_positions_same_company)
 
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Projects")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -810,11 +830,19 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_awards_between_entries)  // Awards spacing between entries
 
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Education")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Education entry matching LaTeX formatting exactly
 
@@ -884,11 +912,19 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_education_between_highlights)• The Lieutenant Governor's Medal for Inclusion, Democracy and Reconciliation
 #v(design_education_between_highlights)#v(design_education_after_entry)  // Standard spacing after education entries
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Professional Development")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -1010,11 +1046,19 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries  
 
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Certifications & Skills")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // One line entry (for skills) - conditional bullet points
 *Certifications:* OFA Level 1; TCPS 2; Environmental Professional in Training (EPt)
@@ -1026,11 +1070,19 @@ Technologies - Real-time Collaboration, Markdown, Web Development
 #v(design_certifications_skills_between_entries)
 
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Awards")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -1263,11 +1315,19 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 #v(design_awards_between_entries)  // Awards spacing between entries
 
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Presentations")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
@@ -1359,11 +1419,19 @@ I was awarded the Governor General's Academic Medal in recognition of my outstan
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries  
 
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+
+
+
+
 #section_heading("Publications")
 
 // No additional spacing here - section_heading already includes the correct 4pt spacing
+
 
 // Publication entry - matching ExperienceEntry pattern exactly
 
@@ -1393,5 +1461,9 @@ DOI: 10.1080/10962247.2023.2197970
 
 #v(design_publication_spacing)
 
+
+
+
 // Section ending - negative spacing to reduce gap before next section
 #v(design_section_ending_spacing)
+

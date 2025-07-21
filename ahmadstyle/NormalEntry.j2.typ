@@ -1,10 +1,14 @@
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
-// Main entry with bold name
+// Main entry with bold name (hyperlinked if URL available)
 #grid(
   columns: (1fr, auto),
   align: (left, right),
+  ((* if entry.url *))
+  link("<<entry.url>>")[#text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>")],
+  ((* else *))
   text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
+  ((* endif *))
   "<<entry.date_string>>"
 )
 
