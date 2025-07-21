@@ -23,8 +23,6 @@ cv:
       - company: Northern Analytical Laboratory Services
         position: Research Assistant
         location: Prince George, BC
-        start_date: 2020-11
-        end_date: present
         positions:
           - title: Research Assistant
             start_date: 2022-09
@@ -55,8 +53,6 @@ cv:
       - company: Northern Health
         position: Informatics Specialists
         location: Prince George, BC
-        start_date: 2024-05
-        end_date: present
         positions:
           - title: Informatics Specialists
             start_date: 2024-12
