@@ -3,4 +3,5 @@
 # Simple wrapper for the Python resume builder
 # Usage: ./build-resume [variant]
 
-exec python3 build-clean.py "$@"
+# Use the same Python that's currently active in the environment
+exec /opt/miniconda3/bin/python3 build-clean.py "$@"
