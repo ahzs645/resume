@@ -7,6 +7,27 @@ import shutil
 from pathlib import Path
 from collections import OrderedDict
 
+def filter_entries(entries):
+    """Filter out entries with show: false."""
+    filtered = []
+    for entry in entries:
+        # Check if entry has show: false
+        if isinstance(entry, dict) and entry.get('show', True) is False:
+            continue
+        # Also check positions within an entry
+        if isinstance(entry, dict) and 'positions' in entry:
+            filtered_positions = []
+            for pos in entry['positions']:
+                if isinstance(pos, dict) and pos.get('show', True) is not False:
+                    filtered_positions.append(pos)
+            if filtered_positions:  # Only include entry if it has visible positions
+                entry = entry.copy()
+                entry['positions'] = filtered_positions
+                filtered.append(entry)
+        else:
+            filtered.append(entry)
+    return filtered
+
 def create_variant(base_yaml, variant_name, exclude_sections):
     """Create a CV variant by excluding specified sections."""
     
@@ -33,13 +54,18 @@ def create_variant(base_yaml, variant_name, exclude_sections):
     with open(base_yaml, 'r', encoding='utf-8') as f:
         cv_data = ordered_load(f)
     
-    # Remove excluded sections while preserving order
+    # Remove excluded sections and filter entries with show: false
     if 'cv' in cv_data and 'sections' in cv_data['cv']:
         sections = cv_data['cv']['sections']
         for section in exclude_sections:
             if section in sections:
                 print(f"  Removing {section} section...")
                 del sections[section]
+        
+        # Filter out entries with show: false in remaining sections
+        for section_name, section_entries in sections.items():
+            if isinstance(section_entries, list):
+                sections[section_name] = filter_entries(section_entries)
     
     # Create temporary YAML file
     temp_yaml = f"temp_{variant_name}_cv.yaml"
@@ -104,10 +130,48 @@ def main():
     print(f"Building {variant} resume: {config['description']}")
     
     if variant == "full":
-        # Just render the original file
+        # Use a custom YAML loader that preserves order
+        def ordered_load(stream, Loader=yaml.SafeLoader, object_pairs_hook=OrderedDict):
+            class OrderedLoader(Loader):
+                pass
+            def construct_mapping(loader, node):
+                loader.flatten_mapping(node)
+                return object_pairs_hook(loader.construct_pairs(node))
+            OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
+            return yaml.load(stream, OrderedLoader)
+        
+        # Custom YAML dumper that preserves order
+        def ordered_dump(data, stream=None, Dumper=yaml.SafeDumper, **kwds):
+            class OrderedDumper(Dumper):
+                pass
+            def _dict_representer(dumper, data):
+                return dumper.represent_mapping(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, data.items())
+            OrderedDumper.add_representer(OrderedDict, _dict_representer)
+            return yaml.dump(data, stream, OrderedDumper, **kwds)
+        
+        # Filter out entries with show: false even for full variant
+        with open(base_yaml, 'r', encoding='utf-8') as f:
+            cv_data = ordered_load(f)
+        
+        # Filter entries in all sections
+        if 'cv' in cv_data and 'sections' in cv_data['cv']:
+            sections = cv_data['cv']['sections']
+            for section_name, section_entries in sections.items():
+                if isinstance(section_entries, list):
+                    sections[section_name] = filter_entries(section_entries)
+        
+        # Create temporary filtered YAML
+        temp_yaml = "temp_full_cv.yaml"
+        with open(temp_yaml, 'w', encoding='utf-8') as f:
+            ordered_dump(cv_data, f, default_flow_style=False, allow_unicode=True)
+        
+        # Render the filtered CV
         result = subprocess.run([
-            'rendercv', 'render', base_yaml, '--output-folder-name', 'full_resume'
+            'rendercv', 'render', temp_yaml, '--output-folder-name', 'full_resume'
         ])
+        
+        # Clean up temp file
+        Path(temp_yaml).unlink()
         sys.exit(result.returncode)
     else:
         # Create variant with excluded sections
