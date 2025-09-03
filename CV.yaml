@@ -184,16 +184,6 @@ cv:
           - Assisted with fulfilling commitments made by the board of directors as assigned
           - Attended weekly board meetings to go through the occurrences at the society as well as voting on bylaw changes
           - Created plans and communicated deadlines to complete projects on time
-      - company: University of British Columbia - Northern Medical Program
-        position: Assistant Exam Invigilator
-        location: Prince George, BC
-        start_date: 2024-07
-        end_date: 2025-02
-        highlights:
-          - Prepared exam rooms, seating plans, and materials; delivered standardized instructions
-          - Verified student identity and accommodations; enforced policies and documented irregularities
-          - Maintained precise timekeeping and secure chain-of-custody for all exam materials
-          - Coordinated with lead invigilators and faculty to implement approved accommodations and resolve issues calmly
 
     projects:
       - name: Whisperdesk
@@ -268,6 +258,11 @@ cv:
           - The Lieutenant Governor's Medal for Inclusion, Democracy and Reconciliation
 
     professional_development:
+      - name: DGT 170 AI Essentials - Building Fluency and Productivity with Modern AI Tools
+        location: Remote
+        date: 2025-02
+        summary: University of Calgary
+      
       - name: Digital Twins - Fundamentals, Techniques & Approaches
         location: Remote
         date: 2024-03
