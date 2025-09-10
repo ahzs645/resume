@@ -7,25 +7,40 @@ import shutil
 from pathlib import Path
 from collections import OrderedDict
 
-def filter_entries(entries):
+def filter_entries(entries, tags=["1","2","test"], flavor=None):
     """Filter out entries with show: false."""
     filtered = []
     for entry in entries:
         # Check if entry has show: false
         if isinstance(entry, dict) and entry.get('show', True) is False:
             continue
+
+        print(entry)
+        print("\n")
+        required_tags = entry.get('tags')
+        if  required_tags and tags and not (set(tags) & set(required_tags)):
+            continue
+        
+        if required_tags:
+            entry.popitem(tags)
+
+        
+
         # Also check positions within an entry
         if isinstance(entry, dict) and 'positions' in entry:
             filtered_positions = []
             for pos in entry['positions']:
-                if isinstance(pos, dict) and pos.get('show', True) is not False:
-                    filtered_positions.append(pos)
+                if isinstance(pos, dict) and pos.get('show', True) is False:
+                    continue
+                
+                filtered_positions.append(pos)
             if filtered_positions:  # Only include entry if it has visible positions
                 entry = entry.copy()
                 entry['positions'] = filtered_positions
                 filtered.append(entry)
-        else:
-            filtered.append(entry)
+        
+        filtered.append(entry)
+
     return filtered
 
 def create_variant(base_yaml, variant_name, exclude_sections):
@@ -107,7 +122,7 @@ def load_variants():
         sys.exit(1)
 
 def main():
-    base_yaml = "CV.yaml"
+    base_yaml = "CV copy.yaml"
     
     if not Path(base_yaml).exists():
         print(f"Error: {base_yaml} not found!")

@@ -83,12 +83,17 @@ cv:
         summary: A web scraper that collects data on Magic The Gathering cards from various online sources, including card names, types, abilities, and prices. Built using Python and BeautifulSoup.
         highlights:
           - Technologies - Python, BeautifulSoup, Requests, Pandas
+        tags: 
+          - troubleshooting
+          - test
         
       - name: Personal Server
         date: 2025
         summary: Built and configured a dedicated server from repurposed hardware. The server hosts various services, including a personal website, file storage, and media streaming. Configured using Proxmox and Docker.
         highlights:
           - Technologies - Proxmox, Docker, Nginx, Linux
+        tags:
+          - GitHub
 
 
 
@@ -97,6 +102,7 @@ cv:
         date: 2023-05
         location: Remote
         summary: British Columbia Institute of Technology
+        
   
 
     certifications_skills:
