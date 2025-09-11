@@ -7,21 +7,50 @@ import shutil
 from pathlib import Path
 from collections import OrderedDict
 
+def flavor_filter(entry, flavor):
+    
+    if not isinstance(entry, dict):
+        return entry
+    
+    entry = entry.copy()
+
+    for field_name, field_value in entry.items():
+        if isinstance(field_value, dict) and 'flavors' in field_value:
+            flavors_dict = field_value['flavors']
+    
+            available_flavors = list(flavors_dict.keys())
+            print(available_flavors)
+            if not available_flavors:
+                entry.pop(field_name, None)
+                continue
+
+            # flavor_to_use = flavor if flavor in flavors_dict else available_flavors[0]
+            flavor_to_use = set(flavor) & set(fl)
+
+            selected_value = flavors_dict[flavor_to_use]
+            entry[field_name] = selected_value
+
+    return entry
+
 def subfilter(entry, tags=None, flavor=None):
     """Filter out entries with show: false."""
     if isinstance(entry, dict) and entry.get('show', True) is False:
         return None
+    
+    
+    entry = flavor_filter(entry, flavor)
 
-    required_tags = entry.get('tags')
+    required_tags = entry.get('tags', None)
     if  required_tags and tags and not (set(tags) & set(required_tags)):
         return None
 
     if required_tags:
-        entry.popitem(tags)
+        entry = entry.copy()
+        entry.pop('tags', None)
 
     return entry
 
-def filter_entries(entries, tags=["1","2","retail"], flavor=None):
+def filter_entries(entries, tags=["1","2","retail"], flavor=["waxy", "salty", "retail"]):
     """Filter out entries with show: false."""
     filtered = []
     for entry in entries:
@@ -35,11 +64,8 @@ def filter_entries(entries, tags=["1","2","retail"], flavor=None):
             if filtered_positions:  # Only include entry if it has visible positions
                 entry = entry.copy()
                 entry['positions'] = filtered_positions
-                filtered.append(entry)
-                
-        # if required_tags:
-        #     entry.popitem(tags)
-        if subfilter(entry, tags, flavor) and 'positions' not in entry:
+                     
+        if subfilter(entry, tags, flavor):
             filtered.append(entry)
 
     return filtered
