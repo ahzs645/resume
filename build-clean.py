@@ -149,7 +149,7 @@ def load_variants():
         sys.exit(1)
 
 def main():
-    base_yaml = "CV copy.yaml"
+    base_yaml = "test.yaml"
     
     if not Path(base_yaml).exists():
         print(f"Error: {base_yaml} not found!")
