@@ -7,39 +7,40 @@ import shutil
 from pathlib import Path
 from collections import OrderedDict
 
-def filter_entries(entries, tags=["1","2","test"], flavor=None):
+def subfilter(entry, tags=None, flavor=None):
+    """Filter out entries with show: false."""
+    if isinstance(entry, dict) and entry.get('show', True) is False:
+        return None
+
+    required_tags = entry.get('tags')
+    if  required_tags and tags and not (set(tags) & set(required_tags)):
+        return None
+
+    if required_tags:
+        entry.popitem(tags)
+
+    return entry
+
+def filter_entries(entries, tags=["1","2","retail"], flavor=None):
     """Filter out entries with show: false."""
     filtered = []
     for entry in entries:
-        # Check if entry has show: false
-        if isinstance(entry, dict) and entry.get('show', True) is False:
-            continue
-
-        print(entry)
-        print("\n")
-        required_tags = entry.get('tags')
-        if  required_tags and tags and not (set(tags) & set(required_tags)):
-            continue
-        
-        if required_tags:
-            entry.popitem(tags)
-
-        
-
         # Also check positions within an entry
         if isinstance(entry, dict) and 'positions' in entry:
             filtered_positions = []
             for pos in entry['positions']:
-                if isinstance(pos, dict) and pos.get('show', True) is False:
-                    continue
-                
-                filtered_positions.append(pos)
+                filtered_pos = subfilter(pos, tags, flavor)
+                if filtered_pos:
+                    filtered_positions.append(filtered_pos)
             if filtered_positions:  # Only include entry if it has visible positions
                 entry = entry.copy()
                 entry['positions'] = filtered_positions
                 filtered.append(entry)
-        
-        filtered.append(entry)
+                
+        # if required_tags:
+        #     entry.popitem(tags)
+        if subfilter(entry, tags, flavor) and 'positions' not in entry:
+            filtered.append(entry)
 
     return filtered
 
