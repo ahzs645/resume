@@ -16,19 +16,19 @@ def flavor_filter(entry, flavor):
 
     for field_name, field_value in entry.items():
         if isinstance(field_value, dict) and 'flavors' in field_value:
-            flavors_dict = field_value['flavors']
+            # flavors_dict = field_value['flavors']
     
-            available_flavors = list(flavors_dict.keys())
-            print(available_flavors)
-            if not available_flavors:
-                entry.pop(field_name, None)
-                continue
+            # available_flavors = list(flavors_dict.keys())
+            # print(available_flavors)
+            # if not available_flavors:
+            #     entry.pop(field_name, None)
+            #     continue
 
             # flavor_to_use = flavor if flavor in flavors_dict else available_flavors[0]
-            flavor_to_use = set(flavor) & set(fl)
+            
 
-            selected_value = flavors_dict[flavor_to_use]
-            entry[field_name] = selected_value
+            # selected_value = flavors_dict[flavor_to_use]
+            entry[field_name] = ["test", "test2"]
 
     return entry
 
