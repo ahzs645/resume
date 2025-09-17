@@ -16,20 +16,27 @@ def flavor_filter(entry, flavor):
 
     for field_name, field_value in entry.items():
         if isinstance(field_value, dict) and 'flavors' in field_value:
-            # flavors_dict = field_value['flavors']
+            flavors_dict = field_value['flavors']
     
-            # available_flavors = list(flavors_dict.keys())
-            # print(available_flavors)
-            # if not available_flavors:
-            #     entry.pop(field_name, None)
-            #     continue
+            available_flavors = list(flavors_dict.keys())
+            if not available_flavors:
+                entry.pop(field_name, None)
+                continue
 
-            # flavor_to_use = flavor if flavor in flavors_dict else available_flavors[0]
+
+            flavors_to_use = set(flavor).intersection(set(available_flavors)) if set(flavor).intersection(set(available_flavors)) else available_flavors[0]
             
-
-            # selected_value = flavors_dict[flavor_to_use]
-            entry[field_name] = ["test", "test2"]
-
+            entry[field_name] = []
+            
+            if not flavors_to_use:
+                flavors_to_use = available_flavors[0]
+            
+            for use_flavor in flavors_to_use:
+                selected_value = flavors_dict[use_flavor]
+                entry[field_name] = entry[field_name] + selected_value
+           
+            
+            
     return entry
 
 def subfilter(entry, tags=None, flavor=None):
@@ -37,8 +44,9 @@ def subfilter(entry, tags=None, flavor=None):
     if isinstance(entry, dict) and entry.get('show', True) is False:
         return None
     
-    
-    entry = flavor_filter(entry, flavor)
+    entry = entry.copy()
+    if flavor:
+        entry = flavor_filter(entry, flavor)
 
     required_tags = entry.get('tags', None)
     if  required_tags and tags and not (set(tags) & set(required_tags)):
@@ -50,7 +58,7 @@ def subfilter(entry, tags=None, flavor=None):
 
     return entry
 
-def filter_entries(entries, tags=["1","2","retail"], flavor=["waxy", "salty", "retail"]):
+def filter_entries(entries, tags=None, flavor=None):
     """Filter out entries with show: false."""
     filtered = []
     for entry in entries:
@@ -64,8 +72,9 @@ def filter_entries(entries, tags=["1","2","retail"], flavor=["waxy", "salty", "r
             if filtered_positions:  # Only include entry if it has visible positions
                 entry = entry.copy()
                 entry['positions'] = filtered_positions
-                     
-        if subfilter(entry, tags, flavor):
+        
+        entry = subfilter(entry, tags, flavor)          
+        if entry:
             filtered.append(entry)
 
     return filtered
