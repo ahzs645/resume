@@ -7,31 +7,22 @@ import shutil
 from pathlib import Path
 from collections import OrderedDict
 
-def flavor_filter(entry, flavor):
+def flavor_filter(field_value, flavor):
     
-    if not isinstance(entry, dict):
-        return entry
-    
-    entry = entry.copy()
+    list = []
+    flavors_dict = field_value['flavors']
+    for flavors in flavor:
+        if flavors_dict.get(flavors):
+            value = flavors_dict.get(flavors)
+            list = list + value
 
-    
-    # Check all the entry names to see if they have a 'flavors' in them
-    for field_name, field_value in entry.items():
-        
-        # If the entry has a subfield called flavors 
-        if isinstance(field_value, dict) and 'flavors' in field_value:
-            entry[field_name] = [] 
-            flavors_dict = field_value['flavors']
-            for flavors in flavor:
-                if flavors_dict.get(flavors):
-                    value = flavors_dict.get(flavors)
-                    entry[field_name] = entry[field_name] + value
-
-            # If there was no match on flavors, pick the first one.
-            if not entry[field_name]:
-                entry[field_name] = next(iter(flavors_dict.values()), None)
+    # If there was no match on flavors, pick the first one.
+    if not list:
+        list = next(iter(flavors_dict.values()), None)
             
-    return entry
+    return list
+
+
 
 def subfilter(entry, tags=None, flavor=None):
     """Filter out entries with show: false."""
@@ -39,8 +30,12 @@ def subfilter(entry, tags=None, flavor=None):
         return None
     
     entry = entry.copy()
-    if entry.get('highlights', None) and "flavors" in entry.get('highlights'):
-        entry = flavor_filter(entry, flavor)
+    
+    # Check all the sub fields to see if they have the flavors keyword
+    for field_name, field_value in entry.items():
+        if isinstance(field_value, dict) and 'flavors' in field_value:
+            entry[field_name] = flavor_filter(field_value, flavor)
+        
 
     required_tags = entry.get('tags', None)
     if  required_tags and tags and not (set(tags) & set(required_tags)):
