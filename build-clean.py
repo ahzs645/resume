@@ -14,28 +14,22 @@ def flavor_filter(entry, flavor):
     
     entry = entry.copy()
 
-    for field_name, field_value in entry.items():
-        if isinstance(field_value, dict) and 'flavors' in field_value:
-            flavors_dict = field_value['flavors']
     
-            available_flavors = list(flavors_dict.keys())
-            if not available_flavors:
-                entry.pop(field_name, None)
-                continue
+    # Check all the entry names to see if they have a 'flavors' in them
+    for field_name, field_value in entry.items():
+        
+        # If the entry has a subfield called flavors 
+        if isinstance(field_value, dict) and 'flavors' in field_value:
+            entry[field_name] = [] 
+            flavors_dict = field_value['flavors']
+            for flavors in flavor:
+                if flavors_dict.get(flavors):
+                    value = flavors_dict.get(flavors)
+                    entry[field_name] = entry[field_name] + value
 
-
-            flavors_to_use = set(flavor).intersection(set(available_flavors)) if set(flavor).intersection(set(available_flavors)) else available_flavors[0]
-            
-            entry[field_name] = []
-            
-            if not flavors_to_use:
-                flavors_to_use = available_flavors[0]
-            
-            for use_flavor in flavors_to_use:
-                selected_value = flavors_dict[use_flavor]
-                entry[field_name] = entry[field_name] + selected_value
-           
-            
+            # If there was no match on flavors, pick the first one.
+            if not entry[field_name]:
+                entry[field_name] = next(iter(flavors_dict.values()), None)
             
     return entry
 
@@ -45,7 +39,7 @@ def subfilter(entry, tags=None, flavor=None):
         return None
     
     entry = entry.copy()
-    if flavor:
+    if entry.get('highlights', None) and "flavors" in entry.get('highlights'):
         entry = flavor_filter(entry, flavor)
 
     required_tags = entry.get('tags', None)
@@ -79,9 +73,10 @@ def filter_entries(entries, tags=None, flavor=None):
 
     return filtered
 
-def create_variant(base_yaml, variant_name, exclude_sections):
+def create_variant(base_yaml, variant_name, config):
     """Create a CV variant by excluding specified sections."""
-    
+    exclude_sections = config['exclude_sections']
+
     # Use a custom YAML loader that preserves order
     def ordered_load(stream, Loader=yaml.SafeLoader, object_pairs_hook=OrderedDict):
         class OrderedLoader(Loader):
@@ -116,7 +111,7 @@ def create_variant(base_yaml, variant_name, exclude_sections):
         # Filter out entries with show: false in remaining sections
         for section_name, section_entries in sections.items():
             if isinstance(section_entries, list):
-                sections[section_name] = filter_entries(section_entries)
+                sections[section_name] = filter_entries(section_entries, config['tags'], config['flavors'])
     
     # Create temporary YAML file
     temp_yaml = f"temp_{variant_name}_cv.yaml"
@@ -209,7 +204,7 @@ def main():
             sections = cv_data['cv']['sections']
             for section_name, section_entries in sections.items():
                 if isinstance(section_entries, list):
-                    sections[section_name] = filter_entries(section_entries)
+                    sections[section_name] = filter_entries(section_entries, config['tags'], config['flavors'])
         
         # Create temporary filtered YAML
         temp_yaml = "temp_full_cv.yaml"
@@ -226,7 +221,7 @@ def main():
         sys.exit(result.returncode)
     else:
         # Create variant with excluded sections
-        success = create_variant(base_yaml, variant, config['exclude_sections'])
+        success = create_variant(base_yaml, variant, config)
         sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
