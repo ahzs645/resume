@@ -20,14 +20,19 @@ cv:
         location: Remote
         start_date: 2025-04
         end_date: present
+        spacing_after: different_company
         highlights:
-          - Fully developed and deployed a PowerAutomate workflow to streamline user submissions, significantly reducing manual effort and improving efficiency
+          - Analyzed existing manual processes and identified key bottlenecks, resulting in targeted automation solutions that improved overall workflow efficiency
+          - Troubleshot technical issues during workflow implementation and developed robust error-handling procedures
+          - Designed and deployed a PowerAutomate workflow to streamline user submissions, significantly reducing manual effort and improving efficiency
+
 
       - company: UNBC
         position: Computer Science Teaching Assistant
         location: Prince George, BC
         start_date: 2022-09
         end_date: 2023-04
+        spacing_after: different_company
         highlights:
           - Provided technical support and training to students on programming and system concepts
           - Assisted in debugging and resolving technical issues in a classroom environment
@@ -56,7 +61,7 @@ cv:
           - Organized and promoted events and initiatives to enhance student engagement and campus life
           - Collaborated with other board members to develop and implement policies and programs that benefit students
         
-      - company: UNBC Fencing Columbia
+      - company: UNBC Fencing Club
         location: Prince George, BC
         position: Secretary
         start_date: 2019-01
@@ -64,31 +69,50 @@ cv:
         spacing_after: different_company
         highlights:
           - Diligently recorded accurate and comprehensive minutes during executive team meetings
-          - Contributed in the event planning process, providing valuable input and ideas to enhance the overall experince for club members
-          - Helped with the development and implementation of promotional strategies for club events
+          - Contributed in the event planning process, providing valuable input and ideas to enhance the overall experience for club members
+          - Assisted in the development and implementation of promotional strategies for club events
 
     education:
-      - institution: University of Northern British Columbia
-        area: Computer Science
+      # - institution: University of Northern British Columbia
+      #   area: Computer Science
+      #   degree: B.Sc.
+      #   location: Prince George, BC
+      #   start_date: 2019-09
+      #   end_date: 2023-09
+      #   highlights:
+      #     - "Focus: Data Science, Software Engineering."
+      - institution: Simon Fraser University
+        area: Mechatronics System Engineering
         degree: B.Sc.
-        location: Prince George, BC
-        start_date: 2019-09
-        end_date: 2023-09
-        highlights:
-          - "Focus: Data Science, Software Engineering"
+        location: Surrey, BC
+        start_date: 2024-09
+        end_date: 2028-09
       
     projects:
       - name: MTG Card Scraper
         date: 2024
-        summary: A web scraper that collects data on Magic The Gathering cards from various online sources, including card names, types, abilities, and prices. Built using Python and BeautifulSoup.
+        summary: A web scraper that collects data on Magic The Gathering cards from various online sources, including card names, types, abilities, and prices.
         highlights:
           - Technologies - Python, BeautifulSoup, Requests, Pandas
         
       - name: Personal Server
         date: 2025
-        summary: Built and configured a dedicated server from repurposed hardware. The server hosts various services, including a personal website, file storage, and media streaming. Configured using Proxmox and Docker.
+        summary: Built and configured a dedicated server from repurposed hardware. The server hosts various services, including a personal website, file storage, and media streaming.
         highlights:
           - Technologies - Proxmox, Docker, Nginx, Linux
+
+      - name: Home Network Infrastructure
+        date: 2025
+        summary: Designed and implemented a segmented home network with separate VLANs for IoT devices, servers, and personal devices. Configured secure remote access and wireless infrastructure for optimal performance and security.
+        highlights:
+          - Technologies - VLANs, Tailscale, Network Access Points, Router Configuration, Network Security
+      
+      - name: Resume Builder (Contributor)
+        date: 2025
+        summary: Contributed to an open-source resume builder application by developing a tagging and filtering system to help users organize and filter job roles based on custom tags.
+        highlights:
+          - Technologies - Python, typr, yaml
+
 
 
 
@@ -97,11 +121,12 @@ cv:
         date: 2023-05
         location: Remote
         summary: British Columbia Institute of Technology
+        
   
 
     certifications_skills:
       - label: "Skills"
-        details: "PowerAutomate, Python, C/C++, Java, HTML/CSS, JavaScript, Git, Linux, Bash, SQL, Proxmox, Docker"
+        details: "C/C++, Linux, Bash, PowerAutomate, Python, Java, HTML/CSS, JavaScript, Git, SQL, Proxmox, Docker, SharePoint"
 
 design:
   theme: ahmadstyle
