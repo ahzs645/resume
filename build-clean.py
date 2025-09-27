@@ -25,6 +25,12 @@ def flavor_filter(field_value, flavor):
 
 
 def subfilter(entry, tags=None, flavor=None):
+    # To avoid issues with mutable default arguments
+    tags = tags or []
+    flavor = flavor or []
+    
+    
+    
     """Filter out entries with show: false."""
     if isinstance(entry, dict) and entry.get('show', True) is False:
         return None
@@ -37,8 +43,9 @@ def subfilter(entry, tags=None, flavor=None):
             entry[field_name] = flavor_filter(field_value, flavor)
         
 
-    required_tags = entry.get('tags', None)
-    if  required_tags and tags and not (set(tags) & set(required_tags)):
+    required_tags = entry.get('tags', [])
+    if required_tags and not (set(tags) & set(required_tags)):
+        print(f"  Skipping entry due to tags: {required_tags}")
         return None
 
     if required_tags:
