@@ -4,4 +4,4 @@
 # Usage: ./build-resume [variant]
 
 # Use the same Python that's currently active in the environment
-exec /opt/miniconda3/bin/python3 build-clean.py "$@"
+exec python3 build-clean.py "$@"
