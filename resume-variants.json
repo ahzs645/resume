@@ -29,6 +29,11 @@
       "exclude_sections": ["volunteer", "presentations", "publications", "professional_development"],
       "tags": [],
       "flavors": []
-    }
+    },
+    "mechatronics"{
+      "description": "Mechatronics-focused resume",
+      "exclude_sections": ["volunteer", "presentations", "publications", "professional_development"],
+      "tags": ["mechatronics"],
+      "flavors": []
   }
 }
