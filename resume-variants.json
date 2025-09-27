@@ -35,5 +35,6 @@
       "exclude_sections": ["volunteer", "presentations", "publications", "professional_development"],
       "tags": ["mechatronics"],
       "flavors": []
+    }
   }
 }
