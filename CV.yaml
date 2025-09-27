@@ -73,20 +73,20 @@ cv:
           - Assisted in the development and implementation of promotional strategies for club events
 
     education:
-      # - institution: University of Northern British Columbia
-      #   area: Computer Science
-      #   degree: B.Sc.
-      #   location: Prince George, BC
-      #   start_date: 2019-09
-      #   end_date: 2023-09
-      #   highlights:
-      #     - "Focus: Data Science, Software Engineering."
+      - institution: University of Northern British Columbia
+        area: Computer Science
+        degree: B.Sc.
+        location: Prince George, BC
+        start_date: 2019-09
+        end_date: 2023-05
+        highlights:
+          - "Focus: Data Science, Software Engineering."
       - institution: Simon Fraser University
         area: Mechatronics System Engineering
         degree: B.Sc.
         location: Surrey, BC
         start_date: 2024-09
-        end_date: 2028-09
+        end_date: 2028-05
       
     projects:
       - name: MTG Card Scraper
@@ -126,7 +126,7 @@ cv:
 
     certifications_skills:
       - label: "Skills"
-        details: "C/C++, Linux, Bash, PowerAutomate, Python, Java, HTML/CSS, JavaScript, Git, SQL, Proxmox, Docker, SharePoint"
+        details: "C/C++, Linux, Bash, Power Automate, Python, Java, HTML/CSS, JavaScript, Git, SQL, Proxmox, Docker, Sharepoint"
 
 design:
   theme: ahmadstyle
