@@ -48,6 +48,18 @@ cv:
           - Supported departmental IT needs, including hardware troubleshooting and software updates
           - Coordinated disposal and recycling of outdated hardware and supplies
           - Supported the Williams Lake fire centre during fire season, working independently and under pressure
+
+      - company: Surplus Herby's
+        position: Sales Associate
+        location: Williams Lake, BC
+        start_date: 2019-05
+        end_date: 2021-01
+        spacing_after: different_company
+        highlights:
+          - Provided excellent customer service, assisting customers in finding products and answering questions about inventory and promotions
+          - Operated cash register and handled transactions accurately and efficiently
+          - Maintained a clean and organized store environment, including restocking shelves and organizing displays
+        show: false
       
     volunteer:
       - company: UNBC Student Society
@@ -71,6 +83,18 @@ cv:
           - Diligently recorded accurate and comprehensive minutes during executive team meetings
           - Contributed in the event planning process, providing valuable input and ideas to enhance the overall experience for club members
           - Assisted in the development and implementation of promotional strategies for club events
+      
+      - company: UNBC Anime Club
+        location: Prince George, BC
+        position: Treasurer
+        start_date: 2018-09
+        end_date: 2019-04
+        spacing_after: different_company
+        highlights:
+          - Assisted in organizing and promoting club events and activities, including movie nights, game nights, and cultural events
+          - Managed club finances and budget, ensuring responsible use of funds and resources
+          - Collaborated with other executive members to develop and implement club policies and procedures
+        show: false
 
     education:
       - institution: University of Northern British Columbia
@@ -87,6 +111,7 @@ cv:
         location: Surrey, BC
         start_date: 2024-09
         end_date: 2028-05
+        tags: [mechatronics]
       
     projects:
       - name: MTG Card Scraper
@@ -121,6 +146,12 @@ cv:
         date: 2023-05
         location: Remote
         summary: British Columbia Institute of Technology
+
+      - name: Ministry of Forests training
+        date: 2021-06
+        location: Williams Lake, BC
+        summary: Various workplace safety and administrative courses including WHMIS, Defensive Driving, Transportation of dangerous goods, Occupational First Aid Level 1, Radio training, ATV training, Trailer towing, Wilderness survival training, Records Management, Records Management Foundations, Information Management and Diverysity and Inclusion training.
+        show: false
         
   
 
