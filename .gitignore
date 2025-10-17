@@ -41,3 +41,4 @@ ENV/
 # test files
 test.yaml
 launch.json
+CV.yaml
