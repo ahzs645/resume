@@ -163,17 +163,30 @@ def create_variant(base_yaml, variant_name, config):
     return result.returncode == 0
 
 def load_variants():
-    """Load variant configurations from JSON file."""
-    config_file = "resume-variants.json"
+    """Load variant configurations from YAML file."""
+    # Try YAML first, fall back to JSON for backward compatibility
+    yaml_config = "resume-variants.yaml"
+    json_config = "resume-variants.json"
+
+    config_file = yaml_config if Path(yaml_config).exists() else json_config
 
     if not Path(config_file).exists():
-        print(f"Error: Configuration file {config_file} not found!")
+        print(f"Error: Configuration file not found!")
+        print(f"  Looking for: {yaml_config} or {json_config}")
         sys.exit(1)
 
     try:
         with open(config_file, 'r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)  # JSON is valid YAML
-        return config['variants']
+            config = yaml.safe_load(f)
+
+        # Ensure each variant has the required fields (with defaults)
+        variants = config['variants']
+        for variant_name, variant_config in variants.items():
+            variant_config.setdefault('exclude_sections', [])
+            variant_config.setdefault('tags', [])
+            variant_config.setdefault('flavors', [])
+
+        return variants
     except Exception as e:
         print(f"Error reading configuration: {e}")
         sys.exit(1)

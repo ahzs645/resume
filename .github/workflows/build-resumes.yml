@@ -42,6 +42,7 @@ jobs:
     
     - name: Build all resume variants
       run: |
+        # Variants are defined in resume-variants.yaml
         ./build-resume full
         ./build-resume academic
         ./build-resume minimal
