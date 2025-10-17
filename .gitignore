@@ -5,6 +5,12 @@ rendercv_output/
 # Temporary CV files
 temp_*_cv.yaml
 
+# Environment configuration
+.env
+
+# Remote repository data (when using SOURCE_MODE=remote)
+.resume-data/
+
 # macOS
 .DS_Store
 

@@ -3,5 +3,5 @@
 # Simple wrapper for the Python resume builder
 # Usage: ./build-resume [variant]
 
-# Use the same Python that's currently active in the environment
-exec python3 build-clean.py "$@"
+# Call the cross-platform Python wrapper
+exec python3 build.py "$@"

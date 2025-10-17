@@ -4,8 +4,10 @@ import yaml
 import subprocess
 import sys
 import shutil
+import os
 from pathlib import Path
 from collections import OrderedDict
+from dotenv import load_dotenv
 
 def flavor_filter(field_value, flavor):
     
@@ -75,6 +77,27 @@ def filter_entries(entries, tags=None, flavor=None):
 
     return filtered
 
+def get_rendercv_command():
+    """Get the rendercv command path, preferring venv if available."""
+    # Check if venv/bin/rendercv exists
+    venv_rendercv = Path('venv') / 'bin' / 'rendercv'
+    if venv_rendercv.exists():
+        return str(venv_rendercv)
+    # Fall back to system rendercv
+    return 'rendercv'
+
+def get_output_folder(variant_name):
+    """Get the output folder path based on .env configuration."""
+    output_dir = os.getenv('OUTPUT_DIR', '.')
+    output_folder_template = os.getenv('OUTPUT_FOLDER_NAME', '{variant}_resume')
+    output_folder_name = output_folder_template.format(variant=variant_name)
+
+    # Combine output_dir and output_folder_name
+    if output_dir == '.':
+        return output_folder_name
+    else:
+        return str(Path(output_dir) / output_folder_name)
+
 def create_variant(base_yaml, variant_name, config):
     """Create a CV variant by excluding specified sections."""
     exclude_sections = config['exclude_sections']
@@ -121,10 +144,11 @@ def create_variant(base_yaml, variant_name, config):
         ordered_dump(cv_data, f, default_flow_style=False, allow_unicode=True)
     
     # Render the CV
-    output_folder = f"{variant_name}_resume"
+    output_folder = get_output_folder(variant_name)
+    rendercv_cmd = get_rendercv_command()
     print(f"  Rendering to {output_folder}...")
     result = subprocess.run([
-        'rendercv', 'render', temp_yaml, '--output-folder-name', output_folder
+        rendercv_cmd, 'render', temp_yaml, '--output-folder-name', output_folder
     ], capture_output=True, text=True)
     
     # Clean up temp file
@@ -141,11 +165,11 @@ def create_variant(base_yaml, variant_name, config):
 def load_variants():
     """Load variant configurations from JSON file."""
     config_file = "resume-variants.json"
-    
+
     if not Path(config_file).exists():
         print(f"Error: Configuration file {config_file} not found!")
         sys.exit(1)
-    
+
     try:
         with open(config_file, 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)  # JSON is valid YAML
@@ -154,13 +178,72 @@ def load_variants():
         print(f"Error reading configuration: {e}")
         sys.exit(1)
 
-def main():
-    base_yaml = "CV.yaml"
-    
-    if not Path(base_yaml).exists():
-        print(f"Error: {base_yaml} not found!")
+def get_yaml_file():
+    """Get the YAML file path based on .env configuration."""
+    # Load environment variables
+    load_dotenv()
+
+    source_mode = os.getenv('SOURCE_MODE', 'local')
+    yaml_file = os.getenv('YAML_FILE', 'CV.yaml')
+
+    if source_mode == 'local':
+        # Use local file
+        yaml_path = Path(yaml_file)
+        if not yaml_path.exists():
+            print(f"Error: Local YAML file '{yaml_file}' not found!")
+            sys.exit(1)
+        return str(yaml_path)
+
+    elif source_mode == 'remote':
+        # Clone or update repository
+        repo_url = os.getenv('REPO_URL')
+        repo_branch = os.getenv('REPO_BRANCH', 'main')
+        repo_local_dir = os.getenv('REPO_LOCAL_DIR', '.resume-data')
+
+        if not repo_url:
+            print("Error: REPO_URL must be set when SOURCE_MODE=remote")
+            sys.exit(1)
+
+        repo_path = Path(repo_local_dir)
+
+        # Clone or pull repository
+        if repo_path.exists():
+            print(f"Updating repository in {repo_local_dir}...")
+            result = subprocess.run(
+                ['git', '-C', str(repo_path), 'pull', 'origin', repo_branch],
+                capture_output=True,
+                text=True
+            )
+            if result.returncode != 0:
+                print(f"Warning: Failed to update repository: {result.stderr}")
+                print("Using existing local copy...")
+        else:
+            print(f"Cloning repository from {repo_url}...")
+            result = subprocess.run(
+                ['git', 'clone', '-b', repo_branch, repo_url, str(repo_path)],
+                capture_output=True,
+                text=True
+            )
+            if result.returncode != 0:
+                print(f"Error: Failed to clone repository: {result.stderr}")
+                sys.exit(1)
+
+        # Get YAML file from repository
+        yaml_path = repo_path / yaml_file
+        if not yaml_path.exists():
+            print(f"Error: YAML file '{yaml_file}' not found in repository!")
+            sys.exit(1)
+
+        return str(yaml_path)
+
+    else:
+        print(f"Error: Invalid SOURCE_MODE '{source_mode}'. Must be 'local' or 'remote'")
         sys.exit(1)
-    
+
+def main():
+    # Get YAML file from .env configuration
+    base_yaml = get_yaml_file()
+
     # Load variants from JSON config
     variants = load_variants()
     
@@ -214,8 +297,10 @@ def main():
             ordered_dump(cv_data, f, default_flow_style=False, allow_unicode=True)
         
         # Render the filtered CV
+        output_folder = get_output_folder('full')
+        rendercv_cmd = get_rendercv_command()
         result = subprocess.run([
-            'rendercv', 'render', temp_yaml, '--output-folder-name', 'full_resume'
+            rendercv_cmd, 'render', temp_yaml, '--output-folder-name', output_folder
         ])
         
         # Clean up temp file
