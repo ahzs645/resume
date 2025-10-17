@@ -5,7 +5,7 @@ This repository contains Ahmad Jalil's resume with a flexible build system for g
 ## Files
 
 - `CV.yaml` - Master resume file (single source of truth)
-- `resume-variants.json` - Configuration for different resume variants
+- `resume-variants.yaml` - Configuration for different resume variants
 - `build-clean.py` - Python script that creates resume variants
 - `build.py` - Cross-platform Python wrapper (auto-detects and uses venv)
 - `build-resume` - Bash wrapper for macOS/Linux
@@ -25,22 +25,62 @@ This repository contains Ahmad Jalil's resume with a flexible build system for g
 
 ### Adding New Variants
 
-Edit `resume-variants.json` to add new resume variants:
+Edit `resume-variants.yaml` to add new resume variants:
 
-```json
-{
-  "variants": {
-    "your_variant": {
-      "description": "Description of your variant",
-      "exclude_sections": ["section1", "section2"],
-      "tags": ["tag1", "tag2"],
-      "flavors": ["flavor1","flavor2"]
-    }
-  }
-}
+```yaml
+variants:
+  your_variant:
+    description: Description of your variant
+    exclude_sections: [section1, section2]  # Remove entire sections
+    tags: [tag1, tag2]                      # Only include entries with these tags
+    # flavors: [flavor1]                    # Select specific flavor values
 ```
 
-Available sections to exclude: `projects`, `volunteer`, `presentations`, `publications`, `professional_development`, `awards`, `certifications_skills`
+**Available sections to exclude:** `projects`, `volunteer`, `presentations`, `publications`, `professional_development`, `awards`, `certifications_skills`
+
+**How variants work:**
+
+- **`exclude_sections`**: Completely removes sections from the resume (e.g., remove "volunteer" section)
+- **`tags`**: Filters individual entries within sections. Only entries tagged with at least one matching tag will be included
+  - Add `tags: [mechatronics]` to an entry in `CV.yaml` to mark it for the mechatronics variant
+  - Entries without tags appear in all variants (unless their section is excluded)
+- **`flavors`**: Allows entries to have alternate values for different variants (e.g., different highlight points for tech vs. academic resumes)
+  - Define multiple versions of a field in your CV entry, then select which version each variant uses
+
+**Example: Using tags in CV.yaml**
+```yaml
+cv:
+  sections:
+    experience:
+      - company: Robotics Lab
+        position: Engineer
+        tags: [mechatronics, tech]  # Only appears in mechatronics and tech variants
+        highlights:
+          - Designed control systems
+
+      - company: General Company
+        position: Manager
+        # No tags = appears in all variants (unless experience section excluded)
+        highlights:
+          - Led team projects
+```
+
+**Example: Using flavors in CV.yaml**
+```yaml
+cv:
+  sections:
+    experience:
+      - company: Tech Company
+        position: Developer
+        highlights:
+          flavors:
+            tech:
+              - Built scalable microservices architecture
+              - Implemented CI/CD pipelines
+            academic:
+              - Applied software engineering principles
+              - Conducted code reviews and testing
+```
 
 ## Output
 
@@ -171,12 +211,14 @@ build-resume.bat full      # Batch wrapper (Windows)
 
 1. Loads configuration from `.env` (or uses defaults)
 2. Fetches resume YAML from local file or remote repository
-3. Loads variant configurations from `resume-variants.json`
-4. Creates a temporary YAML file with excluded sections removed
-5. Applies tag and flavor filters to entries
-6. Uses RenderCV to generate the PDF and other formats
-7. Preserves original section ordering using OrderedDict
-8. Cleans up temporary files automatically
+3. Loads variant configurations from `resume-variants.yaml`
+4. Creates a temporary YAML file with:
+   - Excluded sections removed
+   - Entries filtered by tags (only matching tags included)
+   - Flavor-based field substitutions applied
+5. Uses RenderCV to generate the PDF and other formats
+6. Preserves original section ordering using OrderedDict
+7. Cleans up temporary files automatically
 
 ## Configuration Details
 
