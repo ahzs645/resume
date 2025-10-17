@@ -31,3 +31,7 @@ ENV/
 # Temporary files
 *.tmp
 *.temp
+
+# test files
+test.yaml
+launch.json

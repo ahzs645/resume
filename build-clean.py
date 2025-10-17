@@ -7,30 +7,78 @@ import shutil
 from pathlib import Path
 from collections import OrderedDict
 
-def filter_entries(entries):
+def flavor_filter(field_value, flavor):
+    
+    list = []
+    flavors_dict = field_value['flavors']
+    for flavors in flavor:
+        if flavors_dict.get(flavors):
+            value = flavors_dict.get(flavors)
+            list = list + value
+
+    # If there was no match on flavors, pick the first one.
+    if not list:
+        list = next(iter(flavors_dict.values()), None)
+            
+    return list
+
+
+
+def subfilter(entry, tags=None, flavor=None):
+    # To avoid issues with mutable default arguments
+    tags = tags or []
+    flavor = flavor or []
+    
+    
+    
+    """Filter out entries with show: false."""
+    if isinstance(entry, dict) and entry.get('show', True) is False:
+        return None
+    
+    entry = entry.copy()
+    
+    # Check all the sub fields to see if they have the flavors keyword
+    for field_name, field_value in entry.items():
+        if isinstance(field_value, dict) and 'flavors' in field_value:
+            entry[field_name] = flavor_filter(field_value, flavor)
+        
+
+    required_tags = entry.get('tags', [])
+    if required_tags and not (set(tags) & set(required_tags)):
+        print(f"  Skipping entry due to tags: {required_tags}")
+        return None
+
+    if required_tags:
+        entry = entry.copy()
+        entry.pop('tags', None)
+
+    return entry
+
+def filter_entries(entries, tags=None, flavor=None):
     """Filter out entries with show: false."""
     filtered = []
     for entry in entries:
-        # Check if entry has show: false
-        if isinstance(entry, dict) and entry.get('show', True) is False:
-            continue
         # Also check positions within an entry
         if isinstance(entry, dict) and 'positions' in entry:
             filtered_positions = []
             for pos in entry['positions']:
-                if isinstance(pos, dict) and pos.get('show', True) is not False:
-                    filtered_positions.append(pos)
+                filtered_pos = subfilter(pos, tags, flavor)
+                if filtered_pos:
+                    filtered_positions.append(filtered_pos)
             if filtered_positions:  # Only include entry if it has visible positions
                 entry = entry.copy()
                 entry['positions'] = filtered_positions
-                filtered.append(entry)
-        else:
+        
+        entry = subfilter(entry, tags, flavor)          
+        if entry:
             filtered.append(entry)
+
     return filtered
 
-def create_variant(base_yaml, variant_name, exclude_sections):
+def create_variant(base_yaml, variant_name, config):
     """Create a CV variant by excluding specified sections."""
-    
+    exclude_sections = config['exclude_sections']
+
     # Use a custom YAML loader that preserves order
     def ordered_load(stream, Loader=yaml.SafeLoader, object_pairs_hook=OrderedDict):
         class OrderedLoader(Loader):
@@ -65,7 +113,7 @@ def create_variant(base_yaml, variant_name, exclude_sections):
         # Filter out entries with show: false in remaining sections
         for section_name, section_entries in sections.items():
             if isinstance(section_entries, list):
-                sections[section_name] = filter_entries(section_entries)
+                sections[section_name] = filter_entries(section_entries, config['tags'], config['flavors'])
     
     # Create temporary YAML file
     temp_yaml = f"temp_{variant_name}_cv.yaml"
@@ -107,7 +155,7 @@ def load_variants():
         sys.exit(1)
 
 def main():
-    base_yaml = "Ahmad_Jalil_CV.yaml"
+    base_yaml = "CV.yaml"
     
     if not Path(base_yaml).exists():
         print(f"Error: {base_yaml} not found!")
@@ -158,7 +206,7 @@ def main():
             sections = cv_data['cv']['sections']
             for section_name, section_entries in sections.items():
                 if isinstance(section_entries, list):
-                    sections[section_name] = filter_entries(section_entries)
+                    sections[section_name] = filter_entries(section_entries, config['tags'], config['flavors'])
         
         # Create temporary filtered YAML
         temp_yaml = "temp_full_cv.yaml"
@@ -175,7 +223,7 @@ def main():
         sys.exit(result.returncode)
     else:
         # Create variant with excluded sections
-        success = create_variant(base_yaml, variant, config['exclude_sections'])
+        success = create_variant(base_yaml, variant, config)
         sys.exit(0 if success else 1)
 
 if __name__ == "__main__":

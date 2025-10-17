@@ -32,7 +32,9 @@ Edit `resume-variants.json` to add new resume variants:
   "variants": {
     "your_variant": {
       "description": "Description of your variant",
-      "exclude_sections": ["section1", "section2"]
+      "exclude_sections": ["section1", "section2"],
+      "tags": ["tag1", "tag2"],
+      "flavors": ["flavor1","flavor2"]
     }
   }
 }
