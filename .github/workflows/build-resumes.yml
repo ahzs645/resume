@@ -18,7 +18,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.13'  # Python 3.10-3.13 supported (3.14+ not compatible with pydantic-core)
     
     - name: Create virtual environment
       run: |
@@ -31,7 +31,12 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
-    
+
+    - name: Create .env configuration
+      run: |
+        echo "SOURCE_MODE=local" > .env
+        echo "YAML_FILE=CV.yaml" >> .env
+
     - name: Make build script executable
       run: chmod +x build-resume
     
