@@ -288,3 +288,48 @@ OUTPUT_DIR=output
 **Dependencies won't install:**
 - Upgrade pip: `venv/bin/pip install --upgrade pip`
 - Try Python 3.13: `brew install python@3.13` (macOS)
+
+## GitHub Actions Integration
+
+### Reusable workflow for external repos
+
+This repository publishes a reusable workflow that renders CV variants for any repository that provides a compatible `CV.yaml`.
+
+```yaml
+jobs:
+  render:
+    uses: ahzs645/resume/.github/workflows/render-from-caller.yml@main  # Pin to a tag/SHA in production
+    with:
+      yaml_path: CV.yaml           # Path to the YAML file in the caller repository
+      variants: full,tech          # Comma-separated list of variants
+      python_version: '3.13'       # Optional override (defaults to 3.13)
+      publish_release: 'true'      # Optional: publish a GitHub release with assets
+      release_tag: resume-2024-01  # Required when publish_release is true
+      release_name: 'Resume Pack'  # Optional release title
+      release_body: 'Automated build'
+    secrets:
+      gh-token: ${{ secrets.GH_PAT }}  # Optional PAT for private repos
+```
+
+Rolling “latest” release example:
+```yaml
+with:
+  publish_release: 'true'
+  release_overwrite: 'true'
+  release_tag: resume-latest
+```
+
+Inputs:
+- `yaml_path` (default `CV.yaml`): Path within the caller repo to the resume data.
+- `variants` (default `full`): Comma-separated variants to build.
+- `python_version` (default `3.13`): Python version used by RenderCV.
+- `builder_repository` / `builder_ref`: Override the builder repo/ref if you maintain a fork.
+- `upload_artifacts` (default `true`): Upload generated `*_resume/` folders as artifacts.
+- `publish_release` (default `false`): Zip the outputs and publish a GitHub release in the caller repo.
+- `release_overwrite` (default `false`): Delete any existing release/tag with the same name before publishing (useful for a rolling “latest” release).
+- `release_tag`, `release_name`, `release_body`, `release_draft`, `release_prerelease`: Configure the optional release.
+
+Secrets:
+- `gh-token` (optional): Fine-scoped PAT when either repo is private. Default `GITHUB_TOKEN` works for public repos.
+
+The workflow checks out both repositories, reuses the existing build scripts, and uploads the generated artifacts back to the caller workflow run.
