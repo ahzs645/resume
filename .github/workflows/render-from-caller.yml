@@ -123,6 +123,11 @@ jobs:
             venv/bin/python build-clean.py "$variant"
           done
 
+      - name: Remove non-release files
+        run: |
+          cd builder
+          find . -type f -path "./*_resume/README.md" -delete || true
+
       - name: Verify release inputs
         if: inputs.publish_release == 'true'
         run: |
@@ -151,7 +156,7 @@ jobs:
           shopt -s nullglob
           files=( *_resume/*.pdf *_resume/*.png *_resume/*.html *_resume/*.md )
           if [ ${#files[@]} -eq 0 ]; then
-            echo "No resume output files found for release." >&2
+            echo "No resume output files (PDF/PNG/HTML/MD) found for release." >&2
             exit 1
           fi
 
