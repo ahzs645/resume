@@ -149,13 +149,9 @@ jobs:
         run: |
           cd builder
           shopt -s nullglob
-          dirs=( *_resume )
-          if [ ${#dirs[@]} -eq 0 ]; then
-            echo "No resume output directories found; cannot publish release." >&2
-            exit 1
-          fi
-          if ! find "${dirs[@]}" -type f -mindepth 1 >/dev/null 2>&1; then
-            echo "No files found inside resume output directories." >&2
+          files=( *_resume/*.pdf *_resume/*.png *_resume/*.html *_resume/*.md )
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No resume output files found for release." >&2
             exit 1
           fi
 
@@ -169,7 +165,10 @@ jobs:
           draft: ${{ inputs.release_draft }}
           prerelease: ${{ inputs.release_prerelease }}
           files: |
-            builder/*_resume/**
+            builder/*_resume/*.pdf
+            builder/*_resume/*.png
+            builder/*_resume/*.html
+            builder/*_resume/*.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
