@@ -67,10 +67,6 @@ on:
         required: false
         default: 'false'
         type: string
-    secrets:
-      gh-token:
-        description: Fine-scoped token for accessing private repositories (optional)
-        required: false
 
 jobs:
   render:
@@ -85,17 +81,7 @@ jobs:
         with:
           path: data
 
-      - name: Checkout builder repository (with PAT)
-        if: secrets.gh-token != ''
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ inputs.builder_repository }}
-          ref: ${{ inputs.builder_ref }}
-          path: builder
-          token: ${{ secrets.gh-token }}
-
       - name: Checkout builder repository
-        if: secrets.gh-token == ''
         uses: actions/checkout@v4
         with:
           repository: ${{ inputs.builder_repository }}
@@ -148,7 +134,7 @@ jobs:
       - name: Remove existing release (overwrite mode)
         if: inputs.publish_release == 'true' && inputs.release_overwrite == 'true'
         env:
-          GH_TOKEN: ${{ secrets.gh-token != '' && secrets.gh-token || github.token }}
+          GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
           if [ -z "$RELEASE_TAG" ]; then
@@ -181,7 +167,7 @@ jobs:
           prerelease: ${{ inputs.release_prerelease }}
           files: builder/resume-assets.tar.gz
         env:
-          GITHUB_TOKEN: ${{ secrets.gh-token != '' && secrets.gh-token || github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Upload resume artifacts
         if: inputs.upload_artifacts == 'true'
