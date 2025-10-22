@@ -61,8 +61,25 @@
 #let design_publication_after_journal = -6pt
 #let design_publication_after_authors = -4pt
 
+// Page break control - set to false to allow sections to break across pages
+#let keep_sections_together = <<design.keep_sections_together|lower>>
+
+// Helper function to wrap content with optional page break prevention
+#let section_content(body) = {
+  if keep_sections_together {
+    block(breakable: false, body)
+  } else {
+    body
+  }
+}
+
 // Section formatting function - tighter spacing after section header
 #let section_heading(title) = {
+  // Add a weak page break before sections when keep_sections_together is enabled
+  // This encourages page breaks between sections rather than within them
+  if keep_sections_together {
+    pagebreak(weak: true)
+  }
   v(16pt)  // Space before section title
   text(
     size: 11pt,

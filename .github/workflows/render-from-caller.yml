@@ -67,6 +67,16 @@ on:
         required: false
         default: 'false'
         type: string
+      variants_yaml_path:
+        description: Path to resume-variants.yaml (relative to caller repo root). If not provided, uses builder repo's variants.
+        required: false
+        default: ''
+        type: string
+      keep_sections_together:
+        description: Prevent page breaks within sections (true/false). Overrides CV.yaml setting.
+        required: false
+        default: ''
+        type: string
 
 jobs:
   render:
@@ -108,6 +118,18 @@ jobs:
           printf "OUTPUT_DIR=.\n" >> .env
           printf "OUTPUT_FOLDER_NAME={variant}_resume\n" >> .env
           printf "OUTPUT_FILENAME_PREFIX=resume\n" >> .env
+          if [ -n "${{ inputs.keep_sections_together }}" ]; then
+            printf "KEEP_SECTIONS_TOGETHER=%s\n" "${{ inputs.keep_sections_together }}" >> .env
+          fi
+
+      - name: Copy variants config if provided
+        run: |
+          if [ -n "${{ inputs.variants_yaml_path }}" ] && [ -f "data/${{ inputs.variants_yaml_path }}" ]; then
+            echo "Using variants config from caller repo: ${{ inputs.variants_yaml_path }}"
+            cp "data/${{ inputs.variants_yaml_path }}" builder/resume-variants.yaml
+          else
+            echo "Using default variants config from builder repo"
+          fi
 
       - name: Build resume variants
         run: |

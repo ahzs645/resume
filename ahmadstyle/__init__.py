@@ -29,8 +29,13 @@ class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
     )
     page_size: str = pydantic.Field(
         default="us-letter",
-        title="Page Size", 
+        title="Page Size",
         description="The page size of the CV. The default value is us-letter.",
+    )
+    keep_sections_together: bool = pydantic.Field(
+        default=True,
+        title="Keep Sections Together",
+        description="Prevent page breaks within sections to keep content together. Default is True.",
     )
     entries: EntriesConfig = pydantic.Field(
         default=EntriesConfig(),
