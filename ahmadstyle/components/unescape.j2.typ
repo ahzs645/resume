@@ -1,6 +1,6 @@
-// Unescape macro for removing backslashes from parentheses
-// RenderCV automatically escapes ( and ) to \( and \) for Typst
-// This macro unescapes them back to normal parentheses
+// Unescape macro for removing backslashes from special characters
+// RenderCV automatically escapes special characters for Typst
+// This macro unescapes them back to normal characters
 ((* macro unescape(text) -*))
-<<text|replace('\\(', '(')|replace('\\)', ')')>>
+<<text|replace('\\(', '(')|replace('\\)', ')')|replace('\\/', '/')>>
 ((*- endmacro *))
