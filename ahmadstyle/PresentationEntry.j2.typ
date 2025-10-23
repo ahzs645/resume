@@ -22,12 +22,10 @@
 
   ((* if entry.highlights *))
   // Optional highlights/description
-  v(design_presentation_before_highlights)
+  v(design_presentation_before_highlights);
   ((* for highlight in entry.highlights *))
-  {
-    [• <<highlight|replace('\\(', '(')|replace('\\)', ')')>>]
-    v(design_presentation_between_highlights)
-  }
+  [• <<highlight|replace('\\(', '(')|replace('\\)', ')')>>];
+  v(design_presentation_between_highlights);
   ((* endfor *))
   ((* endif *))
 })

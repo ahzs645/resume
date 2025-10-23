@@ -20,15 +20,11 @@
 
   v(design_publication_after_journal)
 
-  {
-    [<<entry.authors|join(', ')>>]
-  }
+  [<<entry.authors|join(', ')>>];
 
-  v(design_publication_after_authors)
+  v(design_publication_after_authors);
 
-  {
-    [DOI: <<entry.doi>>]
-  }
+  [DOI: <<entry.doi>>]
 })
 
 #v(design_publication_spacing)

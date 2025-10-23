@@ -53,10 +53,8 @@
   ((* if entry.highlights *))
   // Awards section - has highlights/descriptions
   ((* for highlight in entry.highlights *))
-  {
-    [<<highlight|replace('\\(', '(')|replace('\\)', ')')>>]
-    v(design_awards_paragraph_spacing)  // Uses awards-specific spacing
-  }
+  [<<highlight|replace('\\(', '(')|replace('\\)', ')')>>];
+  v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
   ((* endfor *))
   ((* endif *))
 })
