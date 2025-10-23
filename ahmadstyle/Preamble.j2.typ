@@ -63,10 +63,20 @@
 
 // Page break control - set to false to allow sections to break across pages
 #let keep_sections_together = <<design.keep_sections_together|lower>>
+#let keep_entries_together = <<design.keep_entries_together|lower>>
 
 // Helper function to wrap content with optional page break prevention
 #let section_content(body) = {
   if keep_sections_together {
+    block(breakable: false, body)
+  } else {
+    body
+  }
+}
+
+// Helper function to wrap individual entries with optional page break prevention
+#let entry_content(body) = {
+  if keep_entries_together {
     block(breakable: false, body)
   } else {
     body

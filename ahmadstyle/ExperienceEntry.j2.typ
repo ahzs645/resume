@@ -44,77 +44,80 @@
 ((* set formatted_end = format_date(company_end_date) *))
 ((* set company_date_range = formatted_start + ' – ' + formatted_end *))
 
-// Company header - always show for new positions structure
-((* if entry.company *))
-#grid(
-  columns: (1fr, auto),
-  align: (left, right),
-  text(weight: "bold", "<<unescape(entry.company)>>"),
-  "<<company_date_range>>"
-)
-#v(design_experience_after_company_header)
-((* endif *))
+// Wrap entire entry in entry_content to keep it together
+#entry_content({
+  // Company header - always show for new positions structure
+  ((* if entry.company *))
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    text(weight: "bold", "<<unescape(entry.company)>>"),
+    "<<company_date_range>>"
+  )
+  v(design_experience_after_company_header)
+  ((* endif *))
 
-// Handle positions array or single position
-((* if entry.positions *))
-  ((* for position in entry.positions *))
-    // Format position dates using the macro
-    ((* set pos_formatted_start = format_date(position.start_date) *))
-    ((* set pos_formatted_end = format_date(position.end_date) *))
-    ((* set position_date_range = pos_formatted_start + ' – ' + pos_formatted_end *))
+  // Handle positions array or single position
+  ((* if entry.positions *))
+    ((* for position in entry.positions *))
+      // Format position dates using the macro
+      ((* set pos_formatted_start = format_date(position.start_date) *))
+      ((* set pos_formatted_end = format_date(position.end_date) *))
+      ((* set position_date_range = pos_formatted_start + ' – ' + pos_formatted_end *))
 
-    // Position line with individual dates
-    #grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      text(style: "italic", "<<unescape(position.title)>>" + " | " + "<<position_date_range>>"),
-      "<<entry.location>>"
-    )
+      // Position line with individual dates
+      grid(
+        columns: (1fr, auto),
+        align: (left, right),
+        text(style: "italic", "<<unescape(position.title)>>" + " | " + "<<position_date_range>>"),
+        "<<entry.location>>"
+      )
 
-    // Bullet points
-    ((* if position.highlights *))
-    #v(design_experience_before_highlights)
-    ((* for highlight in position.highlights *))
-    • <<unescape(highlight)>>
-    #v(design_experience_between_highlights)
+      // Bullet points
+      ((* if position.highlights *))
+      v(design_experience_before_highlights)
+      ((* for highlight in position.highlights *))
+      [ • <<unescape(highlight)>> ]
+      v(design_experience_between_highlights)
+      ((* endfor *))
+      ((* endif *))
+
+      // Spacing between positions within same company
+      ((* if not loop.last *))
+      v(design_experience_between_positions_same_company)
+      ((* endif *))
+    ((* endfor *))
+  ((* else *))
+    // Fallback for old structure
+    ((* set old_formatted_start = format_date(entry.start_date) *))
+    ((* set old_formatted_end = format_date(entry.end_date) *))
+    ((* set date_range = old_formatted_start + ' – ' + old_formatted_end *))
+
+    ((* if entry.show_date_in_position is defined and entry.show_date_in_position *))
+      grid(
+        columns: (1fr, auto),
+        align: (left, right),
+        text(style: "italic", "<<unescape(entry.position)>>" + " | " + "<<date_range>>"),
+        "<<entry.location>>"
+      )
+    ((* else *))
+      grid(
+        columns: (1fr, auto),
+        align: (left, right),
+        text(style: "italic", "<<unescape(entry.position)>>"),
+        "<<entry.location>>"
+      )
+    ((* endif *))
+
+    ((* if entry.highlights *))
+    v(design_experience_before_highlights)
+    ((* for highlight in entry.highlights *))
+    [ • <<unescape(highlight)>> ]
+    v(design_experience_between_highlights)
     ((* endfor *))
     ((* endif *))
-
-    // Spacing between positions within same company
-    ((* if not loop.last *))
-    #v(design_experience_between_positions_same_company)
-    ((* endif *))
-  ((* endfor *))
-((* else *))
-  // Fallback for old structure
-  ((* set old_formatted_start = format_date(entry.start_date) *))
-  ((* set old_formatted_end = format_date(entry.end_date) *))
-  ((* set date_range = old_formatted_start + ' – ' + old_formatted_end *))
-
-  ((* if entry.show_date_in_position is defined and entry.show_date_in_position *))
-    #grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      text(style: "italic", "<<unescape(entry.position)>>" + " | " + "<<date_range>>"),
-      "<<entry.location>>"
-    )
-  ((* else *))
-    #grid(
-      columns: (1fr, auto),
-      align: (left, right),
-      text(style: "italic", "<<unescape(entry.position)>>"),
-      "<<entry.location>>"
-    )
   ((* endif *))
-
-  ((* if entry.highlights *))
-  #v(design_experience_before_highlights)
-  ((* for highlight in entry.highlights *))
-  • <<unescape(highlight)>>
-  #v(design_experience_between_highlights)
-  ((* endfor *))
-  ((* endif *))
-((* endif *))
+})
 
 // Spacing after company entry
 ((* if entry.spacing_after is defined *))
