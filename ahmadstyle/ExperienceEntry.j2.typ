@@ -77,8 +77,10 @@
       ((* if position.highlights *))
       v(design_experience_before_highlights)
       ((* for highlight in position.highlights *))
-      [ • <<unescape(highlight)>> ]
-      v(design_experience_between_highlights)
+      {
+        [• <<unescape(highlight)>>]
+        v(design_experience_between_highlights)
+      }
       ((* endfor *))
       ((* endif *))
 
@@ -112,8 +114,10 @@
     ((* if entry.highlights *))
     v(design_experience_before_highlights)
     ((* for highlight in entry.highlights *))
-    [ • <<unescape(highlight)>> ]
-    v(design_experience_between_highlights)
+    {
+      [• <<unescape(highlight)>>]
+      v(design_experience_between_highlights)
+    }
     ((* endfor *))
     ((* endif *))
   ((* endif *))

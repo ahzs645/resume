@@ -24,13 +24,15 @@
   // Bullet points for highlights with LaTeX-matching spacing
   v(design_education_before_highlights)
   ((*- for highlight in entry.highlights -*))
-  [ • <<highlight|replace('\\(', '(')|replace('\\)', ')')>> ]
-  v(design_education_between_highlights)
+  {
+    [• <<highlight|replace('\\(', '(')|replace('\\)', ')')>>]
+    v(design_education_between_highlights)
+  }
   ((*- endfor -*))
   ((*- endif -*))
 
   ((*- if entry.summary -*))
-  [ • <<entry.summary|replace('\\(', '(')|replace('\\)', ')')>> ]
+  [• <<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>]
   ((*- endif *))
 })
 
