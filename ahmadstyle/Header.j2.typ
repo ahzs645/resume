@@ -1,6 +1,6 @@
 // Header matching LaTeX formatting exactly
 #text(
-  size: 26pt, 
+  size: 26pt,
   weight: "bold",
   "<<cv.name>>"
 )
@@ -20,7 +20,11 @@
   ((*- endif -*))
   ((*- if cv.website -*))
   #text(" | ")
-  #link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '')>>]
+  ((* if design.website_link_color == "blue" *))
+  #text(fill: blue)[#link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '')>>]]
+  ((* else *))
+  #text(fill: black)[#link("<<cv.website>>")[<<cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '')>>]]
+  ((* endif *))
   ((*- endif -*))
 ]
 

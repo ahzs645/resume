@@ -42,6 +42,11 @@ class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
         title="Keep Entries Together",
         description="Prevent page breaks within individual entries (e.g., keep a job entry and its highlights together). Default is True.",
     )
+    website_link_color: Literal["blue", "black"] = pydantic.Field(
+        default="black",
+        title="Website Link Color",
+        description="Color of the website link in the header. 'blue' for hyperlink style, 'black' to match text. Default is black.",
+    )
     entries: EntriesConfig = pydantic.Field(
         default=EntriesConfig(),
         title="Entries Configuration",
