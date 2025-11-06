@@ -43,6 +43,11 @@ class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
         title="Keep Entries Together",
         description="Prevent page breaks within individual entries (e.g., keep a job entry and its highlights together). Default is True.",
     )
+    section_heading_size: str = Field(
+        default="11pt",
+        title="Section Heading Size",
+        description="Font size for section headers (e.g., EXPERIENCE). Default is 11pt.",
+    )
     website_link_color: Literal["blue", "black"] = Field(
         default="black",
         title="Website Link Color",

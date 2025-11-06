@@ -52,7 +52,7 @@
     columns: (1fr, auto),
     align: (left, right),
     text(weight: "bold", "<<unescape(entry.company)>>"),
-    "<<company_date_range>>"
+    text(weight: "bold", "<<company_date_range>>")
   )
   v(design_experience_after_company_header)
   ((* endif *))
@@ -69,8 +69,12 @@
       grid(
         columns: (1fr, auto),
         align: (left, right),
-        text(style: "italic", "<<unescape(position.title)>>" + " | " + "<<position_date_range>>"),
-        "<<entry.location>>"
+        text(style: "italic")[<<unescape(position.title)>> | #text(weight: "bold")[<<position_date_range>>]],
+        ((* if entry.location *))
+        text(style: "italic", "<<entry.location>>")
+        ((* else *))
+        ""
+        ((* endif *))
       )
 
       // Bullet points
@@ -97,15 +101,23 @@
       grid(
         columns: (1fr, auto),
         align: (left, right),
-        text(style: "italic", "<<unescape(entry.position)>>" + " | " + "<<date_range>>"),
-        "<<entry.location>>"
+        text(style: "italic")[<<unescape(entry.position)>> | #text(weight: "bold")[<<date_range>>]],
+        ((* if entry.location *))
+        text(style: "italic", "<<entry.location>>")
+        ((* else *))
+        ""
+        ((* endif *))
       )
     ((* else *))
       grid(
         columns: (1fr, auto),
         align: (left, right),
         text(style: "italic", "<<unescape(entry.position)>>"),
-        "<<entry.location>>"
+        ((* if entry.location *))
+        text(style: "italic", "<<entry.location>>")
+        ((* else *))
+        ""
+        ((* endif *))
       )
     ((* endif *))
 

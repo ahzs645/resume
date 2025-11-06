@@ -31,7 +31,7 @@
 // EXPERIENCE SECTION SPACING - EXPLICIT AND CLEAR
 #let design_experience_between_companies = -4pt                   // Gap between different companies
 #let design_experience_between_positions_same_company = 0pt     // Tight gap: between positions at same company
-#let design_experience_after_company_header = -4pt              // Space after company name line
+#let design_experience_after_company_header = -6pt              // Space after company name line
 #let design_experience_before_highlights = -4pt                 // Space before bullet points
 #let design_experience_between_highlights = -6pt                // Space between bullet points
 
@@ -50,6 +50,8 @@
 #let design_awards_between_entries = -4pt              
 #let design_media_between_lines = -4pt
 #let design_media_between_entries = -6pt
+#let design_certifications_between_entries = -18pt
+#let design_skills_between_entries = -18pt
 #let design_bullet_gap = 6pt
 #let design_education_after_institution = -6pt
 #let design_education_before_highlights = -4pt
@@ -95,7 +97,7 @@
   }
   v(16pt)  // Space before section title
   text(
-    size: 11pt,
+    size: <<design.section_heading_size>>,
     weight: "bold",
     upper(title)
   )

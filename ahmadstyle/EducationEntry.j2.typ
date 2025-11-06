@@ -7,7 +7,7 @@
     columns: (1fr, auto),
     align: (left, right),
     text(weight: "bold", "<<entry.institution|replace('\\(', '(')|replace('\\)', ')')>>"),
-    "<<entry.date_string>>"
+    text(weight: "bold", "<<entry.date_string>>")
   )
 
   v(design_education_after_institution)
@@ -17,7 +17,11 @@
     columns: (1fr, auto),
     align: (left, right),
     text(style: "italic", "<<entry.degree|replace('\\(', '(')|replace('\\)', ')')>>, <<entry.area|replace('\\(', '(')|replace('\\)', ')')>>"),
-    "<<entry.location>>"
+    ((* if entry.location *))
+    text(style: "italic", "<<entry.location>>")
+    ((* else *))
+    ""
+    ((* endif *))
   )
 
   ((*- if entry.highlights -*))

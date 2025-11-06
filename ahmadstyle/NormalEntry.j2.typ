@@ -35,6 +35,8 @@
 ((* else *))
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
+  ((* set lowercase_section_title = section_title|lower *))
+
   // Main entry with bold name (hyperlinked if URL available)
   grid(
     columns: (1fr, auto),
@@ -44,7 +46,11 @@
     ((* else *))
     text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* endif *))
+    ((* if entry.date_string and lowercase_section_title == "awards" *))
+    text(weight: "bold", "<<entry.date_string>>")
+    ((* else *))
     "<<entry.date_string>>"
+    ((* endif *))
   )
 
   // Add spacing after name - different for Awards vs Professional Development
