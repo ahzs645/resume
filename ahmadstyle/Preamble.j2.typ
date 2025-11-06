@@ -48,6 +48,9 @@
 #let design_awards_after_summary = -4pt                
 #let design_awards_paragraph_spacing = -6pt            
 #let design_awards_between_entries = -4pt              
+#let design_media_between_lines = -4pt
+#let design_media_between_entries = -6pt
+#let design_bullet_gap = 6pt
 #let design_education_after_institution = -6pt
 #let design_education_before_highlights = -4pt
 #let design_education_between_highlights = -6pt
@@ -100,3 +103,8 @@
   line(length: 100%, stroke: 0.4pt)
   v(-2pt)  // Reduced spacing after section (closer to first entry)
 }
+
+// Consistent bullet layout helper
+#let bullet_line(body) = [
+  • #h(design_bullet_gap) #body
+]

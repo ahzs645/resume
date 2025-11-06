@@ -1,5 +1,38 @@
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
+((* if section_title == "Media" *))
+// Customized layout for Media Links section
+#entry_content({
+  // Bold media title without bullet marker
+  grid(
+    columns: (1fr),
+    align: (left),
+    text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>")
+  )
+
+  // Optional summary/descriptor line
+  ((* if entry.summary *))
+  v(design_media_between_lines)
+  grid(
+    columns: (1fr),
+    align: (left),
+    text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>")
+  )
+  ((* endif *))
+
+  // Dedicated line for the media URL
+  ((* if entry.url *))
+  v(design_media_between_lines)
+  grid(
+    columns: (1fr),
+    align: (left),
+    link("<<entry.url>>")[<<entry.url|string>>]
+  )
+  ((* endif *))
+})
+#v(design_media_between_entries)
+
+((* else *))
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
   // Main entry with bold name (hyperlinked if URL available)
@@ -64,4 +97,5 @@
 #v(design_awards_between_entries)  // Awards spacing between entries
 ((* else *))
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries
+((* endif *))
 ((* endif *))

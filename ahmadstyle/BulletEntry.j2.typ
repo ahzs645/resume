@@ -1,2 +1,2 @@
 // Bullet entry 
-• <<entry.bullet|replace('\\(', '(')|replace('\\)', ')')>>
+#bullet_line([<<entry.bullet|replace('\\(', '(')|replace('\\)', ')')>>])
