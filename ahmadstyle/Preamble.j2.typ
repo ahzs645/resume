@@ -105,6 +105,10 @@
 }
 
 // Consistent bullet layout helper
-#let bullet_line(body) = [
-  • #h(design_bullet_gap) #body
-]
+#let bullet_line(body) = grid(
+  columns: (auto, 1fr),
+  gutter: design_bullet_gap,
+  align: (top, top),
+  text("•"),
+  body
+)

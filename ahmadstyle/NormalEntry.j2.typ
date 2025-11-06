@@ -86,8 +86,17 @@
   ((* if entry.highlights *))
   // Awards section - has highlights/descriptions
   ((* for highlight in entry.highlights *))
-  [<<highlight|replace('\\(', '(')|replace('\\)', ')')>>];
-  v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
+    ((* set trimmed_highlight = highlight|trim *))
+    ((* if trimmed_highlight[:12]|lower == "technologies" and ":" in trimmed_highlight *))
+    ((* set tech_parts = trimmed_highlight.split(":", 1) *))
+    [
+      #text(weight: "bold", "<<tech_parts[0]|replace('\\(', '(')|replace('\\)', ')')>> - ")
+      <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>
+    ];
+    ((* else *))
+    bullet_line([<<highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
+    ((* endif *))
+    v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
   ((* endfor *))
   ((* endif *))
 })
