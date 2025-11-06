@@ -95,17 +95,14 @@
       ((* set next_highlight = entry.highlights[loop.index0 + 1] if not loop.last else "" *))
 
       ((* if lowered_highlight == "technologies" and next_highlight *))
-      [
-        #text(weight: "bold", "Technologies - ")
-        <<next_highlight|trim|replace('\\(', '(')|replace('\\)', ')')>>
-      ];
+      [Technologies - <<next_highlight|trim|replace('\\(', '(')|replace('\\)', ')')>>];
       ((* set skip_next_highlight = True *))
-      ((* elif trimmed_highlight[:12]|lower == "technologies" and ":" in trimmed_highlight *))
+      ((* elif lowered_highlight.startswith("technologies:") *))
       ((* set tech_parts = trimmed_highlight.split(":", 1) *))
-      [
-        #text(weight: "bold", "<<tech_parts[0]|replace('\\(', '(')|replace('\\)', ')')>> - ")
-        <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>
-      ];
+      [<<tech_parts[0]|replace('\\(', '(')|replace('\\)', ')')>> - <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>];
+      ((* elif lowered_highlight.startswith("technologies -") *))
+      ((* set tech_parts = trimmed_highlight.split("-", 1) *))
+      [Technologies - <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>];
       ((* else *))
       bullet_line([<<highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
       ((* endif *))
