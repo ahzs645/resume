@@ -44,7 +44,10 @@ def subfilter(entry, tags=None, flavor=None):
         if isinstance(field_value, dict) and 'flavors' in field_value:
             entry[field_name] = flavor_filter(field_value, flavor)
         
-
+    inverse_tags = entry.get('itags', [])
+    if inverse_tags and (set(tags) & set(inverse_tags)):
+        print(f" Skipping entry due to I-tags: {inverse_tags}")
+        return None
     required_tags = entry.get('tags', [])
     if required_tags and not (set(tags) & set(required_tags)):
         print(f"  Skipping entry due to tags: {required_tags}")
