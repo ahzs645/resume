@@ -1,5 +1,7 @@
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
+((* set lowercase_section_title = section_title|lower *))
+
 ((* if section_title == "Media" *))
 // Customized layout for Media Links section
 #entry_content({
@@ -32,11 +34,59 @@
 })
 #v(design_media_between_entries)
 
+((* elif lowercase_section_title == "presentations" *))
+// Custom layout for presentations to keep dates aligned with last line
+#entry_content({
+  grid(
+    columns: (1fr, auto),
+    align: (left, bottom),
+    ((* if entry.url *))
+    link("<<entry.url>>")[#text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>")],
+    ((* else *))
+    text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
+    ((* endif *))
+    ((* if entry.date_string *))
+    text(weight: "bold", "<<entry.date_string>>")
+    ((* else *))
+    #text(weight: "bold", "<<entry.date>>")
+    ((* endif *))
+  )
+
+  ((* if entry.summary *))
+  v(design_professional_dev_after_name)
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
+    ((* if entry.location *))
+    text(style: "italic", "<<entry.location>>")
+    ((* else *))
+    ""
+    ((* endif *))
+  )
+  v(design_professional_dev_after_summary)
+  ((* elif entry.location *))
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    "",
+    text(style: "italic", "<<entry.location>>")
+  )
+  ((* endif *))
+
+  ((* if entry.highlights *))
+  v(design_professional_dev_after_summary)
+  ((* for highlight in entry.highlights *))
+  bullet_line([<<highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
+  v(design_professional_dev_between_entries);
+  ((* endfor *))
+  ((* endif *))
+})
+#v(design_professional_dev_between_entries)
+
 ((* else *))
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
-  ((* set lowercase_section_title = section_title|lower *))
-
   // Main entry with bold name (hyperlinked if URL available)
   grid(
     columns: (1fr, auto),
@@ -46,7 +96,7 @@
     ((* else *))
     text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* endif *))
-    ((* if entry.date_string and lowercase_section_title == "awards" *))
+    ((* if entry.date_string and lowercase_section_title in ["awards", "projects", "professional development", "presentations"] *))
     text(weight: "bold", "<<entry.date_string>>")
     ((* else *))
     "<<entry.date_string>>"
@@ -67,7 +117,7 @@
     align: (left, right),
     text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* if entry.location *))
-    "<<entry.location>>"
+    text(style: "italic", "<<entry.location>>")
     ((* else *))
     ""
     ((* endif *))

@@ -69,7 +69,7 @@
       grid(
         columns: (1fr, auto),
         align: (left, right),
-        text(style: "italic")[<<unescape(position.title)>> | #text(weight: "bold")[<<position_date_range>>]],
+        text(style: "italic", "<<unescape(position.title)>> | <<position_date_range>>"),
         ((* if entry.location *))
         text(style: "italic", "<<entry.location>>")
         ((* else *))

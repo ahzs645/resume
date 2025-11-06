@@ -2,11 +2,13 @@
 
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
+  ((* set publication_date_display = entry.date_string if entry.date_string else entry.date *))
+
   grid(
     columns: (1fr, auto),
     align: (left, right),
     text(weight: "bold", "<<entry.title|replace('\\(', '(')|replace('\\)', ')')>>"),
-    "<<entry.date>>"
+    text(weight: "bold", "<<publication_date_display>>")
   )
 
   v(design_publication_after_title)
