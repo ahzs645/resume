@@ -46,7 +46,7 @@ def subfilter(entry, tags=None, flavor=None):
         
     inverse_tags = entry.get('itags', [])
     if inverse_tags and (set(tags) & set(inverse_tags)):
-        print(f" Skipping entry due to I-tags: {inverse_tags}")
+        print(f"  Skipping entry due to I-tags: {inverse_tags}")
         return None
     required_tags = entry.get('tags', [])
     if required_tags and not (set(tags) & set(required_tags)):
