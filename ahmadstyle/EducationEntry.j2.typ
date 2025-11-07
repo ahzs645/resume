@@ -1,5 +1,14 @@
 // Education entry matching LaTeX formatting exactly
 
+
+// Import macros
+((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
+
+// Initialize variables
+((* set formatted_start_date = format_date(entry.start_date) *))
+((* set formatted_end_date = format_date(entry.end_date) *))
+((* set date_range = formatted_start_date + ' - ' + formatted_end_date *))
+
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
   // Institution header with date range (bold institution name)
@@ -7,7 +16,7 @@
     columns: (1fr, auto),
     align: (left, right),
     text(weight: "bold", "<<entry.institution|replace('\\(', '(')|replace('\\)', ')')>>"),
-    text(weight: "bold", "<<entry.date_string>>")
+    text(weight: "bold", "<<date_range>>")
   )
 
   v(design_education_after_institution)
