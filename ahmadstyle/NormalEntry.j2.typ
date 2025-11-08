@@ -156,20 +156,46 @@
       ((* set skip_next_highlight = False *))
     ((* else *))
       ((* set trimmed_highlight = highlight|trim *))
-      ((* set lowered_highlight = trimmed_highlight|lower *))
+      ((* set normalized_highlight = trimmed_highlight|replace('\r\n', '\n')|replace('\r', '\n') *))
+      ((* set lowered_multiline_highlight = normalized_highlight|lower *))
+      ((* set single_line_highlight = ' '.join(normalized_highlight.split()) *))
+      ((* set lowered_highlight = single_line_highlight|lower *))
       ((* set next_highlight = entry.highlights[loop.index0 + 1] if not loop.last else "" *))
 
       ((* if lowered_highlight == "technologies" and next_highlight *))
-      [Technologies - <<next_highlight|trim|replace('\\(', '(')|replace('\\)', ')')>>];
+      ((* set next_value = next_highlight|trim|replace('\r\n', '\n')|replace('\r', '\n') *))
+      ((* set next_value = ' '.join(next_value.split()) *))
+      ((* set tech_line = "Technologies - " ~ next_value *))
+      detail_line([<<tech_line|replace('\\(', '(')|replace('\\)', ')')>>]);
       ((* set skip_next_highlight = True *))
-      ((* elif lowered_highlight.startswith("technologies:") *))
-      ((* set tech_parts = trimmed_highlight.split(":", 1) *))
-      [<<tech_parts[0]|replace('\\(', '(')|replace('\\)', ')')>> - <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>];
-      ((* elif lowered_highlight[:14] == "technologies -" *))
-      ((* set tech_parts = trimmed_highlight.split(" - ", 1) *))
-      [Technologies - <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>];
+      ((* elif lowered_multiline_highlight.startswith("technologies\n") *))
+      ((* set tech_split = normalized_highlight.split('\n', 1) *))
+      ((* if tech_split|length > 1 *))
+      ((* set tech_body = ' '.join(tech_split[1].split()) *))
+      ((* set tech_body = tech_body.lstrip('-')|trim *))
+      ((* if tech_body *))
+      ((* set tech_line = "Technologies - " ~ tech_body *))
       ((* else *))
-      bullet_line([<<highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
+      ((* set tech_line = "Technologies" *))
+      ((* endif *))
+      ((* else *))
+      ((* set tech_line = single_line_highlight *))
+      ((* endif *))
+      detail_line([<<tech_line|replace('\\(', '(')|replace('\\)', ')')>>]);
+      ((* elif lowered_highlight.startswith("technologies:") *))
+      ((* set tech_parts = single_line_highlight.split(":", 1) *))
+      ((* if tech_parts|length > 1 *))
+      ((* set tech_label = tech_parts[0]|trim *))
+      ((* set tech_value = tech_parts[1]|trim *))
+      ((* set tech_line = tech_label ~ ": " ~ tech_value *))
+      ((* else *))
+      ((* set tech_line = single_line_highlight *))
+      ((* endif *))
+      detail_line([<<tech_line|replace('\\(', '(')|replace('\\)', ')')>>]);
+      ((* elif lowered_highlight.startswith("technologies -") *))
+      detail_line([<<single_line_highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
+      ((* else *))
+      bullet_line([<<single_line_highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
       ((* endif *))
 
       v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
