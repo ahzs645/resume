@@ -33,10 +33,6 @@ def subfilter(entry, tags=None, flavor=None):
     
     
     
-    """Filter out entries with show: false."""
-    if isinstance(entry, dict) and entry.get('show', True) is False:
-        return None
-    
     entry = entry.copy()
     
     # Check all the sub fields to see if they have the flavors keyword
@@ -44,7 +40,10 @@ def subfilter(entry, tags=None, flavor=None):
         if isinstance(field_value, dict) and 'flavors' in field_value:
             entry[field_name] = flavor_filter(field_value, flavor)
         
-
+    inverse_tags = entry.get('itags', [])
+    if inverse_tags and (set(tags) & set(inverse_tags)):
+        print(f"  Skipping entry due to I-tags: {inverse_tags}")
+        return None
     required_tags = entry.get('tags', [])
     if required_tags and not (set(tags) & set(required_tags)):
         print(f"  Skipping entry due to tags: {required_tags}")

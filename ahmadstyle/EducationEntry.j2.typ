@@ -12,6 +12,8 @@
   ((* set education_dates = entry.date_string *))
 ((* endif *))
 
+
+
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
   // Institution header with date range (bold institution name)
@@ -19,7 +21,7 @@
     columns: (1fr, auto),
     align: (left, right),
     text(weight: "bold", "<<entry.institution|replace('\\(', '(')|replace('\\)', ')')>>"),
-    text(weight: "bold", "<<education_dates>>")
+    text(weight: "bold", "<<date_range>>")
   )
 
   v(design_education_after_institution)
