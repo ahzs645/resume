@@ -1,5 +1,10 @@
 // Normal entry (for professional development, awards, etc.) matching LaTeX
 
+// Normal entry (for professional development, awards, projects, etc.) matching LaTeX
+// Import unescape macro
+((* from 'ahmadstyle/components/unescape.j2.typ' import unescape *))
+
+
 ((* set lowercase_section_title = section_title|lower *))
 
 ((* if section_title == "Media" *))
@@ -140,32 +145,20 @@
   ((* endif *))
 
   ((* if entry.highlights *))
-  // Awards section - has highlights/descriptions
-  ((* set skip_next_highlight = False *))
-  ((* for highlight in entry.highlights *))
-    ((* if skip_next_highlight *))
-      ((* set skip_next_highlight = False *))
+  // Conditional rendering: bullets for awards, plain text for projects
+    ((* if section_title|lower == "projects" *))
+      // Projects section - plain text without bullets
+      ((* for highlight in entry.highlights *))
+      [<<unescape(highlight)|replace('- ', '\\- ')>>];
+      v(-6pt);
+      ((* endfor *))
     ((* else *))
-      ((* set trimmed_highlight = highlight|trim *))
-      ((* set lowered_highlight = trimmed_highlight|lower *))
-      ((* set next_highlight = entry.highlights[loop.index0 + 1] if not loop.last else "" *))
-
-      ((* if lowered_highlight == "technologies" and next_highlight *))
-      [Technologies - <<next_highlight|trim|replace('\\(', '(')|replace('\\)', ')')>>];
-      ((* set skip_next_highlight = True *))
-      ((* elif lowered_highlight.startswith("technologies:") *))
-      ((* set tech_parts = trimmed_highlight.split(":", 1) *))
-      [<<tech_parts[0]|replace('\\(', '(')|replace('\\)', ')')>> - <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>];
-      ((* elif lowered_highlight.startswith("technologies -") *))
-      ((* set tech_parts = trimmed_highlight.split("-", 1) *))
-      [Technologies - <<tech_parts[1]|trim|replace('\\(', '(')|replace('\\)', ')')>>];
-      ((* else *))
-      bullet_line([<<highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
-      ((* endif *))
-
-      v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
+      // Awards section - with bullets
+      ((* for highlight in entry.highlights *))
+      [• <<unescape(highlight)>>];
+      v(design_awards_paragraph_spacing);
+      ((* endfor *))
     ((* endif *))
-  ((* endfor *))
   ((* endif *))
 })
 
