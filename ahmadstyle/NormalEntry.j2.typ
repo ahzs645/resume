@@ -93,8 +93,8 @@
 })
 #v(design_professional_dev_between_entries)
 
-((* else *))
-// Wrap entire entry in entry_content to keep it together
+((* elif lowercase_section_title == "projects" *))
+// Projects section - dedicated layout so tech highlights stay modular
 #entry_content({
   // Main entry with bold name (hyperlinked if URL available)
   grid(
@@ -105,40 +105,23 @@
     ((* else *))
     text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* endif *))
-    ((* if formatted_entry_date and lowercase_section_title in ["awards", "projects", "professional development", "presentations"] *))
+    ((* if formatted_entry_date *))
     text(weight: "bold", "<<formatted_entry_date>>")
-    ((* else *))
-    "<<formatted_entry_date>>"
-    ((* endif *))
-  )
-
-  // Add spacing after name - different for Awards vs Professional Development
-  ((* if entry.highlights *))
-  v(design_awards_after_name)  // Awards: spacing after name
-  ((* else *))
-  v(design_professional_dev_after_name)  // Professional Dev: spacing after name
-  ((* endif *))
-
-  ((* if entry.summary *))
-  // Italic summary line (like institution/organization)
-  grid(
-    columns: (1fr, auto),
-    align: (left, right),
-    text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
-    ((* if entry.location *))
-    text(style: "italic", "<<entry.location>>")
     ((* else *))
     ""
     ((* endif *))
   )
 
-  // Add spacing after summary - different for Awards vs Professional Development
-  ((* if entry.highlights *))
-  v(design_awards_after_summary)  // Awards: spacing after summary
-  ((* else *))
-  v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
-  ((* endif *))
+  v(design_awards_after_name)
 
+  ((* if entry.summary *))
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
+    ""
+  )
+  v(design_awards_after_summary)
   ((* elif entry.location *))
   grid(
     columns: (1fr, auto),
@@ -146,10 +129,10 @@
     "",
     "<<entry.location>>"
   )
+  v(design_awards_after_summary)
   ((* endif *))
 
   ((* if entry.highlights *))
-  // Awards section - has highlights/descriptions
   ((* set skip_next_highlight = False *))
   ((* for highlight in entry.highlights *))
     ((* if skip_next_highlight *))
@@ -198,8 +181,75 @@
       bullet_line([<<single_line_highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
       ((* endif *))
 
-      v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
+      v(design_awards_paragraph_spacing);
     ((* endif *))
+  ((* endfor *))
+  ((* endif *))
+})
+#v(design_awards_between_entries)
+
+((* else *))
+// Wrap entire entry in entry_content to keep it together
+#entry_content({
+  // Main entry with bold name (hyperlinked if URL available)
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    ((* if entry.url *))
+    link("<<entry.url>>")[#text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>")],
+    ((* else *))
+    text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
+    ((* endif *))
+    ((* if formatted_entry_date and lowercase_section_title in ["awards", "professional development", "presentations"] *))
+    text(weight: "bold", "<<formatted_entry_date>>")
+    ((* else *))
+    "<<formatted_entry_date>>"
+    ((* endif *))
+  )
+
+  // Add spacing after name - different for Awards vs Professional Development
+  ((* if entry.highlights *))
+  v(design_awards_after_name)  // Awards: spacing after name
+  ((* else *))
+  v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+  ((* endif *))
+
+  ((* if entry.summary *))
+  // Italic summary line (like institution/organization)
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
+    ((* if entry.location *))
+    text(style: "italic", "<<entry.location>>")
+    ((* else *))
+    ""
+    ((* endif *))
+  )
+
+  // Add spacing after summary - different for Awards vs Professional Development
+  ((* if entry.highlights *))
+  v(design_awards_after_summary)  // Awards: spacing after summary
+  ((* else *))
+  v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
+  ((* endif *))
+
+  ((* elif entry.location *))
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    "",
+    "<<entry.location>>"
+  )
+  ((* endif *))
+
+  ((* if entry.highlights *))
+  ((* for highlight in entry.highlights *))
+    ((* set trimmed_highlight = highlight|trim *))
+    ((* set normalized_highlight = trimmed_highlight|replace('\r\n', '\n')|replace('\r', '\n') *))
+    ((* set single_line_highlight = ' '.join(normalized_highlight.split()) *))
+    bullet_line([<<single_line_highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
+    v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
   ((* endfor *))
   ((* endif *))
 })
