@@ -1,5 +1,6 @@
-// Normal entry (for professional development, awards, etc.) matching LaTeX
+// Normal entry (for professional development, awards, projects, etc.) matching LaTeX
 ((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
+((* from 'ahmadstyle/components/unescape.j2.typ' import unescape *))
 
 ((* set lowercase_section_title = section_title|lower *))
 ((* set formatted_entry_date = "" *))
@@ -93,101 +94,6 @@
 })
 #v(design_professional_dev_between_entries)
 
-((* elif lowercase_section_title == "projects" *))
-// Projects section - dedicated layout so tech highlights stay modular
-#entry_content({
-  // Main entry with bold name (hyperlinked if URL available)
-  grid(
-    columns: (1fr, auto),
-    align: (left, right),
-    ((* if entry.url *))
-    link("<<entry.url>>")[#text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>")],
-    ((* else *))
-    text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
-    ((* endif *))
-    ((* if formatted_entry_date *))
-    text(weight: "bold", "<<formatted_entry_date>>")
-    ((* else *))
-    ""
-    ((* endif *))
-  )
-
-  v(design_awards_after_name)
-
-  ((* if entry.summary *))
-  grid(
-    columns: (1fr, auto),
-    align: (left, right),
-    text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
-    ""
-  )
-  v(design_awards_after_summary)
-  ((* elif entry.location *))
-  grid(
-    columns: (1fr, auto),
-    align: (left, right),
-    "",
-    "<<entry.location>>"
-  )
-  v(design_awards_after_summary)
-  ((* endif *))
-
-  ((* if entry.highlights *))
-  ((* set skip_next_highlight = False *))
-  ((* for highlight in entry.highlights *))
-    ((* if skip_next_highlight *))
-      ((* set skip_next_highlight = False *))
-    ((* else *))
-      ((* set trimmed_highlight = highlight|trim *))
-      ((* set normalized_highlight = trimmed_highlight|replace('\r\n', '\n')|replace('\r', '\n') *))
-      ((* set lowered_multiline_highlight = normalized_highlight|lower *))
-      ((* set single_line_highlight = ' '.join(normalized_highlight.split()) *))
-      ((* set lowered_highlight = single_line_highlight|lower *))
-      ((* set next_highlight = entry.highlights[loop.index0 + 1] if not loop.last else "" *))
-
-      ((* if lowered_highlight == "technologies" and next_highlight *))
-      ((* set next_value = next_highlight|trim|replace('\r\n', '\n')|replace('\r', '\n') *))
-      ((* set next_value = ' '.join(next_value.split()) *))
-      ((* set tech_line = "Technologies - " ~ next_value *))
-      detail_line([<<tech_line|replace('\\(', '(')|replace('\\)', ')')>>]);
-      ((* set skip_next_highlight = True *))
-      ((* elif lowered_multiline_highlight.startswith("technologies\n") *))
-      ((* set tech_split = normalized_highlight.split('\n', 1) *))
-      ((* if tech_split|length > 1 *))
-      ((* set tech_body = ' '.join(tech_split[1].split()) *))
-      ((* set tech_body = tech_body.lstrip('-')|trim *))
-      ((* if tech_body *))
-      ((* set tech_line = "Technologies - " ~ tech_body *))
-      ((* else *))
-      ((* set tech_line = "Technologies" *))
-      ((* endif *))
-      ((* else *))
-      ((* set tech_line = single_line_highlight *))
-      ((* endif *))
-      detail_line([<<tech_line|replace('\\(', '(')|replace('\\)', ')')>>]);
-      ((* elif lowered_highlight.startswith("technologies:") *))
-      ((* set tech_parts = single_line_highlight.split(":", 1) *))
-      ((* if tech_parts|length > 1 *))
-      ((* set tech_label = tech_parts[0]|trim *))
-      ((* set tech_value = tech_parts[1]|trim *))
-      ((* set tech_line = tech_label ~ ": " ~ tech_value *))
-      ((* else *))
-      ((* set tech_line = single_line_highlight *))
-      ((* endif *))
-      detail_line([<<tech_line|replace('\\(', '(')|replace('\\)', ')')>>]);
-      ((* elif lowered_highlight.startswith("technologies -") *))
-      detail_line([<<single_line_highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
-      ((* else *))
-      bullet_line([<<single_line_highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
-      ((* endif *))
-
-      v(design_awards_paragraph_spacing);
-    ((* endif *))
-  ((* endfor *))
-  ((* endif *))
-})
-#v(design_awards_between_entries)
-
 ((* else *))
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
@@ -200,7 +106,7 @@
     ((* else *))
     text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* endif *))
-    ((* if formatted_entry_date and lowercase_section_title in ["awards", "professional development", "presentations"] *))
+    ((* if formatted_entry_date and lowercase_section_title in ["awards", "projects", "professional development", "presentations"] *))
     text(weight: "bold", "<<formatted_entry_date>>")
     ((* else *))
     "<<formatted_entry_date>>"
@@ -244,13 +150,20 @@
   ((* endif *))
 
   ((* if entry.highlights *))
-  ((* for highlight in entry.highlights *))
-    ((* set trimmed_highlight = highlight|trim *))
-    ((* set normalized_highlight = trimmed_highlight|replace('\r\n', '\n')|replace('\r', '\n') *))
-    ((* set single_line_highlight = ' '.join(normalized_highlight.split()) *))
-    bullet_line([<<single_line_highlight|replace('\\(', '(')|replace('\\)', ')')>>]);
-    v(design_awards_paragraph_spacing);  // Uses awards-specific spacing
-  ((* endfor *))
+  // Conditional rendering: bullets for awards, plain text for projects
+    ((* if section_title|lower == "projects" *))
+      // Projects section - plain text without bullets
+      ((* for highlight in entry.highlights *))
+      [<<unescape(highlight)|replace('- ', '\\- ')>>];
+      v(-6pt);
+      ((* endfor *))
+    ((* else *))
+      // Awards section - with bullets
+      ((* for highlight in entry.highlights *))
+      [• <<unescape(highlight)>>];
+      v(design_awards_paragraph_spacing);
+      ((* endfor *))
+    ((* endif *))
   ((* endif *))
 })
 
