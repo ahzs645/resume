@@ -114,3 +114,10 @@
   text("•"),
   body
 )
+
+// Left-aligned helper (same spacing as normal text, no bullet indent)
+#let detail_line(body) = grid(
+  columns: (1fr),
+  align: (top),
+  body
+)

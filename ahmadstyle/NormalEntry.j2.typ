@@ -1,10 +1,6 @@
-// Normal entry (for professional development, awards, etc.) matching LaTeX
-((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
-
 // Normal entry (for professional development, awards, projects, etc.) matching LaTeX
-// Import unescape macro
+((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
 ((* from 'ahmadstyle/components/unescape.j2.typ' import unescape *))
-
 
 ((* set lowercase_section_title = section_title|lower *))
 ((* set formatted_entry_date = "" *))
