@@ -1,13 +1,18 @@
 // Education entry matching LaTeX formatting exactly
-
-
-// Import macros
 ((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
 
-// Initialize variables
-((* set formatted_start_date = format_date(entry.start_date) *))
-((* set formatted_end_date = format_date(entry.end_date) *))
-((* set date_range = formatted_start_date + ' - ' + formatted_end_date *))
+((* set education_start = format_date(entry.start_date) *))
+((* set education_end = format_date(entry.end_date) *))
+((* set education_dates = "" *))
+((* if education_start and education_end *))
+  ((* set education_dates = education_start + ' – ' + education_end *))
+((* elif education_start *))
+  ((* set education_dates = education_start *))
+((* elif entry.date_string *))
+  ((* set education_dates = entry.date_string *))
+((* endif *))
+
+
 
 // Wrap entire entry in entry_content to keep it together
 #entry_content({

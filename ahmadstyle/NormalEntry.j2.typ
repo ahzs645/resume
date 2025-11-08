@@ -1,4 +1,5 @@
 // Normal entry (for professional development, awards, etc.) matching LaTeX
+((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
 
 // Normal entry (for professional development, awards, projects, etc.) matching LaTeX
 // Import unescape macro
@@ -6,6 +7,12 @@
 
 
 ((* set lowercase_section_title = section_title|lower *))
+((* set formatted_entry_date = "" *))
+((* if entry.date *))
+  ((* set formatted_entry_date = format_date(entry.date) *))
+((* elif entry.date_string *))
+  ((* set formatted_entry_date = entry.date_string *))
+((* endif *))
 
 ((* if section_title == "Media" *))
 // Customized layout for Media Links section
@@ -50,10 +57,12 @@
     ((* else *))
     text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* endif *))
-    ((* if entry.date_string *))
-    text(weight: "bold", "<<entry.date_string>>")
-    ((* else *))
+    ((* if formatted_entry_date *))
+    text(weight: "bold", "<<formatted_entry_date>>")
+    ((* elif entry.date *))
     #text(weight: "bold", "<<entry.date>>")
+    ((* else *))
+    ""
     ((* endif *))
   )
 
@@ -101,10 +110,10 @@
     ((* else *))
     text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* endif *))
-    ((* if entry.date_string and lowercase_section_title in ["awards", "projects", "professional development", "presentations"] *))
-    text(weight: "bold", "<<entry.date_string>>")
+    ((* if formatted_entry_date and lowercase_section_title in ["awards", "projects", "professional development", "presentations"] *))
+    text(weight: "bold", "<<formatted_entry_date>>")
     ((* else *))
-    "<<entry.date_string>>"
+    "<<formatted_entry_date>>"
     ((* endif *))
   )
 

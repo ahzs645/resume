@@ -1,11 +1,19 @@
 // Professional Development entry with dedicated spacing controls
+((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
+
+((* set professional_dev_date = "" *))
+((* if entry.date *))
+  ((* set professional_dev_date = format_date(entry.date) *))
+((* elif entry.date_string *))
+  ((* set professional_dev_date = entry.date_string *))
+((* endif *))
 
 // Main entry with bold name
 #grid(
   columns: (1fr, auto),
   align: (left, right),
   text(weight: "bold", "<<entry.name|safe>>"),
-  "<<entry.date_string>>"
+  "<<professional_dev_date>>"
 )
 
 ((* if entry.summary *))
