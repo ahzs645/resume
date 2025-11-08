@@ -1,23 +1,38 @@
 // Date formatting macro
-// Converts date strings like "2024-03" to "March 2024"
-// Handles "present" as a special case
+// Converts strings like "2024-03" to "March 2024" and gracefully handles:
+//   - "present" (any casing)
+//   - bare years like "2024"
+//   - missing/blank dates by returning an empty string
 ((* macro format_date(date_string) -*))
-((* if date_string == 'present' -*))
+((* set normalized = (date_string|string).strip() if date_string else "" -*))
+((* if not normalized -*))
+""
+((*- elif normalized|lower == 'present' -*))
 Present
-((*- elif date_string -*))
-((* set parts = date_string.split('-') -*))
-((* if parts[1] == '01' -*))January <<parts[0]>>
-((*- elif parts[1] == '02' -*))February <<parts[0]>>
-((*- elif parts[1] == '03' -*))March <<parts[0]>>
-((*- elif parts[1] == '04' -*))April <<parts[0]>>
-((*- elif parts[1] == '05' -*))May <<parts[0]>>
-((*- elif parts[1] == '06' -*))June <<parts[0]>>
-((*- elif parts[1] == '07' -*))July <<parts[0]>>
-((*- elif parts[1] == '08' -*))August <<parts[0]>>
-((*- elif parts[1] == '09' -*))September <<parts[0]>>
-((*- elif parts[1] == '10' -*))October <<parts[0]>>
-((*- elif parts[1] == '11' -*))November <<parts[0]>>
-((*- elif parts[1] == '12' -*))December <<parts[0]>>
+((*- else -*))
+((* set parts = normalized.split('-') -*))
+((* if parts|length == 1 -*))
+<<parts[0]>>
+((*- elif parts|length >= 2 -*))
+((* set month = parts[1].zfill(2) -*))
+((* set year = parts[0] -*))
+((* if month == '01' -*))January <<year>>
+((*- elif month == '02' -*))February <<year>>
+((*- elif month == '03' -*))March <<year>>
+((*- elif month == '04' -*))April <<year>>
+((*- elif month == '05' -*))May <<year>>
+((*- elif month == '06' -*))June <<year>>
+((*- elif month == '07' -*))July <<year>>
+((*- elif month == '08' -*))August <<year>>
+((*- elif month == '09' -*))September <<year>>
+((*- elif month == '10' -*))October <<year>>
+((*- elif month == '11' -*))November <<year>>
+((*- elif month == '12' -*))December <<year>>
+((*- else -*))
+<<normalized>>
+((*- endif -*))
+((*- else -*))
+<<normalized>>
 ((*- endif -*))
 ((*- endif -*))
 ((*- endmacro *))
