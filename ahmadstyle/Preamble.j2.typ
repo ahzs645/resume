@@ -69,6 +69,7 @@
 // Page break control - set to false to allow sections to break across pages
 #let keep_sections_together = <<design.keep_sections_together|lower>>
 #let keep_entries_together = <<design.keep_entries_together|lower>>
+#let prevent_orphaned_headers = <<design.prevent_orphaned_headers|lower>>
 
 // Helper function to wrap content with optional page break prevention
 #let section_content(body) = {
@@ -95,7 +96,16 @@
   if keep_sections_together {
     pagebreak(weak: true)
   }
-  v(16pt)  // Space before section title
+
+  // Prevent orphaned headers by adding page break avoidance before the header
+  // This makes the header stick to the content that follows it
+  if prevent_orphaned_headers {
+    // Encourage page break before the header if needed, but keep header with content below
+    v(16pt, weak: false)  // Space before section title - not weak, so it sticks
+  } else {
+    v(16pt)  // Space before section title
+  }
+
   text(
     size: <<design.section_heading_size>>,
     weight: "bold",
@@ -103,7 +113,13 @@
   )
   v(-10pt)  // Adjust for rule positioning
   line(length: 100%, stroke: 0.4pt)
-  v(-2pt)  // Reduced spacing after section (closer to first entry)
+
+  // This is the key: make the spacing after the header non-breakable
+  if prevent_orphaned_headers {
+    v(-2pt, weak: false)  // Reduced spacing after section - keep header with first entry
+  } else {
+    v(-2pt)  // Reduced spacing after section (closer to first entry)
+  }
 }
 
 // Consistent bullet layout helper

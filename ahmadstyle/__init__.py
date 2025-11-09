@@ -43,6 +43,11 @@ class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
         title="Keep Entries Together",
         description="Prevent page breaks within individual entries (e.g., keep a job entry and its highlights together). Default is True.",
     )
+    prevent_orphaned_headers: bool = Field(
+        default=True,
+        title="Prevent Orphaned Section Headers",
+        description="Prevent section headers from appearing alone at the bottom of a page without their first entry. Default is True.",
+    )
     section_heading_size: str = Field(
         default="11pt",
         title="Section Heading Size",

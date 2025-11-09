@@ -158,9 +158,9 @@
       v(-6pt);
       ((* endfor *))
     ((* else *))
-      // Awards section - with bullets
+      // Awards section - plain text without bullets
       ((* for highlight in entry.highlights *))
-      [• <<unescape(highlight)>>];
+      [<<unescape(highlight)>>];
       v(design_awards_paragraph_spacing);
       ((* endfor *))
     ((* endif *))
