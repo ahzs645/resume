@@ -110,41 +110,9 @@ def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) ->
     """Create a CV variant by excluding specified sections."""
     exclude_sections = config["exclude_sections"]
 
-    # Use a custom YAML loader that preserves order
-    def ordered_load(stream, Loader=yaml.SafeLoader, object_pairs_hook=OrderedDict):
-        class OrderedLoader(yaml.SafeLoader):
-            pass
-
-        def construct_mapping(loader, node):
-            loader.flatten_mapping(node)
-            return object_pairs_hook(loader.construct_pairs(node))
-
-        OrderedLoader.add_constructor(
-            yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping
-        )
-        return yaml.load(stream, OrderedLoader)
-
-    # Custom YAML dumper that preserves order
-    def ordered_dump(
-        data,
-        stream=None,
-        Dumper=yaml.SafeDumper,
-        **kwds,
-    ) -> bytes | str | None:
-        class OrderedDumper(yaml.SafeDumper):
-            pass
-
-        def _dict_representer(dumper, data):
-            return dumper.represent_mapping(
-                yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, data.items()
-            )
-
-        OrderedDumper.add_representer(OrderedDict, _dict_representer)
-        return yaml.dump(data, stream, OrderedDumper, **kwds)
-
     # Load the original YAML preserving order
     with open(base_yaml, "r", encoding="utf-8") as f:
-        cv_data = ordered_load(f)
+        cv_data = yaml.load(f, Loader=yaml.SafeLoader)
 
     # Remove excluded sections and filter entries with show: false
     if "cv" in cv_data and "sections" in cv_data["cv"]:
@@ -164,7 +132,13 @@ def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) ->
     # Create temporary YAML file
     temp_yaml = f"temp_{variant_name}_cv.yaml"
     with open(temp_yaml, "w", encoding="utf-8") as f:
-        ordered_dump(cv_data, f, default_flow_style=False, allow_unicode=True)
+        yaml.dump(
+            cv_data,
+            f,
+            default_flow_style=False,
+            allow_unicode=True,
+            sort_keys=False,
+        )
 
     # Render the CV
     output_folder = get_output_folder(variant_name)

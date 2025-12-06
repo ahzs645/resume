@@ -32,42 +32,6 @@ def main() -> None:
     print(f"Building {variant} resume: {config['description']}")
 
     if variant == "full":
-        # Use a custom YAML loader that preserves order
-        def ordered_load(
-            stream,
-            Loader=yaml.SafeLoader,
-            object_pairs_hook=OrderedDict,
-        ):
-            class OrderedLoader(yaml.SafeLoader):
-                pass
-
-            def construct_mapping(loader, node):
-                loader.flatten_mapping(node)
-                return object_pairs_hook(loader.construct_pairs(node))
-
-            OrderedLoader.add_constructor(
-                yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping
-            )
-            return yaml.load(stream, OrderedLoader)
-
-        # Custom YAML dumper that preserves order
-        def ordered_dump(
-            data: Any,
-            stream=None,
-            Dumper=yaml.SafeDumper,
-            **kwds,
-        ) -> bytes | str | None:
-            class OrderedDumper(yaml.SafeDumper):
-                pass
-
-            def _dict_representer(dumper, data):
-                return dumper.represent_mapping(
-                    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, data.items()
-                )
-
-            OrderedDumper.add_representer(OrderedDict, _dict_representer)
-            return yaml.dump(data, stream, OrderedDumper, **kwds)
-
         # Filter out entries with show: false even for full variant
         with open(base_yaml, "r", encoding="utf-8") as f:
             cv_data = ordered_load(f)
@@ -84,7 +48,13 @@ def main() -> None:
         # Create temporary filtered YAML
         temp_yaml = "temp_full_cv.yaml"
         with open(temp_yaml, "w", encoding="utf-8") as f:
-            ordered_dump(cv_data, f, default_flow_style=False, allow_unicode=True)
+            yaml.dump(
+                cv_data,
+                f,
+                default_flow_style=False,
+                allow_unicode=True,
+                sort_keys=False,
+            )
 
         # Render the filtered CV
         output_folder = build_clean.get_output_folder("full")
