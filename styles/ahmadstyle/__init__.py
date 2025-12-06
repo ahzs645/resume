@@ -12,6 +12,7 @@ from rendercv.data.models.base import RenderCVBaseModelWithoutExtraKeys
 
 class EntriesConfig(RenderCVBaseModelWithoutExtraKeys):
     """Configuration for entries."""
+
     show_time_span: list[str] = Field(
         default=[],
         title="Show Time Span",
