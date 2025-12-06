@@ -1,16 +1,12 @@
+import os
 import subprocess
 import sys
+from collections import OrderedDict
 from pathlib import Path
+from typing import Any
 
-import yaml.resolver
 import yaml
 import yaml.resolver
-import subprocess
-import sys
-import os
-from pathlib import Path
-from collections import OrderedDict
-from typing import Any
 
 from . import build_clean
 
@@ -57,7 +53,7 @@ def main() -> None:
         # Custom YAML dumper that preserves order
         def ordered_dump(
             data: Any,
-            stream: TextIOWrapper[_WrappedBuffer] | None = None,
+            stream=None,
             Dumper=yaml.SafeDumper,
             **kwds,
         ) -> bytes | str | None:

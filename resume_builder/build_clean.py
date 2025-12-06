@@ -127,7 +127,7 @@ def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) ->
     # Custom YAML dumper that preserves order
     def ordered_dump(
         data,
-        stream: TextIOWrapper[_WrappedBuffer] | None = None,
+        stream=None,
         Dumper=yaml.SafeDumper,
         **kwds,
     ) -> bytes | str | None:
