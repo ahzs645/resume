@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Simple wrapper for the Python resume builder
-# Usage: ./build-resume [variant]
-
-# Call the cross-platform Python wrapper
-exec python3 build.py "$@"
