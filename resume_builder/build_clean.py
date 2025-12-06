@@ -1,12 +1,13 @@
-import yaml
-import yaml.resolver
+import os
 import subprocess
 import sys
-import os
-from pathlib import Path
 from collections import OrderedDict
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+import yaml
+import yaml.resolver
 from dotenv import load_dotenv
-from typing import Any, Optional, List, Dict
 
 
 def flavor_filter(field_value: Dict[str, Any], flavor: List[str]) -> Any:
@@ -170,7 +171,15 @@ def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) ->
     rendercv_cmd = get_rendercv_command()
     print(f"  Rendering to {output_folder}...")
     result = subprocess.run(
-        [rendercv_cmd, "render", temp_yaml, "--output-folder-name", output_folder],
+        [
+            rendercv_cmd,
+            "render",
+            temp_yaml,
+            "--output-folder-name",
+            output_folder,
+            "--typst-path",
+            "ff/foonts",
+        ],
         capture_output=True,
         text=True,
     )
