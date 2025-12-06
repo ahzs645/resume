@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import yaml
 import yaml.resolver
 import subprocess
@@ -8,9 +6,10 @@ import os
 from pathlib import Path
 from collections import OrderedDict
 from dotenv import load_dotenv
+from typing import Any, Optional, List, Dict
 
 
-def flavor_filter(field_value, flavor):
+def flavor_filter(field_value: Dict[str, Any], flavor: List[str]) -> Any:
     list = []
     flavors_dict = field_value["flavors"]
     for flavors in flavor:
@@ -25,7 +24,11 @@ def flavor_filter(field_value, flavor):
     return list
 
 
-def subfilter(entry, tags=None, flavor=None):
+def subfilter(
+    entry: Dict[str, Any],
+    tags: Optional[List[str]] = None,
+    flavor: Optional[List[str]] = None,
+) -> Optional[Dict[str, Any]]:
     # To avoid issues with mutable default arguments
     tags = tags or []
     flavor = flavor or []
@@ -53,7 +56,11 @@ def subfilter(entry, tags=None, flavor=None):
     return entry
 
 
-def filter_entries(entries, tags=None, flavor=None):
+def filter_entries(
+    entries: List[Dict[str, Any]],
+    tags: Optional[List[str]] = None,
+    flavor: Optional[List[str]] = None,
+) -> List[Dict[str, Any]]:
     """Filter out entries with show: false."""
     filtered = []
     for entry in entries:
@@ -75,7 +82,7 @@ def filter_entries(entries, tags=None, flavor=None):
     return filtered
 
 
-def get_rendercv_command():
+def get_rendercv_command() -> str:
     """Get the rendercv command path, preferring venv if available."""
     # Check if venv/bin/rendercv exists
     venv_rendercv = Path("venv") / "bin" / "rendercv"
@@ -85,7 +92,7 @@ def get_rendercv_command():
     return "rendercv"
 
 
-def get_output_folder(variant_name):
+def get_output_folder(variant_name: str) -> str:
     """Get the output folder path based on .env configuration."""
     output_dir = os.getenv("OUTPUT_DIR", ".")
     output_folder_template = os.getenv("OUTPUT_FOLDER_NAME", "{variant}_resume")
@@ -98,7 +105,7 @@ def get_output_folder(variant_name):
         return str(Path(output_dir) / output_folder_name)
 
 
-def create_variant(base_yaml, variant_name, config):
+def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) -> bool:
     """Create a CV variant by excluding specified sections."""
     exclude_sections = config["exclude_sections"]
 
@@ -117,7 +124,12 @@ def create_variant(base_yaml, variant_name, config):
         return yaml.load(stream, OrderedLoader)
 
     # Custom YAML dumper that preserves order
-    def ordered_dump(data, stream=None, Dumper=yaml.SafeDumper, **kwds):
+    def ordered_dump(
+        data,
+        stream: TextIOWrapper[_WrappedBuffer] | None = None,
+        Dumper=yaml.SafeDumper,
+        **kwds,
+    ) -> bytes | str | None:
         class OrderedDumper(yaml.SafeDumper):
             pass
 
@@ -175,7 +187,7 @@ def create_variant(base_yaml, variant_name, config):
     return result.returncode == 0
 
 
-def load_variants():
+def load_variants() -> Dict[str, Dict[str, Any]]:
     """Load variant configurations from YAML file."""
     # Try YAML first, fall back to JSON for backward compatibility
     yaml_config = "resume-variants.yaml"
@@ -205,7 +217,7 @@ def load_variants():
         sys.exit(1)
 
 
-def get_yaml_file():
+def get_yaml_file() -> str:
     """Get the YAML file path based on .env configuration."""
     # Load environment variables
     load_dotenv()
@@ -268,89 +280,3 @@ def get_yaml_file():
             f"Error: Invalid SOURCE_MODE '{source_mode}'. Must be 'local' or 'remote'"
         )
         sys.exit(1)
-
-
-def main():
-    # Get YAML file from .env configuration
-    base_yaml = get_yaml_file()
-
-    # Load variants from JSON config
-    variants = load_variants()
-
-    # Parse command line arguments
-    variant = sys.argv[1] if len(sys.argv) > 1 else "full"
-
-    if variant not in variants:
-        print("Usage: ./build-clean.py [variant]")
-        print("Variants:")
-        for name, info in variants.items():
-            print(f"  {name:<12} - {info['description']}")
-        sys.exit(1)
-
-    config = variants[variant]
-    print(f"Building {variant} resume: {config['description']}")
-
-    if variant == "full":
-        # Use a custom YAML loader that preserves order
-        def ordered_load(stream, Loader=yaml.SafeLoader, object_pairs_hook=OrderedDict):
-            class OrderedLoader(yaml.SafeLoader):
-                pass
-
-            def construct_mapping(loader, node):
-                loader.flatten_mapping(node)
-                return object_pairs_hook(loader.construct_pairs(node))
-
-            OrderedLoader.add_constructor(
-                yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping
-            )
-            return yaml.load(stream, OrderedLoader)
-
-        # Custom YAML dumper that preserves order
-        def ordered_dump(data, stream=None, Dumper=yaml.SafeDumper, **kwds):
-            class OrderedDumper(yaml.SafeDumper):
-                pass
-
-            def _dict_representer(dumper, data):
-                return dumper.represent_mapping(
-                    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, data.items()
-                )
-
-            OrderedDumper.add_representer(OrderedDict, _dict_representer)
-            return yaml.dump(data, stream, OrderedDumper, **kwds)
-
-        # Filter out entries with show: false even for full variant
-        with open(base_yaml, "r", encoding="utf-8") as f:
-            cv_data = ordered_load(f)
-
-        # Filter entries in all sections
-        if "cv" in cv_data and "sections" in cv_data["cv"]:
-            sections = cv_data["cv"]["sections"]
-            for section_name, section_entries in sections.items():
-                if isinstance(section_entries, list):
-                    sections[section_name] = filter_entries(
-                        section_entries, config["tags"], config["flavors"]
-                    )
-
-        # Create temporary filtered YAML
-        temp_yaml = "temp_full_cv.yaml"
-        with open(temp_yaml, "w", encoding="utf-8") as f:
-            ordered_dump(cv_data, f, default_flow_style=False, allow_unicode=True)
-
-        # Render the filtered CV
-        output_folder = get_output_folder("full")
-        rendercv_cmd = get_rendercv_command()
-        result = subprocess.run(
-            [rendercv_cmd, "render", temp_yaml, "--output-folder-name", output_folder]
-        )
-
-        # Clean up temp file
-        Path(temp_yaml).unlink()
-        sys.exit(result.returncode)
-    else:
-        # Create variant with excluded sections
-        success = create_variant(base_yaml, variant, config)
-        sys.exit(0 if success else 1)
-
-
-if __name__ == "__main__":
-    main()

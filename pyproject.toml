@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "click>=8.3.1",
+    "dotenv>=0.9.9",
     "pyrefly>=0.44.2",
     "python-dotenv>=1.0.0",
     "pyyaml>=6.0",
@@ -15,7 +17,8 @@ dependencies = [
 [tool]
 
 [tool.pyrefly]
-project-includes = [
-    "**/*.py*",
-    "**/*.ipynb",
-]
+project-includes = ["**/*.py*", "**/*.ipynb"]
+implicit-any = "error"
+
+[tool.ruff]
+lint.select = ["ANN"]
