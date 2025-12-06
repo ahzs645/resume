@@ -2,6 +2,7 @@ import os
 import subprocess
 import sys
 from collections import OrderedDict
+from functools import cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -170,6 +171,7 @@ def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) ->
     return result.returncode == 0
 
 
+@cache  # Cache the load so we don't read the file multiple times
 def load_variants() -> Dict[str, Dict[str, Any]]:
     """Load variant configurations from YAML file."""
     # Try YAML first, fall back to JSON for backward compatibility

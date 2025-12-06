@@ -75,6 +75,15 @@ wheels = [
 ]
 
 [[package]]
+name = "iniconfig"
+version = "2.3.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/72/34/14ca021ce8e5dfedc35312d08ba8bf51fdd999c576889fc2c24cb97f4f10/iniconfig-2.3.0.tar.gz", hash = "sha256:c76315c77db068650d49c5b56314774a7804df16fee4402c1f19d6d15d8c4730", size = 20503, upload-time = "2025-10-18T21:55:43.219Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cb/b1/3846dd7f199d53cb17f49cba7e651e9ce294d8497c8c150530ed11865bb8/iniconfig-2.3.0-py3-none-any.whl", hash = "sha256:f631c04d2c48c52b84d0d0549c99ff3859c98df65b3101406327ecc7d53fbf12", size = 7484, upload-time = "2025-10-18T21:55:41.639Z" },
+]
+
+[[package]]
 name = "jinja2"
 version = "3.1.6"
 source = { registry = "https://pypi.org/simple" }
@@ -195,6 +204,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/1b/2a/d6e7fecd1bcd37e65fbb9386e492082bd84e196c9cab14e39166b35cea4b/phonenumbers-9.0.20.tar.gz", hash = "sha256:849788eec8e5a9737a99c8b906d18a62d9fced6497ba7033784b6a7e4c89bb2d", size = 2298276, upload-time = "2025-12-05T12:03:51.072Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/90/b0/e3fd0ae68bc51593ef6f77a44901d1fa14c1b230cdce848b50ed10881ca3/phonenumbers-9.0.20-py2.py3-none-any.whl", hash = "sha256:03bf5dd14891891284ba96f803d0e5e7e11b9306a0ec4fdf25756ada39eacb86", size = 2584219, upload-time = "2025-12-05T12:03:48.388Z" },
+]
+
+[[package]]
+name = "pluggy"
+version = "1.6.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f9/e2/3e91f31a7d2b083fe6ef3fa267035b518369d9511ffab804f839851d2779/pluggy-1.6.0.tar.gz", hash = "sha256:7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3", size = 69412, upload-time = "2025-05-15T12:30:07.975Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl", hash = "sha256:e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746", size = 20538, upload-time = "2025-05-15T12:30:06.134Z" },
 ]
 
 [[package]]
@@ -331,6 +349,22 @@ wheels = [
 ]
 
 [[package]]
+name = "pytest"
+version = "9.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "iniconfig" },
+    { name = "packaging" },
+    { name = "pluggy" },
+    { name = "pygments" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d1/db/7ef3487e0fb0049ddb5ce41d3a49c235bf9ad299b6a25d5780a89f19230f/pytest-9.0.2.tar.gz", hash = "sha256:75186651a92bd89611d1d9fc20f0b4345fd827c41ccd5c299a868a05d70edf11", size = 1568901, upload-time = "2025-12-06T21:30:51.014Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3b/ab/b3226f0bd7cdcf710fbede2b3548584366da3b19b5021e74f5bde2a8fa3f/pytest-9.0.2-py3-none-any.whl", hash = "sha256:711ffd45bf766d5264d487b917733b453d917afd2b0ad65223959f59089f875b", size = 374801, upload-time = "2025-12-06T21:30:49.154Z" },
+]
+
+[[package]]
 name = "python-dotenv"
 version = "1.2.1"
 source = { registry = "https://pypi.org/simple" }
@@ -430,10 +464,12 @@ dependencies = [
     { name = "click" },
     { name = "dotenv" },
     { name = "pyrefly" },
+    { name = "pytest" },
     { name = "python-dotenv" },
     { name = "pyyaml" },
     { name = "rendercv", extra = ["full"] },
     { name = "ruff" },
+    { name = "types-pyyaml" },
 ]
 
 [package.metadata]
@@ -441,10 +477,12 @@ requires-dist = [
     { name = "click", specifier = ">=8.3.1" },
     { name = "dotenv", specifier = ">=0.9.9" },
     { name = "pyrefly", specifier = ">=0.44.2" },
+    { name = "pytest", specifier = ">=9.0.2" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "rendercv", extras = ["full"], specifier = ">=1.0.0" },
     { name = "ruff", specifier = ">=0.14.8" },
+    { name = "types-pyyaml", specifier = ">=6.0.12.20250915" },
 ]
 
 [[package]]
@@ -558,6 +596,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/8f/28/7c85c8032b91dbe79725b6f17d2fffc595dff06a35c7a30a37bef73a1ab4/typer-0.20.0.tar.gz", hash = "sha256:1aaf6494031793e4876fb0bacfa6a912b551cf43c1e63c800df8b1a866720c37", size = 106492, upload-time = "2025-10-20T17:03:49.445Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/78/64/7713ffe4b5983314e9d436a90d5bd4f63b6054e2aca783a3cfc44cb95bbf/typer-0.20.0-py3-none-any.whl", hash = "sha256:5b463df6793ec1dca6213a3cf4c0f03bc6e322ac5e16e13ddd622a889489784a", size = 47028, upload-time = "2025-10-20T17:03:47.617Z" },
+]
+
+[[package]]
+name = "types-pyyaml"
+version = "6.0.12.20250915"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7e/69/3c51b36d04da19b92f9e815be12753125bd8bc247ba0470a982e6979e71c/types_pyyaml-6.0.12.20250915.tar.gz", hash = "sha256:0f8b54a528c303f0e6f7165687dd33fafa81c807fcac23f632b63aa624ced1d3", size = 17522, upload-time = "2025-09-15T03:01:00.728Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bd/e0/1eed384f02555dde685fff1a1ac805c1c7dcb6dd019c916fe659b1c1f9ec/types_pyyaml-6.0.12.20250915-py3-none-any.whl", hash = "sha256:e7d4d9e064e89a3b3cae120b4990cd370874d2bf12fa5f46c97018dd5d3c9ab6", size = 20338, upload-time = "2025-09-15T03:00:59.218Z" },
 ]
 
 [[package]]

@@ -1,40 +1,46 @@
-import os
 import subprocess
 import sys
-from collections import OrderedDict
 from pathlib import Path
-from typing import Any
 
+import click
 import yaml
 import yaml.resolver
 
 from . import build_clean
 
 
-def main() -> None:
+def variant_callback(ctx: click.Context, param: click.Parameter, value: str) -> str:
+    variants = build_clean.load_variants()
+    if value not in variants:
+        raise click.BadParameter(
+            f"Variant '{value}' not found. Available variants: {', '.join(variants.keys())}"
+        )
+    return value
+
+
+@click.command()
+@click.option(
+    "--variant",
+    help="Resume variant to build",
+    default="full",
+)
+def main(
+    variant: str,
+) -> None:
     # Get YAML file from .env configuration
     base_yaml = build_clean.get_yaml_file()
 
     # Load variants from JSON config
     variants = build_clean.load_variants()
 
-    # Parse command line arguments
-    variant = sys.argv[1] if len(sys.argv) > 1 else "full"
-
-    if variant not in variants:
-        print("Usage: ./build-clean.py [variant]")
-        print("Variants:")
-        for name, info in variants.items():
-            print(f"  {name:<12} - {info['description']}")
-        sys.exit(1)
-
     config = variants[variant]
-    print(f"Building {variant} resume: {config['description']}")
+
+    click.echo(f"Building {variant} resume: {config['description']}")
 
     if variant == "full":
         # Filter out entries with show: false even for full variant
         with open(base_yaml, "r", encoding="utf-8") as f:
-            cv_data = ordered_load(f)
+            cv_data = yaml.load(f, Loader=yaml.SafeLoader)
 
         # Filter entries in all sections
         if "cv" in cv_data and "sections" in cv_data["cv"]:
