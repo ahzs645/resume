@@ -31,7 +31,6 @@ ENV/
 .venv/
 
 # Editor files
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -45,3 +44,6 @@ ENV/
 test.yaml
 launch.json
 CV.yaml
+
+# cache
+.ruff_cache/
