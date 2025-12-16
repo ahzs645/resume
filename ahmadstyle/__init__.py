@@ -7,10 +7,10 @@ from typing import Literal
 # might I recommend Pyrefly as your type checker
 from pydantic import Field
 
-from rendercv.data.models.base import RenderCVBaseModelWithoutExtraKeys
+from rendercv.schema.models.base import BaseModelWithoutExtraKeys
 
 
-class EntriesConfig(RenderCVBaseModelWithoutExtraKeys):
+class EntriesConfig(BaseModelWithoutExtraKeys):
     """Configuration for entries."""
     show_time_span: list[str] = Field(
         default=[],
@@ -19,7 +19,7 @@ class EntriesConfig(RenderCVBaseModelWithoutExtraKeys):
     )
 
 
-class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
+class AhmadstyleThemeOptions(BaseModelWithoutExtraKeys):
     """This class is the data model of the theme options of the ahmadstyle theme."""
 
     theme: Literal["ahmadstyle"]
