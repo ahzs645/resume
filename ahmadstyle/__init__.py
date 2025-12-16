@@ -19,7 +19,7 @@ class EntriesConfig(BaseModelWithoutExtraKeys):
     )
 
 
-class AhmadstyleThemeOptions(BaseModelWithoutExtraKeys):
+class AhmadstyleTheme(BaseModelWithoutExtraKeys):
     """This class is the data model of the theme options of the ahmadstyle theme."""
 
     theme: Literal["ahmadstyle"]
@@ -65,4 +65,4 @@ class AhmadstyleThemeOptions(BaseModelWithoutExtraKeys):
     )
 
 
-theme = AhmadstyleThemeOptions
+theme = AhmadstyleTheme
