@@ -1,4 +1,4 @@
 # Resume Builder Dependencies
-rendercv[full]>=1.0.0
+rendercv[full]==2.3
 PyYAML>=6.0
 python-dotenv>=1.0.0
