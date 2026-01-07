@@ -12,18 +12,18 @@ from dotenv import load_dotenv
 
 
 def flavor_filter(field_value: Dict[str, Any], flavor: List[str]) -> Any:
-    list = []
+    flavor_values = []
     flavors_dict = field_value["flavors"]
     for flavors in flavor:
         if flavors_dict.get(flavors):
             value = flavors_dict.get(flavors)
-            list = list + value
+            flavor_values.extend(value)
 
     # If there was no match on flavors, pick the first one.
-    if not list:
-        list = next(iter(flavors_dict.values()), None)
+    if not flavor_values:
+        flavor_values = next(iter(flavors_dict.values()), None)
 
-    return list
+    return flavor_values
 
 
 def subfilter(
