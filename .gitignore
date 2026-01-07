@@ -2,6 +2,9 @@
 rendercv_output/
 *_resume/
 
+# CV files
+CV.yaml
+
 # Temporary CV files
 temp_*_cv.yaml
 
@@ -28,7 +31,6 @@ ENV/
 .venv/
 
 # Editor files
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -42,3 +44,6 @@ ENV/
 test.yaml
 launch.json
 CV.yaml
+
+# cache
+.ruff_cache/

@@ -1,0 +1,26 @@
+[project]
+name = "resume-builder"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.3.1",
+    "dotenv>=0.9.9",
+    "pyrefly>=0.44.2",
+    "pytest>=9.0.2",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0",
+    "rendercv[full]>=1.0.0",
+    "ruff>=0.14.8",
+    "types-pyyaml>=6.0.12.20250915",
+]
+
+[tool]
+
+[tool.pyrefly]
+project-includes = ["**/*.py*", "**/*.ipynb"]
+implicit-any = "error"
+
+[tool.ruff]
+lint.select = ["ANN"]
