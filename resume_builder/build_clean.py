@@ -5,14 +5,14 @@ import sys
 from collections import OrderedDict
 from functools import cache
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 import yaml
 import yaml.resolver
 from dotenv import load_dotenv
 
 
-def markdown_to_typst(text: str) -> str:
+def markdown_to_typst(text: Any) -> Any:
     """
     Convert markdown formatting to Typst syntax.
 
@@ -21,6 +21,12 @@ def markdown_to_typst(text: str) -> str:
         *italic* or _italic_     → #emph[italic]
         ***bold italic***        → #strong[#emph[bold italic]]
         [text](url)              → #link("url")[text]
+
+    Args:
+        text: Input text to convert. Non-string values are returned unchanged.
+
+    Returns:
+        Converted text with Typst markup, or original value if not a string.
     """
     if not isinstance(text, str):
         return text
@@ -36,7 +42,8 @@ def markdown_to_typst(text: str) -> str:
 
     # Italic: *text* or _text_
     text = re.sub(r"\*([^*]+)\*", r"#emph[\1]", text)
-    text = re.sub(r"_([^_\s][^_]*[^_\s])_", r"#emph[\1]", text)
+    # Underscore italic: requires non-whitespace, handles single char (_a_) and multi-char (_text_)
+    text = re.sub(r"_([^_\s](?:[^_]*[^_\s])?)_", r"#emph[\1]", text)
 
     # Links: [text](url)
     text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'#link("\2")[\1]', text)

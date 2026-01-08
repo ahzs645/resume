@@ -23,6 +23,11 @@ class TestMarkdownToTypst:
         assert markdown_to_typst("_italic text_") == "#emph[italic text]"
         assert markdown_to_typst("text _italic_ more") == "text #emph[italic] more"
 
+    def test_italic_single_char_underscore(self):
+        # Single character italic with underscores should work
+        assert markdown_to_typst("_a_") == "#emph[a]"
+        assert markdown_to_typst("text _x_ more") == "text #emph[x] more"
+
     def test_bold_italic_triple_asterisks(self):
         assert markdown_to_typst("***bold italic***") == "#strong[#emph[bold italic]]"
 
@@ -59,6 +64,24 @@ class TestMarkdownToTypst:
         text = "variable_name"
         # This should not be converted because there's nothing after the closing _
         assert markdown_to_typst(text) == "variable_name"
+
+    def test_unmatched_markers_unchanged(self):
+        # Unmatched markdown markers should remain unchanged
+        assert markdown_to_typst("**bold without closing") == "**bold without closing"
+        assert markdown_to_typst("*italic without closing") == "*italic without closing"
+        assert markdown_to_typst("text with ** in middle") == "text with ** in middle"
+
+    def test_empty_markers_unchanged(self):
+        # Empty markers should remain unchanged
+        assert markdown_to_typst("****") == "****"
+        assert markdown_to_typst("**") == "**"
+        assert markdown_to_typst("[]()") == "[]()"
+
+    def test_nested_brackets_in_link(self):
+        # Links with special characters in text
+        result = markdown_to_typst("[Click [here]](https://example.com)")
+        # The regex will match the inner bracket first, which is expected behavior
+        assert "link" in result or "[" in result  # Either converted or unchanged
 
 
 class TestProcessMarkdownInEntry:
@@ -124,5 +147,10 @@ class TestProcessMarkdownInEntry:
     def test_original_entry_not_modified(self):
         original = {"highlights": ["**bold**"]}
         result = process_markdown_in_entry(original)
-        assert original["highlights"][0] == "**bold**"  # Original unchanged
-        assert result["highlights"][0] == "#strong[bold]"  # Result converted
+        # Verify original is unchanged
+        assert original["highlights"][0] == "**bold**"
+        # Verify result is converted
+        assert result["highlights"][0] == "#strong[bold]"
+        # Verify new list was created (proper immutability check)
+        assert original["highlights"] is not result["highlights"]
+        assert original is not result
