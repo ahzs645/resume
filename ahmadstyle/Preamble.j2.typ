@@ -11,10 +11,15 @@
 )
 
 #set par(
-  justify: false, 
+  justify: false,
   leading: 0.52em,  // Slightly reduced to match LaTeX more closely
   first-line-indent: 0pt
 )
+
+// Configure headings for PDF outline without affecting visual layout
+// We handle all visual styling in section_heading function
+#set heading(numbering: none)
+#show heading: it => it.body  // Strip default heading styling, we apply our own
 
 // Remove page numbers
 #set page(numbering: none)
@@ -90,6 +95,7 @@
 }
 
 // Section formatting function - tighter spacing after section header
+// Uses heading element for PDF outline/bookmark support
 #let section_heading(title) = {
   // Add a weak page break before sections when keep_sections_together is enabled
   // This encourages page breaks between sections rather than within them
@@ -106,10 +112,17 @@
     v(16pt)  // Space before section title
   }
 
-  text(
-    size: <<design.section_heading_size>>,
-    weight: "bold",
-    upper(title)
+  // Use heading element for PDF outline/navigation support
+  // outlined: true adds it to PDF bookmarks, bookmarked: true ensures it appears in navigation
+  heading(
+    level: 1,
+    outlined: true,
+    bookmarked: true,
+    text(
+      size: <<design.section_heading_size>>,
+      weight: "bold",
+      upper(title)
+    )
   )
   v(-10pt)  // Adjust for rule positioning
   line(length: 100%, stroke: 0.4pt)

@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import sys
 from collections import OrderedDict
@@ -9,6 +10,82 @@ from typing import Any, Dict, List, Optional
 import yaml
 import yaml.resolver
 from dotenv import load_dotenv
+
+
+def markdown_to_typst(text: Any) -> Any:
+    """
+    Convert markdown formatting to Typst syntax.
+
+    Supported conversions:
+        **bold** or __bold__     → #strong[bold]
+        *italic* or _italic_     → #emph[italic]
+        ***bold italic***        → #strong[#emph[bold italic]]
+        [text](url)              → #link("url")[text]
+
+    Args:
+        text: Input text to convert. Non-string values are returned unchanged.
+
+    Returns:
+        Converted text with Typst markup, or original value if not a string.
+    """
+    if not isinstance(text, str):
+        return text
+
+    # Order matters: process triple markers before single/double
+    # Bold + italic: ***text*** or ___text___
+    text = re.sub(r"\*\*\*([^*]+)\*\*\*", r"#strong[#emph[\1]]", text)
+    text = re.sub(r"___([^_]+)___", r"#strong[#emph[\1]]", text)
+
+    # Bold: **text** or __text__
+    text = re.sub(r"\*\*([^*]+)\*\*", r"#strong[\1]", text)
+    text = re.sub(r"__([^_]+)__", r"#strong[\1]", text)
+
+    # Italic: *text* or _text_
+    text = re.sub(r"\*([^*]+)\*", r"#emph[\1]", text)
+    # Underscore italic: requires non-whitespace, handles single char (_a_) and multi-char (_text_)
+    text = re.sub(r"_([^_\s](?:[^_]*[^_\s])?)_", r"#emph[\1]", text)
+
+    # Links: [text](url)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'#link("\2")[\1]', text)
+
+    return text
+
+
+def process_markdown_in_entry(entry: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Apply markdown-to-Typst conversion to description fields in an entry.
+
+    Processes: highlights, summary, bullet, details
+    """
+    entry = entry.copy()
+
+    # Process highlights array
+    if "highlights" in entry and isinstance(entry["highlights"], list):
+        entry["highlights"] = [markdown_to_typst(h) for h in entry["highlights"]]
+
+    # Process summary field
+    if "summary" in entry and isinstance(entry["summary"], str):
+        entry["summary"] = markdown_to_typst(entry["summary"])
+
+    # Process bullet field (for BulletEntry)
+    if "bullet" in entry and isinstance(entry["bullet"], str):
+        entry["bullet"] = markdown_to_typst(entry["bullet"])
+
+    # Process details field (for OneLineEntry)
+    if "details" in entry and isinstance(entry["details"], str):
+        entry["details"] = markdown_to_typst(entry["details"])
+
+    # Process positions array (for ExperienceEntry with multiple positions)
+    if "positions" in entry and isinstance(entry["positions"], list):
+        processed_positions = []
+        for pos in entry["positions"]:
+            pos = pos.copy()
+            if "highlights" in pos and isinstance(pos["highlights"], list):
+                pos["highlights"] = [markdown_to_typst(h) for h in pos["highlights"]]
+            processed_positions.append(pos)
+        entry["positions"] = processed_positions
+
+    return entry
 
 
 def flavor_filter(field_value: Dict[str, Any], flavor: List[str]) -> Any:
@@ -63,9 +140,14 @@ def filter_entries(
     tags: Optional[List[str]] = None,
     flavor: Optional[List[str]] = None,
 ) -> List[Dict[str, Any]]:
-    """Filter out entries with show: false."""
+    """Filter out entries with show: false and apply markdown conversion."""
     filtered = []
     for entry in entries:
+        # Handle TextEntry (plain strings)
+        if isinstance(entry, str):
+            filtered.append(markdown_to_typst(entry))
+            continue
+
         # Also check positions within an entry
         if isinstance(entry, dict) and "positions" in entry:
             filtered_positions = []
@@ -79,6 +161,8 @@ def filter_entries(
 
         entry = subfilter(entry, tags, flavor)
         if entry:
+            # Apply markdown-to-Typst conversion to description fields
+            entry = process_markdown_in_entry(entry)
             filtered.append(entry)
 
     return filtered
