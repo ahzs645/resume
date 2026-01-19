@@ -1,0 +1,20 @@
+((* from 'ahmadstyle/components/date_formatter.j2.typ' import format_date *))
+
+((* set component_date_value = "" *))
+((* if entry.start_date or entry.end_date *))
+  ((* set component_start = format_date(entry.start_date) *))
+  ((* set component_end = format_date(entry.end_date) *))
+  ((* if component_start and component_end *))
+    ((* set component_date_value = component_start + ' – ' + component_end *))
+  ((* elif component_start *))
+    ((* set component_date_value = component_start *))
+  ((* elif component_end *))
+    ((* set component_date_value = component_end *))
+  ((* endif *))
+((* elif entry.date *))
+  ((* set component_date_value = format_date(entry.date) *))
+((* elif entry.date_string *))
+  ((* set component_date_value = entry.date_string *))
+((* endif *))
+
+<<component_date_value>>

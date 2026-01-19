@@ -1,0 +1,2 @@
+// Numbered entry
+<<entry.number>>
