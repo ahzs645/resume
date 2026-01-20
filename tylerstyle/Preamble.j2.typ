@@ -4,7 +4,7 @@
 )
 
 #set text(
-  font: "EB Garamond",
+  font: "GoogleSansFlex_9pt",
   size: <<design.font_size>>,
   lang: "en",
   region: "US",

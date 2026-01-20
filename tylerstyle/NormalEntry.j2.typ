@@ -106,7 +106,7 @@
     ((* else *))
     text(weight: "bold", "<<entry.name|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* endif *))
-    ((* if formatted_entry_date and lowercase_section_title in ["awards", "projects", "professional development", "presentations"] *))
+    ((* if formatted_entry_date and lowercase_section_title in ["awards", "projects", "professional development", "presentations", "achievements"] *))
     text(weight: "bold", "<<formatted_entry_date>>")
     ((* else *))
     "<<formatted_entry_date>>"
@@ -125,7 +125,7 @@
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    text(style: "italic", "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
+    text(size: 10pt, "<<entry.summary|replace('\\(', '(')|replace('\\)', ')')>>"),
     ((* if entry.location *))
     text(style: "italic", "<<entry.location>>")
     ((* else *))
