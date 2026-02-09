@@ -1,0 +1,214 @@
+name: Render Resume From Caller
+
+on:
+  workflow_call:
+    inputs:
+      yaml_path:
+        description: Path (relative to the caller repository root) to the CV YAML file
+        required: false
+        default: CV.yaml
+        type: string
+      variants:
+        description: Comma-separated list of resume variants to build
+        required: false
+        default: full
+        type: string
+      python_version:
+        description: Python version to use for RenderCV
+        required: false
+        default: '3.13'
+        type: string
+      builder_repository:
+        description: Repository that contains the resume builder scripts
+        required: false
+        default: ahzs645/resume
+        type: string
+      builder_ref:
+        description: Git ref (branch, tag, or SHA) for the builder repository
+        required: false
+        default: main
+        type: string
+      upload_artifacts:
+        description: Upload the generated resume folders as workflow artifacts
+        required: false
+        default: 'true'
+        type: string
+      publish_release:
+        description: Publish a GitHub release with the generated outputs
+        required: false
+        default: 'false'
+        type: string
+      release_overwrite:
+        description: Delete existing release/tag before publishing (supports rolling latest)
+        required: false
+        default: 'false'
+        type: string
+      release_tag:
+        description: Tag for the GitHub release (required when publish_release is true)
+        required: false
+        type: string
+      release_name:
+        description: Release name/title (defaults to release_tag when omitted)
+        required: false
+        default: ''
+        type: string
+      release_body:
+        description: Release notes/description
+        required: false
+        default: ''
+        type: string
+      release_draft:
+        description: Mark the release as a draft
+        required: false
+        default: 'false'
+        type: string
+      release_prerelease:
+        description: Mark the release as a prerelease
+        required: false
+        default: 'false'
+        type: string
+      variants_yaml_path:
+        description: Path to resume-variants.yaml (relative to caller repo root). If not provided, uses builder repo's variants.
+        required: false
+        default: ''
+        type: string
+      keep_sections_together:
+        description: Prevent page breaks within sections (true/false). Overrides CV.yaml setting.
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  render:
+    name: Render CV Variants
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout caller repository
+        uses: actions/checkout@v4
+        with:
+          path: data
+
+      - name: Checkout builder repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.builder_repository }}
+          ref: ${{ inputs.builder_ref }}
+          path: builder
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install dependencies
+        run: |
+          cd builder
+          python -m venv venv
+          venv/bin/pip install --upgrade pip
+          venv/bin/pip install -r requirements.txt
+
+      - name: Configure resume source
+        run: |
+          cd builder
+          printf "SOURCE_MODE=local\n" > .env
+          printf "YAML_FILE=%s\n" "../data/${{ inputs.yaml_path }}" >> .env
+          printf "OUTPUT_DIR=.\n" >> .env
+          printf "OUTPUT_FOLDER_NAME={variant}_resume\n" >> .env
+          printf "OUTPUT_FILENAME_PREFIX=resume\n" >> .env
+          if [ -n "${{ inputs.keep_sections_together }}" ]; then
+            printf "KEEP_SECTIONS_TOGETHER=%s\n" "${{ inputs.keep_sections_together }}" >> .env
+          fi
+
+      - name: Copy variants config if provided
+        run: |
+          if [ -n "${{ inputs.variants_yaml_path }}" ] && [ -f "data/${{ inputs.variants_yaml_path }}" ]; then
+            echo "Using variants config from caller repo: ${{ inputs.variants_yaml_path }}"
+            cp "data/${{ inputs.variants_yaml_path }}" builder/resume-variants.yaml
+          else
+            echo "Using default variants config from builder repo"
+          fi
+
+      - name: Build resume variants
+        run: |
+          set -euo pipefail
+          cd builder
+          IFS=',' read -ra variants <<< "${{ inputs.variants }}"
+          for variant_raw in "${variants[@]}"; do
+            variant=$(echo "$variant_raw" | xargs)
+            if [ -z "$variant" ]; then
+              continue
+            fi
+            echo "Generating variant: $variant"
+            venv/bin/python build-clean.py "$variant"
+          done
+
+      - name: Remove non-release files
+        run: |
+          cd builder
+          find . -type f -path "./*_resume/README.md" -delete || true
+
+      - name: Verify release inputs
+        if: inputs.publish_release == 'true'
+        run: |
+          if [ -z "${{ inputs.release_tag }}" ]; then
+            echo "release_tag input is required when publish_release=true" >&2
+            exit 1
+          fi
+
+      - name: Remove existing release (overwrite mode)
+        if: inputs.publish_release == 'true' && inputs.release_overwrite == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          if [ -z "$RELEASE_TAG" ]; then
+            echo "release_tag input is required when release_overwrite=true" >&2
+            exit 1
+          fi
+          gh release delete "$RELEASE_TAG" --yes >/dev/null 2>&1 || true
+          gh api --method DELETE "repos/${GITHUB_REPOSITORY}/git/refs/tags/$RELEASE_TAG" >/dev/null 2>&1 || true
+
+      - name: Validate release assets
+        if: inputs.publish_release == 'true'
+        run: |
+          cd builder
+          shopt -s nullglob
+          files=( *_resume/*.pdf *_resume/*.png *_resume/*.html *_resume/*.md )
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No resume output files (PDF/PNG/HTML/MD) found for release." >&2
+            exit 1
+          fi
+
+      - name: Publish GitHub release
+        if: inputs.publish_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          name: ${{ inputs.release_name != '' && inputs.release_name || inputs.release_tag }}
+          body: ${{ inputs.release_body }}
+          draft: ${{ inputs.release_draft }}
+          prerelease: ${{ inputs.release_prerelease }}
+          files: |
+            builder/*_resume/*.pdf
+            builder/*_resume/*.png
+            builder/*_resume/*.html
+            builder/*_resume/*.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Upload resume artifacts
+        if: inputs.upload_artifacts == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-variants
+          path: |
+            builder/*_resume/
+
+      - name: List generated outputs
+        if: always()
+        run: |
+          cd builder
+          find . -maxdepth 1 -type d -name "*_resume" -exec echo "{}" \;
