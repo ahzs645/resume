@@ -15,6 +15,9 @@ dependencies = [
     "types-pyyaml>=6.0.12.20250915",
 ]
 
+[tool.setuptools.packages.find]
+include = ["resume_builder*"]
+
 [tool]
 
 [tool.pyrefly]
