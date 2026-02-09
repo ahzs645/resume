@@ -108,7 +108,7 @@ jobs:
           cd builder
           python -m venv venv
           venv/bin/pip install --upgrade pip
-          venv/bin/pip install -r requirements.txt
+          venv/bin/pip install .
 
       - name: Configure resume source
         run: |
@@ -142,7 +142,7 @@ jobs:
               continue
             fi
             echo "Generating variant: $variant"
-            venv/bin/python build-clean.py "$variant"
+            venv/bin/python main.py --variant "$variant"
           done
 
       - name: Remove non-release files
