@@ -72,9 +72,9 @@
 #let design_publication_after_authors = -4pt
 
 // Page break control - set to false to allow sections to break across pages
-#let keep_sections_together = <<design.keep_sections_together|lower>>
-#let keep_entries_together = <<design.keep_entries_together|lower>>
-#let prevent_orphaned_headers = <<design.prevent_orphaned_headers|lower>>
+#let keep_sections_together = {{ design.keep_sections_together|lower }}
+#let keep_entries_together = {{ design.keep_entries_together|lower }}
+#let prevent_orphaned_headers = {{ design.prevent_orphaned_headers|lower }}
 
 // Helper function to wrap content with optional page break prevention
 #let section_content(body) = {
@@ -119,7 +119,7 @@
     outlined: true,
     bookmarked: true,
     text(
-      size: <<design.section_heading_size>>,
+      size: {{ design.section_heading_size }},
       weight: "bold",
       upper(title)
     )

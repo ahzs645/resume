@@ -1,4 +1,4 @@
-// Experience entry template for rendercv 2.6
+// Experience entry template
 // Uses pre-processed DATE field from RenderCV
 
 // Wrap entire entry in entry_content to keep it together

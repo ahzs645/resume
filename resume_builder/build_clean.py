@@ -75,17 +75,66 @@ def process_markdown_in_entry(entry: Dict[str, Any]) -> Dict[str, Any]:
     if "details" in entry and isinstance(entry["details"], str):
         entry["details"] = markdown_to_typst(entry["details"])
 
-    # Process positions array (for ExperienceEntry with multiple positions)
-    if "positions" in entry and isinstance(entry["positions"], list):
-        processed_positions = []
-        for pos in entry["positions"]:
-            pos = pos.copy()
-            if "highlights" in pos and isinstance(pos["highlights"], list):
-                pos["highlights"] = [markdown_to_typst(h) for h in pos["highlights"]]
-            processed_positions.append(pos)
-        entry["positions"] = processed_positions
-
     return entry
+
+
+def expand_positions(entry: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Expand an entry with nested positions into multiple separate entries.
+
+    For rendercv 2.6 compatibility, converts entries like:
+        company: Acme Corp
+        positions:
+          - title: Senior Dev
+            start_date: 2022-01
+            ...
+          - title: Junior Dev
+            start_date: 2020-01
+            ...
+
+    Into separate entries:
+        - company: Acme Corp
+          position: Senior Dev
+          start_date: 2022-01
+          _is_first_position: true
+          ...
+        - company: Acme Corp
+          position: Junior Dev
+          start_date: 2020-01
+          _is_continuation: true
+          ...
+    """
+    if "positions" not in entry or not isinstance(entry["positions"], list):
+        return [entry]
+
+    positions = entry["positions"]
+    expanded = []
+
+    for i, pos in enumerate(positions):
+        new_entry = entry.copy()
+        # Remove the positions array
+        del new_entry["positions"]
+
+        # Copy position fields to entry level
+        new_entry["position"] = pos.get("title", pos.get("position", ""))
+        if "start_date" in pos:
+            new_entry["start_date"] = pos["start_date"]
+        if "end_date" in pos:
+            new_entry["end_date"] = pos["end_date"]
+        if "highlights" in pos:
+            new_entry["highlights"] = [markdown_to_typst(h) for h in pos["highlights"]]
+
+        # Add markers for template styling
+        if i == 0:
+            new_entry["_is_first_position"] = True
+        else:
+            new_entry["_is_continuation"] = True
+            # Don't repeat company name for continuation entries
+            new_entry["_hide_company"] = True
+
+        expanded.append(new_entry)
+
+    return expanded
 
 
 def flavor_filter(field_value: Dict[str, Any], flavor: List[str]) -> Any:
@@ -140,7 +189,7 @@ def filter_entries(
     tags: Optional[List[str]] = None,
     flavor: Optional[List[str]] = None,
 ) -> List[Dict[str, Any]]:
-    """Filter out entries with show: false and apply markdown conversion."""
+    """Filter out entries with show: false, apply markdown conversion, and expand positions."""
     filtered = []
     for entry in entries:
         # Handle TextEntry (plain strings)
@@ -158,12 +207,22 @@ def filter_entries(
             if filtered_positions:  # Only include entry if it has visible positions
                 entry = entry.copy()
                 entry["positions"] = filtered_positions
+            else:
+                continue  # Skip if no positions remain after filtering
 
         entry = subfilter(entry, tags, flavor)
         if entry:
-            # Apply markdown-to-Typst conversion to description fields
-            entry = process_markdown_in_entry(entry)
-            filtered.append(entry)
+            # Expand entries with nested positions into separate entries
+            expanded_entries = expand_positions(entry)
+            for exp_entry in expanded_entries:
+                # Apply markdown-to-Typst conversion to description fields
+                exp_entry = process_markdown_in_entry(exp_entry)
+                # Remove custom fields that rendercv doesn't understand
+                exp_entry.pop("_is_first_position", None)
+                exp_entry.pop("_is_continuation", None)
+                exp_entry.pop("_hide_company", None)
+                exp_entry.pop("show_date_in_position", None)
+                filtered.append(exp_entry)
 
     return filtered
 

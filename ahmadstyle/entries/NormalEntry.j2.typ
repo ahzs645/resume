@@ -1,30 +1,36 @@
-// Experience entry template for rendercv 2.6
-// Uses pre-processed DATE field from RenderCV
+// Normal entry template - simplified for RenderCV v2.6
 
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
-{% if entry.company %}
-  // Company header
+{% if entry.name %}
+  // Main entry with bold name
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    [#text(weight: "bold")[{{ entry.company }}]],
+    [#text(weight: "bold")[{{ entry.name }}]],
     text(weight: "bold", "{{ entry.DATE.split('\n')[0] if entry.DATE else '' }}")
   )
-  v(design_experience_after_company_header)
 {% endif %}
 
-{% if entry.position %}
-  // Position line
+{% if entry.summary %}
+  v(design_professional_dev_after_name)
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    [#text(style: "italic")[{{ entry.position }}]],
+    [#text(style: "italic")[{{ entry.summary }}]],
     {% if entry.location %}
     text(style: "italic", "{{ entry.location }}")
     {% else %}
     ""
     {% endif %}
+  )
+  v(design_professional_dev_after_summary)
+{% elif entry.location %}
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    "",
+    text(style: "italic", "{{ entry.location }}")
   )
 {% endif %}
 
@@ -37,4 +43,4 @@
 {% endif %}
 })
 
-#v(design_experience_between_companies)
+#v(design_professional_dev_between_entries)
