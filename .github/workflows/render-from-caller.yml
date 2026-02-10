@@ -110,6 +110,13 @@ jobs:
           venv/bin/pip install --upgrade pip
           venv/bin/pip install .
 
+      - name: Copy custom theme next to CV.yaml
+        run: |
+          if [ -d "builder/ahmadstyle" ]; then
+            cp -r builder/ahmadstyle data/
+            echo "Copied ahmadstyle theme to data directory"
+          fi
+
       - name: Configure resume source
         run: |
           cd builder
