@@ -7,7 +7,7 @@ from typing import Literal
 # might I recommend Pyrefly as your type checker
 from pydantic import Field
 
-from rendercv.data.models.base import RenderCVBaseModelWithoutExtraKeys
+from rendercv.data.models.base import RenderCVRenderCVBaseModelWithoutExtraKeys
 
 
 class EntriesConfig(RenderCVBaseModelWithoutExtraKeys):
