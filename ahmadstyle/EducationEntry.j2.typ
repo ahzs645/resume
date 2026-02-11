@@ -1,8 +1,8 @@
 // Education entry matching LaTeX formatting exactly
 {% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
 
-{% set education_start = format_date(entry.start_date) %}
-{% set education_end = format_date(entry.end_date) %}
+{% set education_start = format_date(entry.start_date) if entry.start_date else "" %}
+{% set education_end = format_date(entry.end_date) if entry.end_date else "" %}
 {% set education_dates = "" %}
 {% if education_start and education_end %}
   {% set education_dates = education_start + ' – ' + education_end %}
