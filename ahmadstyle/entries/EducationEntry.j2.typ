@@ -21,8 +21,7 @@
     columns: (1fr, auto),
     align: (left, right),
     text(weight: "bold", "{{ entry.institution|replace('\\(', '(')|replace('\\)', ')') }}"),
-    // Match legacy 2.0 output: keep institution date column empty.
-    text(weight: "bold", "")
+    text(weight: "bold", "{{ education_dates }}")
   )
 
   v(design_education_after_institution)

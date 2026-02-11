@@ -166,8 +166,10 @@
     {% else %}
       // Awards section - plain text without bullets
       {% for highlight in entry.highlights %}
+      {% if unescape(highlight)|trim %}
       [{{ unescape(highlight) }}];
       v(design_awards_paragraph_spacing);
+      {% endif %}
       {% endfor %}
     {% endif %}
   {% endif %}

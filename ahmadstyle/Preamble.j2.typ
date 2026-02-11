@@ -43,7 +43,7 @@
 // OTHER SECTION SPACING CONTROLS
 #let design-entries-vertical-space-between-entries = 12pt
 #let design_certifications_skills_between_entries = -8pt        // Negative spacing between certifications and skills
-#let design_section_ending_spacing = 4pt
+#let design_section_ending_spacing = -2pt
 #let design_normal_entry_paragraph_spacing = 1pt
 #let design_normal_entry_between_entries = -6pt
 #let design_professional_dev_after_name = -6pt        
@@ -103,34 +103,46 @@
     pagebreak(weak: true)
   }
 
-  // Prevent orphaned headers by adding page break avoidance before the header
-  // This makes the header stick to the content that follows it
-  if prevent_orphaned_headers {
-    // Encourage page break before the header if needed, but keep header with content below
-    v(16pt, weak: false)  // Space before section title - not weak, so it sticks
-  } else {
-    v(16pt)  // Space before section title
-  }
-
   // Use heading element for PDF outline/navigation support
   // outlined: true adds it to PDF bookmarks, bookmarked: true ensures it appears in navigation
-  heading(
-    level: 1,
-    outlined: true,
-    bookmarked: true,
-    text(
-      size: {{ design.section_heading_size }},
-      weight: "bold",
-      upper(title)
-    )
-  )
-  v(-10pt)  // Adjust for rule positioning
-  line(length: 100%, stroke: 0.4pt)
-
-  // This is the key: make the spacing after the header non-breakable
   if prevent_orphaned_headers {
-    v(-2pt, weak: false)  // Reduced spacing after section - keep header with first entry
+    // Keep section header off the bottom of a page by reserving a small amount of
+    // space for the first entry in an unbreakable block, then compensating it.
+    block(
+      breakable: false,
+      {
+        v(6pt, weak: false)  // Reduced space before section title
+        heading(
+          level: 1,
+          outlined: true,
+          bookmarked: true,
+          text(
+            size: {{ design.section_heading_size }},
+            weight: "bold",
+            upper(title)
+          )
+        )
+        v(-10pt)  // Adjust for rule positioning
+        line(length: 100%, stroke: 0.4pt)
+        v(-2pt, weak: false)
+        v(3.2em)
+      },
+    )
+    v(-3.2em)
   } else {
+    v(6pt)  // Reduced space before section title
+    heading(
+      level: 1,
+      outlined: true,
+      bookmarked: true,
+      text(
+        size: {{ design.section_heading_size }},
+        weight: "bold",
+        upper(title)
+      )
+    )
+    v(-10pt)  // Adjust for rule positioning
+    line(length: 100%, stroke: 0.4pt)
     v(-2pt)  // Reduced spacing after section (closer to first entry)
   }
 }
