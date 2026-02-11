@@ -1,23 +1,78 @@
-// Normal entry template - simplified for RenderCV v2.6
+// Normal entry (for professional development, awards, projects, etc.) matching LaTeX
+{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'ahmadstyle/components/unescape.j2.typ' import unescape %}
 
-// Wrap entire entry in entry_content to keep it together
-#entry_content({
-{% if entry.name %}
-  // Main entry with bold name
-  grid(
-    columns: (1fr, auto),
-    align: (left, right),
-    [#text(weight: "bold")[{{ entry.name }}]],
-    text(weight: "bold", "{{ entry.DATE.split('\n')[0] if entry.DATE else '' }}")
-  )
+{% set lowercase_section_title = section_title|lower if section_title is defined else "" %}
+{% set formatted_entry_date = "" %}
+{% if entry.date %}
+  {% set formatted_entry_date = format_date(entry.date) %}
+{% elif entry.date_string %}
+  {% set formatted_entry_date = entry.date_string %}
 {% endif %}
 
-{% if entry.summary %}
+{% set first_highlight = entry.highlights[0]|string if entry.highlights else "" %}
+{% set first_highlight_lower = first_highlight|lower %}
+{% set is_project_like = first_highlight_lower.startswith("technologies -") or first_highlight_lower.startswith("technologies\\-") %}
+
+{% if section_title is defined and section_title == "Media" %}
+// Customized layout for Media Links section
+#entry_content({
+  // Bold media title without bullet marker
+  grid(
+    columns: (1fr),
+    align: (left),
+    text(weight: "bold", "{{ entry.name|replace('\\(', '(')|replace('\\)', ')') }}")
+  )
+
+  // Optional summary/descriptor line
+  {% if entry.summary %}
+  v(design_media_between_lines)
+  grid(
+    columns: (1fr),
+    align: (left),
+    text(style: "italic", "{{ entry.summary|replace('\\(', '(')|replace('\\)', ')') }}")
+  )
+  {% endif %}
+
+  // Dedicated line for the media URL
+  {% if entry.url %}
+  v(design_media_between_lines)
+  grid(
+    columns: (1fr),
+    align: (left),
+    link("{{ entry.url }}")[{{ entry.url|string }}]
+  )
+  {% endif %}
+})
+#v(design_media_between_entries)
+#v(design-entries-vertical-space-between-entries)
+
+{% elif lowercase_section_title == "presentations" %}
+// Custom layout for presentations to keep dates aligned with last line
+#entry_content({
+  grid(
+    columns: (1fr, auto),
+    align: (left, bottom),
+    {% if entry.url %}
+    link("{{ entry.url }}")[#text(weight: "bold", "{{ entry.name|replace('\\(', '(')|replace('\\)', ')') }}")],
+    {% else %}
+    text(weight: "bold", "{{ entry.name|replace('\\(', '(')|replace('\\)', ')') }}"),
+    {% endif %}
+    {% if formatted_entry_date %}
+    text(weight: "bold", "{{ formatted_entry_date }}")
+    {% elif entry.date %}
+    #text(weight: "bold", "{{ entry.date }}")
+    {% else %}
+    ""
+    {% endif %}
+  )
+
+  {% if entry.summary %}
   v(design_professional_dev_after_name)
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    [#text(style: "italic")[{{ entry.summary }}]],
+    text(style: "italic", "{{ entry.summary|replace('\\(', '(')|replace('\\)', ')') }}"),
     {% if entry.location %}
     text(style: "italic", "{{ entry.location }}")
     {% else %}
@@ -25,22 +80,105 @@
     {% endif %}
   )
   v(design_professional_dev_after_summary)
-{% elif entry.location %}
+  {% elif entry.location %}
   grid(
     columns: (1fr, auto),
     align: (left, right),
     "",
     text(style: "italic", "{{ entry.location }}")
   )
-{% endif %}
+  {% endif %}
 
-{% if entry.highlights %}
-  v(design_experience_before_highlights)
-{% for highlight in entry.highlights %}
-  bullet_line([{{ highlight }}])
-  v(design_experience_between_highlights)
-{% endfor %}
-{% endif %}
+  {% if entry.highlights %}
+  v(design_professional_dev_after_summary)
+  {% for highlight in entry.highlights %}
+  bullet_line([{{ highlight|replace('\\(', '(')|replace('\\)', ')') }}]);
+  v(design_professional_dev_between_entries);
+  {% endfor %}
+  {% endif %}
+})
+#v(design_professional_dev_between_entries)
+#v(design-entries-vertical-space-between-entries)
+
+{% else %}
+// Wrap entire entry in entry_content to keep it together
+#entry_content({
+  // Main entry with bold name (hyperlinked if URL available)
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    {% if entry.url %}
+    link("{{ entry.url }}")[#text(weight: "bold", "{{ entry.name|replace('\\(', '(')|replace('\\)', ')') }}")],
+    {% else %}
+    text(weight: "bold", "{{ entry.name|replace('\\(', '(')|replace('\\)', ')') }}"),
+    {% endif %}
+    {% if formatted_entry_date %}
+    text(weight: "bold", "{{ formatted_entry_date }}")
+    {% else %}
+    "{{ formatted_entry_date }}"
+    {% endif %}
+  )
+
+  // Add spacing after name - different for Awards vs Professional Development
+  {% if entry.highlights %}
+  v(design_awards_after_name)  // Awards: spacing after name
+  {% else %}
+  v(design_professional_dev_after_name)  // Professional Dev: spacing after name
+  {% endif %}
+
+  {% if entry.summary %}
+  // Italic summary line (like institution/organization)
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    text(style: "italic", "{{ entry.summary|replace('\\(', '(')|replace('\\)', ')') }}"),
+    {% if entry.location %}
+    text(style: "italic", "{{ entry.location }}")
+    {% else %}
+    ""
+    {% endif %}
+  )
+
+  // Add spacing after summary - different for Awards vs Professional Development
+  {% if entry.highlights %}
+  v(design_awards_after_summary)  // Awards: spacing after summary
+  {% else %}
+  v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
+  {% endif %}
+
+  {% elif entry.location %}
+  grid(
+    columns: (1fr, auto),
+    align: (left, right),
+    "",
+    "{{ entry.location }}"
+  )
+  {% endif %}
+
+  {% if entry.highlights %}
+  // Conditional rendering: bullets for awards, plain text for projects
+    {% if is_project_like %}
+      // Projects section - plain text without bullets
+      {% for highlight in entry.highlights %}
+      [{{ unescape(highlight)|replace('- ', '\\- ') }}];
+      v(design_awards_paragraph_spacing);
+      {% endfor %}
+    {% else %}
+      // Awards section - plain text without bullets
+      {% for highlight in entry.highlights %}
+      [{{ unescape(highlight) }}];
+      v(design_awards_paragraph_spacing);
+      {% endfor %}
+    {% endif %}
+  {% endif %}
 })
 
-#v(design_professional_dev_between_entries)
+// Conditional spacing based on entry type
+{% if entry.highlights %}
+#v(design_awards_between_entries)  // Awards spacing between entries
+{% else %}
+#v(design_professional_dev_between_entries)  // Professional development spacing between entries
+{% endif %}
+#v(design-entries-vertical-space-between-entries)
+
+{% endif %}

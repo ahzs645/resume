@@ -2,7 +2,7 @@
 {% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
 {% from 'ahmadstyle/components/unescape.j2.typ' import unescape %}
 
-{% set lowercase_section_title = section_title|lower %}
+{% set lowercase_section_title = section_title|lower if section_title is defined else "" %}
 {% set formatted_entry_date = "" %}
 {% if entry.date %}
   {% set formatted_entry_date = format_date(entry.date) %}
@@ -10,7 +10,11 @@
   {% set formatted_entry_date = entry.date_string %}
 {% endif %}
 
-{% if section_title == "Media" %}
+{% set first_highlight = entry.highlights[0]|string if entry.highlights else "" %}
+{% set first_highlight_lower = first_highlight|lower %}
+{% set is_project_like = first_highlight_lower.startswith("technologies -") or first_highlight_lower.startswith("technologies\\-") %}
+
+{% if section_title is defined and section_title == "Media" %}
 // Customized layout for Media Links section
 #entry_content({
   // Bold media title without bullet marker
@@ -106,7 +110,7 @@
     {% else %}
     text(weight: "bold", "{{ entry.name|replace('\\(', '(')|replace('\\)', ')') }}"),
     {% endif %}
-    {% if formatted_entry_date and lowercase_section_title in ["awards", "projects", "professional development", "presentations"] %}
+    {% if formatted_entry_date %}
     text(weight: "bold", "{{ formatted_entry_date }}")
     {% else %}
     "{{ formatted_entry_date }}"
@@ -114,8 +118,10 @@
   )
 
   // Add spacing after name - different for Awards vs Professional Development
-  {% if entry.highlights %}
+  {% if entry.highlights and not is_project_like %}
   v(design_awards_after_name)  // Awards: spacing after name
+  {% elif is_project_like %}
+  v(0pt)
   {% else %}
   v(design_professional_dev_after_name)  // Professional Dev: spacing after name
   {% endif %}
@@ -134,8 +140,10 @@
   )
 
   // Add spacing after summary - different for Awards vs Professional Development
-  {% if entry.highlights %}
+  {% if entry.highlights and not is_project_like %}
   v(design_awards_after_summary)  // Awards: spacing after summary
+  {% elif is_project_like %}
+  v(2pt)
   {% else %}
   v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
   {% endif %}
@@ -151,11 +159,11 @@
 
   {% if entry.highlights %}
   // Conditional rendering: bullets for awards, plain text for projects
-    {% if section_title|lower == "projects" %}
+    {% if is_project_like %}
       // Projects section - plain text without bullets
       {% for highlight in entry.highlights %}
       [{{ unescape(highlight)|replace('- ', '\\- ') }}];
-      v(-6pt);
+      v(2pt);
       {% endfor %}
     {% else %}
       // Awards section - plain text without bullets
@@ -168,9 +176,12 @@
 })
 
 // Conditional spacing based on entry type
-{% if entry.highlights %}
+{% if entry.highlights and not is_project_like %}
 #v(design_awards_between_entries)  // Awards spacing between entries
+{% elif is_project_like %}
+#v(10pt)
 {% else %}
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries
 {% endif %}
+
 {% endif %}

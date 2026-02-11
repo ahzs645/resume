@@ -1,5 +1,6 @@
 import os
 import re
+import shutil
 import subprocess
 import sys
 from collections import OrderedDict
@@ -10,6 +11,87 @@ from typing import Any, Dict, List, Optional
 import yaml
 import yaml.resolver
 from dotenv import load_dotenv
+import rendercv_fonts
+import typst
+
+POSITION_SPACING_SAME_MARKER = "RCVSPACINGSAME:"
+POSITION_SPACING_DIFF_MARKER = "RCVSPACINGDIFF:"
+
+MONTH_NAMES = {
+    "01": "January",
+    "02": "February",
+    "03": "March",
+    "04": "April",
+    "05": "May",
+    "06": "June",
+    "07": "July",
+    "08": "August",
+    "09": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December",
+}
+
+
+def format_date_for_display(date_string: Any) -> str:
+    """Format dates like 2024-03 to March 2024 and normalize present."""
+    if not date_string:
+        return ""
+
+    normalized = str(date_string).strip()
+    if not normalized:
+        return ""
+
+    if normalized.lower() == "present":
+        return "Present"
+
+    parts = normalized.split("-")
+    if len(parts) == 1:
+        return parts[0]
+
+    if len(parts) >= 2:
+        year = parts[0]
+        month = parts[1].zfill(2)
+        month_name = MONTH_NAMES.get(month)
+        if month_name:
+            return f"{month_name} {year}"
+
+    return normalized
+
+
+def format_date_range_for_display(start_date: Any, end_date: Any) -> str:
+    """Build a formatted date range with long month names."""
+    start = format_date_for_display(start_date)
+    end = format_date_for_display(end_date)
+    if start and end:
+        return f"{start} – {end}"
+    return start or end
+
+
+def normalize_position_title(pos: Dict[str, Any]) -> str:
+    """Get position title from either title or position keys."""
+    return str(pos.get("title", pos.get("position", "")))
+
+
+def select_company_start_date(positions: List[Dict[str, Any]]) -> Any:
+    """Pick the earliest start date from nested positions."""
+    start_dates = [pos.get("start_date") for pos in positions if pos.get("start_date")]
+    if not start_dates:
+        return None
+    return min(str(d) for d in start_dates)
+
+
+def select_company_end_date(positions: List[Dict[str, Any]]) -> Any:
+    """Pick the latest end date from nested positions; present wins."""
+    end_dates = [pos.get("end_date") for pos in positions if pos.get("end_date")]
+    if not end_dates:
+        return None
+
+    normalized_end_dates = [str(d) for d in end_dates]
+    if any(d.lower() == "present" for d in normalized_end_dates):
+        return "present"
+
+    return max(normalized_end_dates)
 
 
 def markdown_to_typst(text: Any) -> Any:
@@ -75,6 +157,16 @@ def process_markdown_in_entry(entry: Dict[str, Any]) -> Dict[str, Any]:
     if "details" in entry and isinstance(entry["details"], str):
         entry["details"] = markdown_to_typst(entry["details"])
 
+    # Process nested positions highlights when called directly in tests/utility usage.
+    if "positions" in entry and isinstance(entry["positions"], list):
+        processed_positions = []
+        for pos in entry["positions"]:
+            pos = pos.copy()
+            if "highlights" in pos and isinstance(pos["highlights"], list):
+                pos["highlights"] = [markdown_to_typst(h) for h in pos["highlights"]]
+            processed_positions.append(pos)
+        entry["positions"] = processed_positions
+
     return entry
 
 
@@ -109,28 +201,52 @@ def expand_positions(entry: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     positions = entry["positions"]
     expanded = []
+    company_start_date = select_company_start_date(positions)
+    company_end_date = select_company_end_date(positions)
 
     for i, pos in enumerate(positions):
         new_entry = entry.copy()
         # Remove the positions array
         del new_entry["positions"]
 
-        # Copy position fields to entry level
-        new_entry["position"] = pos.get("title", pos.get("position", ""))
-        if "start_date" in pos:
-            new_entry["start_date"] = pos["start_date"]
-        if "end_date" in pos:
-            new_entry["end_date"] = pos["end_date"]
+        # Build position text with position-level date range (old visual behavior).
+        position_title = normalize_position_title(pos)
+        position_date_range = format_date_range_for_display(
+            pos.get("start_date"), pos.get("end_date")
+        )
+        if position_date_range:
+            position_text = f"{position_title} | {position_date_range}"
+        else:
+            position_text = position_title
+
+        spacing_marker = (
+            POSITION_SPACING_SAME_MARKER
+            if i < len(positions) - 1
+            else POSITION_SPACING_DIFF_MARKER
+        )
+        new_entry["position"] = f"{spacing_marker}{position_text}"
+
+        # First position keeps the company header and company-wide date range.
+        if i == 0:
+            if company_start_date:
+                new_entry["start_date"] = company_start_date
+            elif "start_date" in pos:
+                new_entry["start_date"] = pos["start_date"]
+
+            if company_end_date:
+                new_entry["end_date"] = company_end_date
+            elif "end_date" in pos:
+                new_entry["end_date"] = pos["end_date"]
+        else:
+            # Continuation rows should not repeat the company header.
+            new_entry["company"] = ""
+            if "start_date" in pos:
+                new_entry["start_date"] = pos["start_date"]
+            if "end_date" in pos:
+                new_entry["end_date"] = pos["end_date"]
+
         if "highlights" in pos:
             new_entry["highlights"] = [markdown_to_typst(h) for h in pos["highlights"]]
-
-        # Add markers for template styling
-        if i == 0:
-            new_entry["_is_first_position"] = True
-        else:
-            new_entry["_is_continuation"] = True
-            # Don't repeat company name for continuation entries
-            new_entry["_hide_company"] = True
 
         expanded.append(new_entry)
 
@@ -215,13 +331,38 @@ def filter_entries(
             # Expand entries with nested positions into separate entries
             expanded_entries = expand_positions(entry)
             for exp_entry in expanded_entries:
+                # Optionally include date in position for single-position entries.
+                if exp_entry.pop("show_date_in_position", False):
+                    position_text = exp_entry.get("position", "")
+                    if (
+                        isinstance(position_text, str)
+                        and position_text
+                        and POSITION_SPACING_SAME_MARKER not in position_text
+                        and POSITION_SPACING_DIFF_MARKER not in position_text
+                    ):
+                        range_text = format_date_range_for_display(
+                            exp_entry.get("start_date"), exp_entry.get("end_date")
+                        )
+                        if range_text:
+                            exp_entry["position"] = (
+                                f"{POSITION_SPACING_DIFF_MARKER}{position_text} | "
+                                f"{range_text}"
+                            )
+
+                # Ensure all positions have a spacing marker for template parsing.
+                position_text = exp_entry.get("position")
+                if (
+                    isinstance(position_text, str)
+                    and position_text
+                    and POSITION_SPACING_SAME_MARKER not in position_text
+                    and POSITION_SPACING_DIFF_MARKER not in position_text
+                ):
+                    exp_entry["position"] = (
+                        f"{POSITION_SPACING_DIFF_MARKER}{position_text}"
+                    )
+
                 # Apply markdown-to-Typst conversion to description fields
                 exp_entry = process_markdown_in_entry(exp_entry)
-                # Remove custom fields that rendercv doesn't understand
-                exp_entry.pop("_is_first_position", None)
-                exp_entry.pop("_is_continuation", None)
-                exp_entry.pop("_hide_company", None)
-                exp_entry.pop("show_date_in_position", None)
                 filtered.append(exp_entry)
 
     return filtered
@@ -248,6 +389,80 @@ def get_output_folder(variant_name: str) -> str:
         return output_folder_name
     else:
         return str(Path(output_dir) / output_folder_name)
+
+
+def prepare_output_folder(output_folder: str) -> None:
+    """
+    Remove stale render artifacts before each render.
+
+    RenderCV does not always prune old page PNGs when page count shrinks, which can
+    leave misleading leftovers (e.g., stale *_6.png). Clearing the folder avoids
+    mixed outputs across runs.
+    """
+    output_path = Path(output_folder)
+    if output_path.exists():
+        shutil.rmtree(output_path)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+
+def get_render_output_args(output_folder: str) -> list[str]:
+    """
+    Build RenderCV 2.6 output path arguments.
+
+    RenderCV 2.6 removed --output-folder-name; each artifact path must be passed
+    explicitly (or defaults to rendercv_output/*). We keep variant-specific output
+    directories by setting all output paths with NAME_IN_SNAKE_CASE placeholders.
+    """
+    output_folder = output_folder.rstrip("/")
+    return [
+        "--typst-path",
+        f"{output_folder}/NAME_IN_SNAKE_CASE_CV.typ",
+        "--pdf-path",
+        f"{output_folder}/NAME_IN_SNAKE_CASE_CV.pdf",
+        "--markdown-path",
+        f"{output_folder}/NAME_IN_SNAKE_CASE_CV.md",
+        "--html-path",
+        f"{output_folder}/NAME_IN_SNAKE_CASE_CV.html",
+        "--png-path",
+        f"{output_folder}/NAME_IN_SNAKE_CASE_CV.png",
+    ]
+
+
+def regenerate_pngs_at_150_dpi(output_folder: str) -> None:
+    """
+    Re-render PNGs from Typst at 150 DPI to match legacy RenderCV 2.0 output scale.
+
+    RenderCV 2.6's default PNG export density differs from the old output users were
+    comparing against. This keeps PDF generation untouched while making PNG previews
+    visually consistent with the previous workflow.
+    """
+    output_path = Path(output_folder)
+    typ_files = sorted(output_path.glob("*_CV.typ"))
+    if not typ_files:
+        return
+
+    typ_path = typ_files[0]
+    stem = typ_path.stem
+
+    # Remove existing PNGs for this document before re-export.
+    for png_file in output_path.glob(f"{stem}_*.png"):
+        png_file.unlink()
+
+    compiler = typst.Compiler(
+        typ_path,
+        font_paths=[
+            *rendercv_fonts.paths_to_font_folders,
+            Path.cwd() / "fonts",
+        ],
+    )
+    png_bytes = compiler.compile(format="png", ppi=150)
+    if not isinstance(png_bytes, list):
+        png_bytes = [png_bytes]
+
+    for index, png_content in enumerate(png_bytes, start=1):
+        assert png_content is not None
+        png_output = output_path / f"{stem}_{index}.png"
+        png_output.write_bytes(png_content)
 
 
 def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) -> bool:
@@ -286,26 +501,20 @@ def create_variant(base_yaml: str, variant_name: str, config: Dict[str, Any]) ->
 
     # Render the CV
     output_folder = get_output_folder(variant_name)
+    prepare_output_folder(output_folder)
     rendercv_cmd = get_rendercv_command()
     print(f"  Rendering to {output_folder}...")
-    result = subprocess.run(
-        [
-            rendercv_cmd,
-            "render",
-            temp_yaml,
-            "--output-folder-name",
-            output_folder,
-            "--typst-path",
-            "ff/foonts",
-        ],
-        capture_output=True,
-        text=True,
-    )
+    render_args = [rendercv_cmd, "render", temp_yaml, *get_render_output_args(output_folder)]
+    result = subprocess.run(render_args, capture_output=True, text=True)
 
     # Clean up temp file
     Path(temp_yaml).unlink()
 
     if result.returncode == 0:
+        try:
+            regenerate_pngs_at_150_dpi(output_folder)
+        except Exception as e:  # pragma: no cover - best effort for preview parity
+            print(f"  ! Warning: failed to regenerate PNGs at 150 DPI: {e}")
         print(f"  ✓ {variant_name.title()} resume created successfully!")
     else:
         print(f"  ✗ Error creating {variant_name} resume:")

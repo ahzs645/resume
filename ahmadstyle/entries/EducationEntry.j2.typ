@@ -1,4 +1,18 @@
 // Education entry matching LaTeX formatting exactly
+{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
+
+{% set education_start = format_date(entry.start_date) %}
+{% set education_end = format_date(entry.end_date) %}
+{% set education_dates = "" %}
+{% if education_start and education_end %}
+  {% set education_dates = education_start + ' – ' + education_end %}
+{% elif education_start %}
+  {% set education_dates = education_start %}
+{% elif entry.date_string %}
+  {% set education_dates = entry.date_string %}
+{% endif %}
+
+
 
 // Wrap entire entry in entry_content to keep it together
 #entry_content({
@@ -6,8 +20,9 @@
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    [#text(weight: "bold")[{{ entry.institution }}]],
-    text(weight: "bold", "{{ entry.DATE.split('\n')[0] if entry.DATE else '' }}")
+    text(weight: "bold", "{{ entry.institution|replace('\\(', '(')|replace('\\)', ')') }}"),
+    // Match legacy 2.0 output: keep institution date column empty.
+    text(weight: "bold", "")
   )
 
   v(design_education_after_institution)
@@ -16,7 +31,7 @@
   grid(
     columns: (1fr, auto),
     align: (left, right),
-    [#text(style: "italic")[{{ entry.degree }}, {{ entry.area }}]],
+    text(style: "italic", "{{ entry.degree|replace('\\(', '(')|replace('\\)', ')') }}, {{ entry.area|replace('\\(', '(')|replace('\\)', ')') }}"),
     {% if entry.location %}
     text(style: "italic", "{{ entry.location }}")
     {% else %}
@@ -24,18 +39,19 @@
     {% endif %}
   )
 
-{% if entry.highlights %}
+  {% if entry.highlights %}
   // Bullet points for highlights with LaTeX-matching spacing
   v(design_education_before_highlights)
-{% for highlight in entry.highlights %}
-  bullet_line([{{ highlight }}])
+  {% for highlight in entry.highlights %}
+  bullet_line([{{ highlight|replace('\\(', '(')|replace('\\)', ')') }}])
   v(design_education_between_highlights)
-{% endfor %}
-{% endif %}
+  {% endfor %}
+  {% endif %}
 
-{% if entry.summary %}
-  bullet_line([{{ entry.summary }}])
-{% endif %}
+  {% if entry.summary %}
+  bullet_line([{{ entry.summary|replace('\\(', '(')|replace('\\)', ')') }}])
+  {% endif %}
 })
 
 #v(design_education_after_entry)  // Standard spacing after education entries
+#v(design-entries-vertical-space-between-entries)

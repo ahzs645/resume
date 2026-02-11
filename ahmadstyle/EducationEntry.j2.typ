@@ -21,7 +21,7 @@
     columns: (1fr, auto),
     align: (left, right),
     text(weight: "bold", "{{ entry.institution|replace('\\(', '(')|replace('\\)', ')') }}"),
-    text(weight: "bold", "{{ date_range }}")
+    text(weight: "bold", "{{ education_dates }}")
   )
 
   v(design_education_after_institution)
@@ -38,18 +38,18 @@
     {% endif %}
   )
 
-  {%- if entry.highlights -%}
+  {% if entry.highlights %}
   // Bullet points for highlights with LaTeX-matching spacing
-  v(design_education_before_highlights);
-  {%- for highlight in entry.highlights %}
-  bullet_line([{{ highlight|replace('\\(', '(')|replace('\\)', ')') }}]);
-  v(design_education_between_highlights);
-  {%- endfor -%}
-  {%- endif -%}
+  v(design_education_before_highlights)
+  {% for highlight in entry.highlights %}
+  bullet_line([{{ highlight|replace('\\(', '(')|replace('\\)', ')') }}])
+  v(design_education_between_highlights)
+  {% endfor %}
+  {% endif %}
 
-  {%- if entry.summary -%}
+  {% if entry.summary %}
   bullet_line([{{ entry.summary|replace('\\(', '(')|replace('\\)', ')') }}])
-  {%- endif %}
+  {% endif %}
 })
 
 #v(design_education_after_entry)  // Standard spacing after education entries
