@@ -204,20 +204,25 @@ def expand_positions(entry: Dict[str, Any]) -> List[Dict[str, Any]]:
     company_start_date = select_company_start_date(positions)
     company_end_date = select_company_end_date(positions)
 
+    include_position_level_dates = len(positions) > 1 or bool(
+        entry.get("show_date_in_position", False)
+    )
+
     for i, pos in enumerate(positions):
         new_entry = entry.copy()
         # Remove the positions array
         del new_entry["positions"]
 
-        # Build position text with position-level date range (old visual behavior).
+        # Only include position-level dates when there are multiple visible positions
+        # (or if explicitly requested) to avoid duplicating the company date range.
         position_title = normalize_position_title(pos)
-        position_date_range = format_date_range_for_display(
-            pos.get("start_date"), pos.get("end_date")
-        )
-        if position_date_range:
-            position_text = f"{position_title} | {position_date_range}"
-        else:
-            position_text = position_title
+        position_text = position_title
+        if include_position_level_dates:
+            position_date_range = format_date_range_for_display(
+                pos.get("start_date"), pos.get("end_date")
+            )
+            if position_date_range:
+                position_text = f"{position_title} | {position_date_range}"
 
         spacing_marker = (
             POSITION_SPACING_SAME_MARKER
