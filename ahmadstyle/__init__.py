@@ -1,16 +1,19 @@
 """
 Ahmad's custom theme for RenderCV.
+
+Inherits from ClassicTheme to get all standard design fields required by
+RenderCV's rendering pipeline, then adds custom fields for ahmadstyle-specific options.
 """
 
 from typing import Literal
 
-# might I recommend Pyrefly as your type checker
 from pydantic import Field
 
-from rendercv.data.models.base import RenderCVBaseModelWithoutExtraKeys
+from rendercv.schema.models.base import BaseModelWithoutExtraKeys
+from rendercv.schema.models.design.classic_theme import ClassicTheme
 
 
-class EntriesConfig(RenderCVBaseModelWithoutExtraKeys):
+class EntriesConfig(BaseModelWithoutExtraKeys):
     """Configuration for entries."""
 
     show_time_span: list[str] = Field(
@@ -20,20 +23,12 @@ class EntriesConfig(RenderCVBaseModelWithoutExtraKeys):
     )
 
 
-class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
-    """This class is the data model of the theme options of the ahmadstyle theme."""
+class AhmadstyleTheme(ClassicTheme):
+    """Custom theme that extends ClassicTheme with ahmad-specific options."""
 
-    theme: Literal["ahmadstyle"]
-    font_size: str = Field(
-        default="11pt",
-        title="Font Size",
-        description="The font size of the CV. The default value is 11pt.",
-    )
-    page_size: str = Field(
-        default="us-letter",
-        title="Page Size",
-        description="The page size of the CV. The default value is us-letter.",
-    )
+    theme: Literal["ahmadstyle"] = "ahmadstyle"  # type: ignore[assignment]
+
+    # Custom ahmadstyle-specific fields
     keep_sections_together: bool = Field(
         default=False,
         title="Keep Sections Together",
@@ -59,11 +54,8 @@ class AhmadstyleThemeOptions(RenderCVBaseModelWithoutExtraKeys):
         title="Website Link Color",
         description="Color of the website link in the header. 'blue' for hyperlink style, 'black' to match text. Default is black.",
     )
-    entries: EntriesConfig = Field(
-        default=EntriesConfig(),
-        title="Entries Configuration",
-        description="Configuration for entry components.",
+    custom_entries: EntriesConfig = Field(
+        default_factory=EntriesConfig,
+        title="Custom Entries Configuration",
+        description="Configuration for custom entry components.",
     )
-
-
-theme = AhmadstyleThemeOptions

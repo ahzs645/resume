@@ -1,5 +1,6 @@
 # RenderCV output folders
 rendercv_output/
+rendercv_output
 *_resume/
 
 # CV files

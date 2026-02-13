@@ -26,3 +26,9 @@ variants:
     description: Mechatronics-focused resume
     exclude_sections: [volunteer, presentations, publications, professional_development]
     tags: [mechatronics]
+
+  consulting_life_sciences:
+    description: One-page life sciences strategy consulting application resume
+    exclude_sections: [projects, professional_development, certifications_skills, volunteer]
+    tags: [consulting_onepage]
+    flavors: [consulting_onepage]

@@ -64,10 +64,20 @@ def main(
 
         # Render the filtered CV
         output_folder = build_clean.get_output_folder("full")
+        build_clean.prepare_output_folder(output_folder)
         rendercv_cmd = build_clean.get_rendercv_command()
-        result = subprocess.run(
-            [rendercv_cmd, "render", temp_yaml, "--output-folder-name", output_folder]
-        )
+        render_args = [
+            rendercv_cmd,
+            "render",
+            temp_yaml,
+            *build_clean.get_render_output_args(output_folder),
+        ]
+        result = subprocess.run(render_args)
+        if result.returncode == 0:
+            try:
+                build_clean.regenerate_pngs_at_150_dpi(output_folder)
+            except Exception as e:  # pragma: no cover - best effort for preview parity
+                click.echo(f"Warning: failed to regenerate PNGs at 150 DPI: {e}")
 
         # Clean up temp file
         Path(temp_yaml).unlink()

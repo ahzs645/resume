@@ -1,9 +1,10 @@
 // One line entry (for skills/certifications) with section-aware formatting
-{% set lowercase_section_title = section_title|lower %}
+{% set lowercase_section_title = section_title|lower if section_title is defined else "" %}
 
-{% if lowercase_section_title == "certifications skills" or lowercase_section_title == "certifications_skills" %}
+{% if lowercase_section_title in ["certifications skills", "certifications_skills", "certifications & skills"] %}
 *{{ entry.label|safe }}:* {{ entry.details|replace('\\(', '(')|replace('\\)', ')')|safe }}
 #v(design_certifications_skills_between_entries)
+#v(design-entries-vertical-space-between-entries)
 
 {% elif lowercase_section_title == "certifications" %}
 #entry_content({
@@ -36,6 +37,7 @@
   )
 })
 #v(design_certifications_between_entries)
+#v(design-entries-vertical-space-between-entries)
 
 {% else %}
 • *{{ entry.label|safe }}:* {{ entry.details|replace('\\(', '(')|replace('\\)', ')')|safe }}

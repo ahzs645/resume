@@ -64,4 +64,5 @@
 #v(design_experience_between_positions_same_company)
 {% else %}
 #v(design_experience_between_companies)
+#v(design-entries-vertical-space-between-entries)
 {% endif %}

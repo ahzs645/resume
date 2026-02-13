@@ -53,3 +53,4 @@
 })
 
 #v(design_education_after_entry)  // Standard spacing after education entries
+#v(design-entries-vertical-space-between-entries)

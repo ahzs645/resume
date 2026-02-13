@@ -36,3 +36,4 @@
 })
 
 #v(design_publication_spacing)
+#v(design-entries-vertical-space-between-entries)

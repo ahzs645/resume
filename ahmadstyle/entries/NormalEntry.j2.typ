@@ -45,6 +45,7 @@
   {% endif %}
 })
 #v(design_media_between_entries)
+#v(design-entries-vertical-space-between-entries)
 
 {% elif lowercase_section_title == "presentations" %}
 // Custom layout for presentations to keep dates aligned with last line
@@ -97,6 +98,7 @@
   {% endif %}
 })
 #v(design_professional_dev_between_entries)
+#v(design-entries-vertical-space-between-entries)
 
 {% else %}
 // Wrap entire entry in entry_content to keep it together
@@ -118,10 +120,8 @@
   )
 
   // Add spacing after name - different for Awards vs Professional Development
-  {% if entry.highlights and not is_project_like %}
+  {% if entry.highlights %}
   v(design_awards_after_name)  // Awards: spacing after name
-  {% elif is_project_like %}
-  v(0pt)
   {% else %}
   v(design_professional_dev_after_name)  // Professional Dev: spacing after name
   {% endif %}
@@ -140,10 +140,8 @@
   )
 
   // Add spacing after summary - different for Awards vs Professional Development
-  {% if entry.highlights and not is_project_like %}
+  {% if entry.highlights %}
   v(design_awards_after_summary)  // Awards: spacing after summary
-  {% elif is_project_like %}
-  v(2pt)
   {% else %}
   v(design_professional_dev_after_summary)  // Professional Dev: spacing after summary
   {% endif %}
@@ -163,25 +161,26 @@
       // Projects section - plain text without bullets
       {% for highlight in entry.highlights %}
       [{{ unescape(highlight)|replace('- ', '\\- ') }}];
-      v(2pt);
+      v(design_awards_paragraph_spacing);
       {% endfor %}
     {% else %}
       // Awards section - plain text without bullets
       {% for highlight in entry.highlights %}
+      {% if unescape(highlight)|trim %}
       [{{ unescape(highlight) }}];
       v(design_awards_paragraph_spacing);
+      {% endif %}
       {% endfor %}
     {% endif %}
   {% endif %}
 })
 
 // Conditional spacing based on entry type
-{% if entry.highlights and not is_project_like %}
+{% if entry.highlights %}
 #v(design_awards_between_entries)  // Awards spacing between entries
-{% elif is_project_like %}
-#v(10pt)
 {% else %}
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries
 {% endif %}
+#v(design-entries-vertical-space-between-entries)
 
 {% endif %}
