@@ -42,20 +42,20 @@
 
 // OTHER SECTION SPACING CONTROLS
 #let design-entries-vertical-space-between-entries = 12pt
-#let design_certifications_skills_between_entries = -8pt        // Negative spacing between certifications and skills
+#let design_certifications_skills_between_entries = 2pt         // Spacing between certifications and skills
 #let design_section_ending_spacing = -2pt
 #let design_normal_entry_paragraph_spacing = 1pt
 #let design_normal_entry_between_entries = -6pt
 #let design_professional_dev_after_name = -6pt        
 #let design_professional_dev_after_summary = -4pt     
-#let design_professional_dev_between_entries = -6pt    
+#let design_professional_dev_between_entries = 2pt
 #let design_awards_after_name = -6pt                   
 #let design_awards_after_summary = -4pt                
 #let design_awards_paragraph_spacing = -6pt            
-#let design_awards_between_entries = -4pt              
+#let design_awards_between_entries = 4pt
 #let design_media_between_lines = -4pt
-#let design_media_between_entries = -6pt
-#let design_certifications_between_entries = -18pt
+#let design_media_between_entries = 4pt
+#let design_certifications_between_entries = -6pt
 #let design_skills_between_entries = -18pt
 #let design_bullet_gap = 6pt
 #let design_education_after_institution = -6pt
@@ -65,7 +65,7 @@
 #let design_presentation_after_title = -6pt            
 #let design_presentation_before_highlights = -4pt      
 #let design_presentation_between_highlights = -6pt     
-#let design_presentation_between_entries = -4pt        
+#let design_presentation_between_entries = 4pt
 #let design_publication_spacing = 8pt
 #let design_publication_after_title = -6pt
 #let design_publication_after_journal = -6pt
@@ -125,10 +125,10 @@
         v(-10pt)  // Adjust for rule positioning
         line(length: 100%, stroke: 0.4pt)
         v(-2pt, weak: false)
-        v(3.2em)
+        v(6em)
       },
     )
-    v(-3.2em)
+    v(-6em)
   } else {
     v(6pt)  // Reduced space before section title
     heading(

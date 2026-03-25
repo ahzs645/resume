@@ -45,7 +45,6 @@
   {% endif %}
 })
 #v(design_media_between_entries)
-#v(design-entries-vertical-space-between-entries)
 
 {% elif lowercase_section_title == "presentations" %}
 // Custom layout for presentations to keep dates aligned with last line
@@ -98,7 +97,6 @@
   {% endif %}
 })
 #v(design_professional_dev_between_entries)
-#v(design-entries-vertical-space-between-entries)
 
 {% else %}
 // Wrap entire entry in entry_content to keep it together
@@ -181,6 +179,5 @@
 {% else %}
 #v(design_professional_dev_between_entries)  // Professional development spacing between entries
 {% endif %}
-#v(design-entries-vertical-space-between-entries)
 
 {% endif %}

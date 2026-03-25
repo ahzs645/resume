@@ -43,4 +43,3 @@
 })
 
 #v(design_presentation_between_entries)  // Spacing between presentations
-#v(design-entries-vertical-space-between-entries)

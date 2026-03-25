@@ -4,7 +4,6 @@
 {% if lowercase_section_title in ["certifications skills", "certifications_skills", "certifications & skills"] %}
 *{{ entry.label|safe }}:* {{ entry.details|replace('\\(', '(')|replace('\\)', ')')|safe }}
 #v(design_certifications_skills_between_entries)
-#v(design-entries-vertical-space-between-entries)
 
 {% elif lowercase_section_title == "certifications" %}
 #entry_content({
@@ -37,7 +36,6 @@
   )
 })
 #v(design_certifications_between_entries)
-#v(design-entries-vertical-space-between-entries)
 
 {% else %}
 • *{{ entry.label|safe }}:* {{ entry.details|replace('\\(', '(')|replace('\\)', ')')|safe }}
