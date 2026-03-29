@@ -3,8 +3,12 @@
 
 variants:
   full:
-    description: Complete resume with all sections
+    description: Complete resume with archived entries hidden by default
     # No exclusions, tags, or flavors
+
+  full_with_archived:
+    description: Complete resume including entries tagged archived
+    tags: [archived]
 
   academic:
     description: Academic focus (no projects)

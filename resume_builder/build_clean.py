@@ -16,6 +16,7 @@ import typst
 
 POSITION_SPACING_SAME_MARKER = "RCVSPACINGSAME:"
 POSITION_SPACING_DIFF_MARKER = "RCVSPACINGDIFF:"
+ARCHIVED_TAG = "archived"
 
 MONTH_NAMES = {
     "01": "January",
@@ -294,6 +295,9 @@ def subfilter(
         print(f"  Skipping entry due to I-tags: {inverse_tags}")
         return None
     required_tags = entry.get("tags", [])
+    if ARCHIVED_TAG in required_tags and ARCHIVED_TAG not in tags:
+        print(f"  Skipping archived entry by default: {required_tags}")
+        return None
     if required_tags and not (set(tags) & set(required_tags)):
         print(f"  Skipping entry due to tags: {required_tags}")
         return None

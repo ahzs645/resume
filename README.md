@@ -16,12 +16,14 @@ This repository contains Ahmad Jalil's resume with a flexible build system for g
 
 | Variant | Description |
 |---------|-------------|
-| `full` | Complete resume with all sections |
+| `full` | Complete resume with archived entries hidden by default |
+| `full_with_archived` | Complete resume including entries tagged `archived` |
 | `academic` | Academic focus (no projects) |
 | `minimal` | Essential sections only |
 | `industry` | Industry focus (no volunteer/presentations/publications) |
 | `tech` | Tech-focused (core technical sections only) |
 | `mechatronics` | Mechatronics-focused with tag filtering |
+| `consulting_life_sciences` | One-page life sciences consulting resume |
 
 ### Adding New Variants
 
@@ -44,6 +46,7 @@ variants:
 - **`tags`**: Filters individual entries within sections. Only entries tagged with at least one matching tag will be included
   - Add `tags: [mechatronics]` to an entry in `CV.yaml` to mark it for the mechatronics variant
   - Entries without tags appear in all variants (unless their section is excluded)
+  - This repo treats `tags: [archived]` as hidden by default, and `full_with_archived` shows those entries again
 - **`flavors`**: Allows entries to have alternate values for different variants (e.g., different highlight points for tech vs. academic resumes)
   - Define multiple versions of a field in your CV entry, then select which version each variant uses
 
