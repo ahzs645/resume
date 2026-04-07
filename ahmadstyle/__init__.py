@@ -49,10 +49,10 @@ class AhmadstyleTheme(ClassicTheme):
         title="Section Heading Size",
         description="Font size for section headers (e.g., EXPERIENCE). Default is 11pt.",
     )
-    website_link_color: Literal["blue", "black"] = Field(
-        default="black",
+    website_link_color: str = Field(
+        default="#000000",
         title="Website Link Color",
-        description="Color of the website link in the header. 'blue' for hyperlink style, 'black' to match text. Default is black.",
+        description="Hex color for the website link in the header. Default is #000000 (black).",
     )
     custom_entries: EntriesConfig = Field(
         default_factory=EntriesConfig,

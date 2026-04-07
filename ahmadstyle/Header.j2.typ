@@ -20,11 +20,7 @@
   {%- endif -%}
   {%- if cv.website -%}
   #text(" | ")
-  {% if design.website_link_color == "blue" %}
-  #text(fill: blue)[#link("{{ cv.website }}")[{{ cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '') }}]]
-  {% else %}
-  #text(fill: black)[#link("{{ cv.website }}")[{{ cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '') }}]]
-  {% endif %}
+  #text(fill: rgb("{{ design.website_link_color }}"))[#link("{{ cv.website }}")[{{ cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '') }}]]
   {%- endif -%}
 ]
 
