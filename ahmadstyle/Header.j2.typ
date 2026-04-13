@@ -1,4 +1,9 @@
 // Header matching LaTeX formatting exactly
+{% set header_link_color = design.website_link_color %}
+{% if header_link_color == "#000000" and design.colors.links %}
+  {% set header_link_color = design.colors.links %}
+{% endif %}
+
 #text(
   size: 26pt,
   weight: "bold",
@@ -20,7 +25,7 @@
   {%- endif -%}
   {%- if cv.website -%}
   #text(" | ")
-  #text(fill: rgb("{{ design.website_link_color }}"))[#link("{{ cv.website }}")[{{ cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '') }}]]
+  #text(fill: rgb("{{ header_link_color }}"))[#link("{{ cv.website }}")[{{ cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '') }}]]
   {%- endif -%}
 ]
 

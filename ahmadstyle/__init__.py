@@ -51,8 +51,8 @@ class AhmadstyleTheme(ClassicTheme):
     )
     website_link_color: str = Field(
         default="#000000",
-        title="Website Link Color",
-        description="Hex color for the website link in the header. Default is #000000 (black).",
+        title="Header Website Link Color",
+        description="Hex color override for the website link in the header. If left at the default #000000, Ahmad Style falls back to the standard links color.",
     )
     custom_entries: EntriesConfig = Field(
         default_factory=EntriesConfig,
