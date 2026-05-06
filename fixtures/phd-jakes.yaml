@@ -1,0 +1,85 @@
+cv:
+  name: Hyungtae Lim
+  email: shapelim@mit.edu
+  website: https://limhyungtae.github.io
+  social_networks:
+    - network: LinkedIn
+      username: hyungtae-lim
+    - network: GitHub
+      username: limhyungtae
+  sections:
+    Technical Skills:
+      - |-
+        **Programming:** C++, Python, CUDA, CMake #linebreak()
+        **Frameworks & Tools:** ROS/ROS2, PyTorch, OpenCV, Git, Docker #linebreak()
+        **Research Areas:** SLAM, 3D LiDAR, Point Cloud Registration, Semantic Segmentation, Sensor Fusion, Deep Learning
+    Experience:
+      - company: "SPARK Lab, MIT (Advisor: Prof. Luca Carlone)"
+        position: Postdoctoral Associate
+        start_date: 2024-04
+        end_date: present
+        location: Cambridge, MA
+        highlights:
+          - Reduced multi-session map inconsistency in city-scale environments by building a large-scale multi-robot SLAM system enabling real-time 3D mapping across ~8 robots and sessions.
+          - Grew combined GitHub adoption to 4K+ stars by maintaining TEASER++ [GitHub stars 2.1K], Hydra [GitHub stars 773], KISS-Matcher [GitHub stars 643], VGGT-SLAM [GitHub stars 882].
+      - company: "Korea Advanced Institute of Science and Technology (KAIST) (Advisor: Prof. Hyun Myung)"
+        position: Postdoctoral Fellow
+        start_date: 2023-03
+        end_date: 2024-03
+        location: Daejeon, Korea
+        highlights:
+          - Improved localization robustness in dynamic scenes by developing real-time LiDAR-inertial and visual SLAM pipelines.
+          - Reduced dynamic-object-induced map corruption by leveraging deep learning perception modules for moving object segmentation in crowded and unstructured environments.
+      - company: "StachnissLab, University of Bonn (Advisor: Prof. Cyrill Stachniss)"
+        position: Visiting Scholar
+        start_date: 2022-11
+        end_date: 2023-02
+        location: Bonn, Germany
+        highlights:
+          - Cut dynamic-object artifacts in LiDAR maps by ~90% by building ERASOR2, an instance-aware removal system for static map building in urban scenes (RSS 2023).
+      - company: NAVER LABS
+        position: Research Intern
+        start_date: 2022-04
+        end_date: 2022-09
+        location: Gyeonggi-Do, Korea
+        highlights:
+          - Achieved robust global LiDAR registration tolerating up to 99% outlier correspondences by developing Quatro, exploiting ground segmentation for reliable loop closure in degenerate urban environments (ICRA 2022 / IJRR 2023).
+    Selected Projects:
+      - |-
+        **KISS-Matcher** [GitHub stars 643] *ICRA 2025* | Out-of-the-box fast and robust global point cloud registration for large-scale mapping. #linebreak()
+        **VGGT-SLAM** [GitHub stars 882] *NeurIPS 2025* | Dense real-time RGB SLAM on SL(4) manifold; globally consistent 3D reconstruction. #linebreak()
+        **Patchwork++** [GitHub stars 842] *IROS 2022* | ~100 Hz LiDAR ground segmentation; deployed in AV and mobile robot production. #linebreak()
+        **ERASOR** [GitHub stars 494] *RA-L 2021* | ~94% dynamic-object artifact removal, enabling long-term autonomous navigation. #linebreak()
+        **[e.g., Real-Time LiDAR SLAM System]** | *[Category, Year]* -- Reduced [X] by [Y]% in city-scale environments by [Z]; deployed on [N]+ platforms. #linebreak()
+        **[e.g., 3D Object Detection Pipeline]** | *[Category, Year]* -- Improved [X] recall by [Y]% by [Z], processing at [N] Hz on [hardware] (e.g., NVIDIA Orin).
+    Publications:
+      - "10+ first-author papers at top-tier robotics and AI venues: IEEE ICRA, RSS, IEEE RA-L, NeurIPS, IEEE/CVF ICCV, IJRR"
+    Honors & Awards:
+      - |-
+        **2025** -- IEEE ICRA'25 Outstanding Reviewer Award (5 awardees out of 7,641 reviewers) #linebreak()
+        **2024** -- RSS Pioneers 2024 (30 selected out of 202 candidates) #linebreak()
+        **2024** -- 1st Prize, HILTI SLAM Challenge in IEEE ICRA'24 #linebreak()
+        **2023** -- Best Paper Award, IEEE RA-L (5 of 1,100 papers) #linebreak()
+        **2023** -- 1st Prize, HILTI SLAM Challenge in IEEE ICRA'23 (63 international teams) #linebreak()
+        **2023** -- CES'23 Innovation Award (via technology transfer with HILLS Robotics)
+    Education:
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Electrical Engineering and Robotics Program
+        degree: Ph.D.
+        start_date: 2020-03
+        end_date: 2023-02
+        location: Daejeon, South Korea
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Electrical Engineering and Robotics Program
+        degree: M.S.
+        start_date: 2018-03
+        end_date: 2020-02
+        location: Daejeon, South Korea
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Mechanical Engineering
+        degree: B.S.
+        start_date: 2013-03
+        end_date: 2018-02
+        location: Daejeon, Korea
+design:
+  theme: phdjakes

@@ -1,0 +1,120 @@
+cv:
+  name: Hyungtae Lim
+  email: shapelim@mit.edu
+  website: https://limhyungtae.github.io
+  custom_connections:
+    - fontawesome_icon: graduation-cap
+      placeholder: Google Scholar
+      url: https://scholar.google.com/citations?user=S1A3nbIAAAAJ
+  sections:
+    Skills:
+      - |-
+        #strong[Programming] #linebreak()
+        #text(fill: rgb("#999999"), weight: 600, "Proficient:") #linebreak()
+        C++ • Python • ROS/ROS2 #linebreak()
+        #text(fill: rgb("#999999"), weight: 600, "Experienced:") #linebreak()
+        PyTorch • CUDA • CMake #linebreak()
+        OpenCV • LaTeX
+      - |-
+        #strong[Research] #linebreak()
+        SLAM • 3D LiDAR #linebreak()
+        Point Cloud Registration #linebreak()
+        Ground Segmentation #linebreak()
+        Sensor Fusion • Deep Learning #linebreak()
+        Multi-Robot Mapping
+      - |-
+        #strong[Languages] #linebreak()
+        Korean (Native) • English (Fluent)
+    Links:
+      - |-
+        Website:// #strong[limhyungtae.github.io] #linebreak()
+        GitHub:// #strong[limhyungtae] #linebreak()
+        LinkedIn:// #strong[hyungtae-lim] #linebreak()
+        Scholar:// #strong[Hyungtae Lim]
+    Key Open-Source Projects:
+      - |-
+        #text(size: 7.5pt)[Projects others rely on, reflecting both coding quality and real-world impact.]
+      - |-
+        #pad(left: 0.12cm)[#grid(
+          columns: (0.18cm, 1fr),
+          column-gutter: 0.08cm,
+          row-gutter: 3.5pt,
+          [•], [#strong[KISS-Matcher] [GitHub stars 643] #linebreak() Out-of-the-box fast and robust global point cloud registration (#emph[ICRA'25])],
+          [•], [#strong[VGGT-SLAM] [GitHub stars 882] #linebreak() Dense real-time RGB SLAM on SL(4) manifold; globally consistent 3D reconstruction (#emph[NeurIPS'25])],
+          [•], [#strong[Patchwork++] [GitHub stars 842] #linebreak() >100 Hz LiDAR ground segmentation; deployed in AV production pipelines (#emph[IROS'22])],
+          [•], [#strong[ERASOR] [GitHub stars 494] #linebreak() ~94% dynamic-object artifact removal for long-term static map building (#emph[RA-L'21])],
+        )]
+    Education:
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Electrical Engineering & Robotics Program
+        degree: Ph.D.
+        start_date: 2020-03
+        end_date: 2023-02
+        location: Daejeon, Korea
+        summary: |-
+          Advisor: Prof. Hyun Myung
+          Dissertation: Robust LiDAR SLAM for Autonomous Vehicles
+          Leveraging Ground Segmentation
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Electrical Engineering & Robotics Program
+        degree: M.S.
+        start_date: 2018-03
+        end_date: 2020-02
+        location: Daejeon, Korea
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Mechanical Engineering
+        degree: B.S.
+        start_date: 2013-03
+        end_date: 2018-08
+        location: Daejeon, Korea
+        summary: Dean's List (Fall 2015)
+    Experience:
+      - company: SPARK Lab, Massachusetts Institute of Technology (MIT)
+        position: Postdoctoral Associate
+        start_date: 2024-04
+        end_date: 2026-03
+        location: Cambridge, MA
+        highlights:
+          - Reduced multi-session map inconsistency in city-scale environments by building a large-scale multi-robot SLAM system, enabling real-time 3D mapping across 10+ robots and sessions.
+          - Accelerated research output by mentoring 4+ graduate researchers, contributing to 4+ published papers on 3D perception and autonomous mapping.
+          - Grew combined GitHub adoption to 4K+ stars by maintaining 4 open-source robotics repos (e.g., TEASER++ [GitHub stars 2.1K], Hydra [GitHub stars 773], KISS-Matcher [GitHub stars 643], VGGT-SLAM [GitHub stars 882]).
+      - company: Urban Robotics Lab, KAIST
+        position: Postdoctoral Fellow
+        start_date: 2023-03
+        end_date: 2024-03
+        location: Daejeon, South Korea
+        highlights:
+          - Improved localization robustness in dynamic scenes by developing real-time LiDAR-inertial and visual SLAM pipelines, deployed on 3+ mobile robot platforms.
+          - Reduced dynamic-object-induced map corruption by designing deep learning perception modules for obstacle detection in crowded and unstructured environments.
+      - company: StachnissLab, University of Bonn
+        position: Visiting Scholar
+        start_date: 2022-11
+        end_date: 2023-02
+        location: Bonn, Germany
+        highlights:
+          - Cut dynamic-object artifacts in LiDAR maps by ~90% by building ERASOR2, an instance-aware removal system for static map building in urban scenes (RSS 2023).
+      - company: NAVER LABS
+        position: Research Intern
+        start_date: 2022-04
+        end_date: 2022-09
+        location: Gyeonggi-Do, Korea
+        highlights:
+          - Achieved robust global LiDAR registration tolerating up to 99% outlier correspondences by developing Quatro, exploiting ground segmentation for reliable loop closure in degenerate urban environments (ICRA 2022 / IJRR 2023).
+    Selected Projects:
+      - "[e.g., Real-Time LiDAR SLAM System] -- Reduced end-to-end localization drift by X% in city-scale environments by implementing degeneracy-aware factor graph optimization."
+      - "[e.g., 3D Object Detection Pipeline] -- Improved long-range detection recall by X% by fusing LiDAR and camera with a late-fusion Transformer."
+      - "[e.g., Incremental HD Map Builder] -- Scaled occupancy mapping to campus-scale by designing an incremental voxel compression pipeline."
+    Publications:
+      - "10+ first-author papers: IEEE ICRA, RSS, RA-L, NeurIPS, ICCV, IJRR"
+    Awards:
+      - |-
+        2025 #h(0.25cm) Outstanding Reviewer Award, IEEE ICRA'25 (5/7,641) #linebreak()
+        2024 #h(0.25cm) RSS Pioneers 2024 (30/202 selected) #linebreak()
+        2024 #h(0.25cm) 1st Prize, HILTI SLAM Challenge, IEEE ICRA'24 #linebreak()
+        2023 #h(0.25cm) Best Paper Award, IEEE RA-L (5 of 1,100 papers) #linebreak()
+        2023 #h(0.25cm) 1st Prize, HILTI SLAM Challenge, IEEE ICRA'23 #linebreak()
+        2023 #h(0.25cm) CES'23 Innovation Award #linebreak()
+        2022 #h(0.25cm) 2nd Prize, HILTI SLAM Challenge, IEEE ICRA'22 #linebreak()
+        2020 #h(0.25cm) Student Best Paper Award, ICCAS
+design:
+  theme: phddeedy

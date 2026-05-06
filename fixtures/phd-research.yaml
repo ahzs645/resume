@@ -1,0 +1,116 @@
+cv:
+  name: Hyungtae Lim
+  headline: Robotics Researcher · Field Robotics Engineer
+  location: Cambridge, MA, USA
+  email: shapelim@mit.edu
+  website: https://limhyungtae.github.io/hyungtae-lim/
+  social_networks:
+    - network: GitHub
+      username: limhyungtae
+    - network: LinkedIn
+      username: hyungtae-lim
+  custom_connections:
+    - fontawesome_icon: graduation-cap
+      placeholder: Google Scholar
+      url: https://scholar.google.com/citations?user=S1A3nbIAAAAJ
+  sections:
+    Summary:
+      - A robotics researcher focused on robust perception, state estimation for mobile robots, and lifelong mapping technologies essential for robotic navigation. Studying algorithms that are robust to dynamic objects and outliers, with the goal of achieving generalization in real-world environments.
+      - Published across top-tier venues in robotics, autonomous driving, and artificial intelligence.
+      - Always pursue clean, useful, reproducible code to support the community.
+    Education:
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Electrical Engineering and Robotics Program
+        degree: Ph.D.
+        start_date: 2020-03
+        end_date: 2023-02
+        location: Daejeon, Republic of Korea
+        highlights:
+          - "Dissertation: Robust LiDAR SLAM for Autonomous Vehicles Leveraging Ground Segmentation"
+          - Advised by Prof. Hyun Myung
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Electrical Engineering and Robotics Program
+        degree: M.S.
+        start_date: 2018-03
+        end_date: 2020-02
+        location: Daejeon, Republic of Korea
+        highlights:
+          - "Dissertation: Two-Stage Depth Prediction Using a 2D LiDAR and a Monocular Camera via Deep Learning"
+          - Advised by Prof. Hyun Myung
+      - institution: Korea Advanced Institute of Science and Technology (KAIST)
+        area: Mechanical Engineering
+        degree: B.S.
+        start_date: 2013-03
+        end_date: 2018-08
+        location: Daejeon, Republic of Korea
+        highlights:
+          - Listed on the Dean's List in Mechanical Engineering, KAIST (Fall 2015)
+    Work Experience (Including Internship):
+      - company: Postdoctoral Associate
+        position: SPARK Lab, MIT
+        start_date: 2024-04
+        end_date: present
+        location: Massachusetts, the U.S.
+        highlights:
+          - Advised by Prof. Luca Carlone.
+          - Conduct research on multi-robot/-session autonomous mapping algorithms in complex urban environments.
+          - Guide and supervise graduate and undergraduate students in their research papers and thesis projects.
+      - company: Postdoctoral Fellow
+        position: Urban Robotics Lab, KAIST
+        start_date: 2023-03
+        end_date: 2024-03
+        location: Daejeon, Republic of Korea
+        highlights:
+          - Advised by Prof. Hyun Myung.
+          - Conducted research on localization and mapping techniques using LiDAR and vision data.
+          - Developed deep learning models for robust perception.
+      - company: Visiting Scholar
+        position: StachnissLab
+        start_date: 2022-11
+        end_date: 2023-02
+        location: Bonn, Germany
+        highlights:
+          - Worked on an improved version of static map building.
+          - Submitted and had a paper accepted at RSS 2023 titled ERASOR2.
+      - company: Research Intern
+        position: NAVER LABS
+        start_date: 2022-04
+        end_date: 2022-09
+        location: Gyeonggi-Do, Republic of Korea
+        highlights:
+          - Served as a Ph.D. research intern.
+          - Worked on robust global registration using 3D point cloud data captured by the LiDAR sensor.
+          - Submitted and accepted a paper to IEEE ICRA 2022.
+    Research Project Experience:
+      - company: Development of Harmonic-Space Operation Using Seamless Information Sharing Among Large-Scale Heterogeneous UVs
+        position: Supported by National Research Foundation, Republic of Korea
+        start_date: 2024-09
+        end_date: present
+        location: SPARK Lab, MIT
+        highlights:
+          - Implemented multi-session LiDAR SLAM.
+          - Studied semantic SLAM for heterogeneous robot platforms.
+          - "Keywords: 3D semantic mapping, Scene graph-based SLAM"
+      - company: Development of Scene Graph-Based Multi-Robot Multi-Session SLAM
+        position: Supported by DCIST & DevCom
+        start_date: 2024-04
+        end_date: present
+        location: SPARK Lab, MIT
+        highlights:
+          - Implemented scene graph-based SLAM methods based on Hydra.
+          - Ran semantic SLAM and enhanced the performance in real-world campus scenes.
+      - company: Development of Semantic SLAM for Spatial AI
+        position: Supported by LG Electronics
+        start_date: 2023-04
+        end_date: 2023-12
+        location: Urban Robotics Lab, KAIST
+        highlights:
+          - Implemented deep learning-aided SLAM methods based on Hydra.
+          - "Keywords: 3D semantic mapping, Semantic SLAM"
+    Honors:
+      - "2025 -- IEEE ICRA'25 Outstanding Reviewer Award"
+      - "2024 -- RSS Pioneers 2024"
+      - "2024 -- 1st Prize, HILTI SLAM Challenge in IEEE ICRA'24"
+      - "2023 -- 2022 IEEE RA-L Best Paper Award"
+design:
+  theme: phdresearch
