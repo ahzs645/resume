@@ -20,7 +20,11 @@
 {% set formatted_end = format_date(entry.end_date) %}
 {% set company_date_range = "" %}
 {% if formatted_start and formatted_end %}
+  {% if formatted_start == formatted_end %}
+  {% set company_date_range = formatted_start %}
+  {% else %}
   {% set company_date_range = formatted_start + " – " + formatted_end %}
+  {% endif %}
 {% elif formatted_start %}
   {% set company_date_range = formatted_start %}
 {% elif formatted_end %}
