@@ -302,10 +302,17 @@ def subfilter(
         print(f"  Skipping entry due to tags: {required_tags}")
         return None
 
-    if required_tags:
-        entry = entry.copy()
-        entry.pop("tags", None)
-
+    entry = entry.copy()
+    entry.pop("tags", None)
+    entry.pop("itags", None)
+    # rendercv 2.8's templater runs str ops on every entry field; coerce
+    # non-string scalars so values like `number_of_students: 32` don't crash
+    # with `TypeError: expected string or bytes-like object`.
+    for field_name, field_value in list(entry.items()):
+        if isinstance(field_value, bool) or not isinstance(
+            field_value, (str, list, dict, type(None))
+        ):
+            entry[field_name] = str(field_value)
     return entry
 
 
