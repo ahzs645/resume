@@ -27,6 +27,18 @@
   #text(" | ")
   #text(fill: rgb("{{ header_link_color }}"))[#link("{{ cv.website }}")[{{ cv.website|string|replace('https://', '')|replace('http://', '')|replace('/', '') }}]]
   {%- endif -%}
+  {%- for sn in cv.social_networks or [] -%}
+  #text(" | ")
+  #text(fill: rgb("{{ header_link_color }}"))[#link("{{ sn.url }}")[{{ sn.network }}]]
+  {%- endfor -%}
+  {%- for c in cv.custom_connections or [] -%}
+  #text(" | ")
+  {%- if c.url -%}
+  #text(fill: rgb("{{ header_link_color }}"))[#link("{{ c.url }}")[{{ c.placeholder }}]]
+  {%- else -%}
+  #text("{{ c.placeholder }}")
+  {%- endif -%}
+  {%- endfor -%}
 ]
 
 #v(-10pt)  // Reduced spacing before horizontal line
