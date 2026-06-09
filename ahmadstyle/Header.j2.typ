@@ -1,7 +1,8 @@
 // Header matching LaTeX formatting exactly
 {% set header_link_color = design.website_link_color %}
 {% if header_link_color == "#000000" and design.colors.links %}
-  {% set header_link_color = design.colors.links %}
+  {# design.colors.links is a Color whose __str__ is rgb(r,g,b); rgb("...") needs hex #}
+  {% set header_link_color = design.colors.links.as_hex(format="long") %}
 {% endif %}
 
 #text(
