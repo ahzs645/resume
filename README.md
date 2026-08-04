@@ -10,7 +10,10 @@ This repository contains Ahmad Jalil's resume with a flexible build system for g
 - `build.py` - Cross-platform Python wrapper (auto-detects and uses venv)
 - `build-resume` - Bash wrapper for macOS/Linux
 - `build-resume.bat` - Batch wrapper for Windows
-- `ahmadstyle/` - Custom RenderCV theme
+- `ahmadstyle/` - Custom RenderCV theme (EB Garamond)
+- `tylerstyle/` - Custom RenderCV theme (Carlito, denser); see `tylerstyle/README.md`
+- `phdjakes/`, `phddeedy/`, `phdresearch/` - Custom RenderCV themes
+- `fixtures/` - Sample CVs, one per theme, for rendering a theme end to end
 
 ## Available Resume Variants
 

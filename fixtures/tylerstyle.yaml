@@ -1,0 +1,109 @@
+cv:
+  name: Tyler Durden
+  email: tyler@paperstreet.example
+  phone: +1-302-555-0142
+  location: Wilmington, DE
+  website: https://paperstreet.example/
+  social_networks:
+    - network: LinkedIn
+      username: tyler-durden
+    - network: GitHub
+      username: tylerdurden
+  sections:
+    experience:
+      - company: Paper Street Soap Co.
+        position: Founder & Operations Lead
+        start_date: 2021-03
+        end_date: present
+        location: Wilmington, DE
+        highlights:
+          - Built the batch production line from scratch, taking output from 20 to 400 bars a week without adding headcount.
+          - Negotiated a rendering-fat supply contract that cut raw material cost per bar by 38%.
+      - company: Regional Insurance Group
+        position: Senior Recall Coordinator
+        start_date: 2019-06
+        end_date: 2021-02
+        location: Newark, NJ
+        highlights:
+          - Rebuilt the vehicle-recall triage model, shortening median time-to-decision from 11 days to 3.
+      - company: Regional Insurance Group
+        position: Claims Analyst
+        start_date: 2017-08
+        end_date: 2019-05
+        location: Newark, NJ
+        highlights:
+          - Automated weekly loss-ratio reporting, retiring roughly 6 hours a week of manual spreadsheet work.
+    education:
+      - institution: University of Delaware
+        area: Industrial Engineering
+        degree: B.Sc.
+        start_date: 2013-09
+        end_date: 2017-05
+        location: Newark, DE
+        highlights:
+          - Minor in Chemistry
+          - Capstone on continuous-flow saponification
+    projects:
+      - name: Paper Street Ledger
+        date: "2024"
+        url: https://github.com/example/paper-street-ledger
+        summary: A single-file inventory and costing tool for small-batch manufacturers, with per-batch yield tracking
+        highlights:
+          - "Technologies - Python, SQLite, Typst"
+      - name: Recall Triage Model
+        date: "2020"
+        summary: A scoring model that ranks open recalls by expected settlement exposure
+        highlights:
+          - "Technologies - R, Shiny, Postgres"
+    professional_development:
+      - name: Lean Manufacturing Fundamentals
+        summary: Delaware Technical Community College
+        date: 2022-04
+        location: Remote
+      - name: Hazardous Materials Handling
+        summary: OSHA Training Institute
+        date: 2021-09
+        location: Philadelphia, PA
+    certifications_skills:
+      - label: Certifications
+        details: OSHA 30; Six Sigma Green Belt; Forklift Operator (expires 2027)
+      - label: Skills
+        details: Process design; Cost modelling; Python; R; SQL; Typst
+    awards:
+      - name: Small Manufacturer of the Year
+        summary: Delaware Chamber of Commerce
+        date: 2024-05
+        highlights:
+          - Awarded to one Delaware manufacturer a year for growth and safety record combined.
+    presentations:
+      - name: Small-Batch Saponification at Scale
+        summary: Mid-Atlantic Manufacturing Summit
+        date: 2024-10
+        location: Baltimore, MD
+    publications:
+      - title: Continuous-Flow Saponification for Small-Batch Producers
+        authors:
+          - Tyler Durden
+          - Marla Singer
+        journal: Journal of Applied Process Chemistry
+        volume: "12"
+        issue: "3"
+        pages: "88-97"
+        date: "2023"
+        doi: 10.1000/example.2023.0001
+    memberships:
+      - Delaware Manufacturing Association
+      - American Institute of Chemical Engineers
+
+design:
+  theme: tylerstyle
+  font_size: 11pt
+  section_heading_size: 12pt
+  website_link_color: blue
+  keep_entries_together: true
+  prevent_orphaned_headers: true
+  pagebreak_before_sections:
+    - Publications
+  custom_entries:
+    show_time_span:
+      - Experience
