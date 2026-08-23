@@ -1,5 +1,5 @@
 // Education entry matching LaTeX formatting exactly
-{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date with context %}
 
 {% set education_start = format_date(entry.start_date) if entry.start_date else "" %}
 {% set education_end = format_date(entry.end_date) if entry.end_date else "" %}

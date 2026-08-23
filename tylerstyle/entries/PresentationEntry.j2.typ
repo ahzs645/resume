@@ -1,5 +1,5 @@
 // Presentation entry matching other CV sections
-{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date with context %}
 
 {% set presentation_date_display = "" %}
 {% if entry.date %}

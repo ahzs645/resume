@@ -1,5 +1,5 @@
 // Professional Development entry with dedicated spacing controls
-{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date with context %}
 
 {% set professional_dev_date = "" %}
 {% if entry.date %}

@@ -1,5 +1,5 @@
 // Publication entry - matching ExperienceEntry pattern exactly
-{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date with context %}
 
 {% set publication_date_display = "" %}
 {% if entry.date %}

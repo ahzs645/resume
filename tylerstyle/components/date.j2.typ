@@ -1,4 +1,4 @@
-{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date with context %}
 
 {% set component_date_value = "" %}
 {% if entry.start_date or entry.end_date %}

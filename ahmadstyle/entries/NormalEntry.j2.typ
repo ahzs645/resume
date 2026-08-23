@@ -1,5 +1,5 @@
 // Normal entry (for professional development, awards, projects, etc.) matching LaTeX
-{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date with context %}
 {% from 'ahmadstyle/components/unescape.j2.typ' import unescape %}
 
 {% set lowercase_section_title = section_title|lower if section_title is defined else "" %}

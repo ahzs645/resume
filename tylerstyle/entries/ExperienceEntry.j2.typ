@@ -1,6 +1,6 @@
 // Experience entry template for rendercv 2.6 compatibility.
 // Uses position markers injected by preprocess to preserve old spacing behavior.
-{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'tylerstyle/components/date_formatter.j2.typ' import format_date with context %}
 {% from 'tylerstyle/components/unescape.j2.typ' import unescape %}
 
 {% set marker_same = "RCVSPACINGSAME:" %}

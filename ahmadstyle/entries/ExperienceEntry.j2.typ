@@ -1,6 +1,6 @@
 // Experience entry template for rendercv 2.6 compatibility.
 // Uses position markers injected by preprocess to preserve old spacing behavior.
-{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date %}
+{% from 'ahmadstyle/components/date_formatter.j2.typ' import format_date with context %}
 {% from 'ahmadstyle/components/unescape.j2.typ' import unescape %}
 
 {% set marker_same = "RCVSPACINGSAME:" %}
