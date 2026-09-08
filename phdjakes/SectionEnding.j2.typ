@@ -1,4 +1,1 @@
-{% if entry_type in ["ReversedNumberedEntry"] %}
-  ],
-)
-{% endif %}
+{% include 'classicserif/SectionEnding.j2.typ' %}

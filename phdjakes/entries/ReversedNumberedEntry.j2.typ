@@ -1,1 +1,1 @@
-+ {{entry.reversed_number}}
+{% include 'classicserif/entries/ReversedNumberedEntry.j2.typ' %}
