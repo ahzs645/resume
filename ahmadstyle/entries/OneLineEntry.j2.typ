@@ -38,6 +38,8 @@
 #v(design_certifications_between_entries)
 
 {% else %}
-• *{{ entry.label|safe }}:* {{ entry.details|replace('\\(', '(')|replace('\\)', ')')|safe }}
-#v(design-entries-vertical-space-between-entries)
+// Same bullet as experience highlights: hanging indent, so a wrapped line
+// lines up with the text, and the same spacing as a list of bullets.
+#entry_content(bullet_line([*{{ entry.label|safe }}:* {{ entry.details|replace('\\(', '(')|replace('\\)', ')')|safe }}]))
+#v(design_one_line_between_entries)
 {% endif %}

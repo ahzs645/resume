@@ -3,4 +3,4 @@
 
 {{ entry|safe }}
 
-#v(design-entries-vertical-space-between-entries)  // Standard spacing between text entries
+#v(design_text_between_entries)  // Paragraph gap; a summary then ends like any other section

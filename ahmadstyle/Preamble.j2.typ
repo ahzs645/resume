@@ -43,7 +43,14 @@
 // OTHER SECTION SPACING CONTROLS
 #let design-entries-vertical-space-between-entries = 12pt
 #let design_certifications_skills_between_entries = 2pt         // Spacing between certifications and skills
+#let design_text_between_entries = 2pt           // Between text paragraphs (e.g. a two-paragraph summary)
+#let design_one_line_between_entries = -6pt      // Between one-line entries (skills lines); same rhythm as bullets
 #let design_section_ending_spacing = -2pt
+// Sections end on their entries' own spacing, which differs by entry type.
+// These even it out so every heading sits the same distance below the section above it.
+#let design_section_ending_after_experience = -4pt
+#let design_section_ending_after_text = -4pt
+#let design_section_ending_after_one_line = 4pt
 #let design_normal_entry_paragraph_spacing = 1pt
 #let design_normal_entry_between_entries = -6pt
 #let design_professional_dev_after_name = -6pt        

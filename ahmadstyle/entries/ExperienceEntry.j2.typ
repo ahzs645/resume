@@ -61,6 +61,10 @@
   bullet_line([{{ unescape(highlight) }}])
   v(design_experience_between_highlights)
 {% endfor %}
+{% else %}
+  // End the way an entry with highlights does, so entries without them (a
+  // list of volunteer roles) are spaced like the rest.
+  v(design_experience_between_highlights)
 {% endif %}
 })
 
